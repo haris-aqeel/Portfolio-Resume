@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haris Aqeel — Senior Data Engineer</title>
+  <meta name="description" content="Senior Data Engineer working in the Microsoft Azure ecosystem — Fabric, ADF, Databricks, Power BI. Portfolio of Haris Aqeel.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Dot grid background -->
+  <canvas id="dotGrid"></canvas>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">HA<span class="accent">.</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Senior Data Engineer</div>
+        <h1 class="hero-title">
+          Haris <span class="accent">Aqeel</span>
+        </h1>
+        <p class="hero-subtitle">
+          Senior Data Engineer working in the Microsoft Azure ecosystem — Fabric, ADF, Databricks, Power BI. Started as a frontend dev, got obsessed with the data behind the apps, and never looked back.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          <a href="#experience" class="btn btn-secondary">View Experience</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">6+</span>
+            <span class="stat-label">Companies</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Microsoft Certs</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="pipeline-visual">
+          <div class="node node-1" data-label="Ingest">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div class="pipe pipe-1"></div>
+          <div class="node node-2" data-label="Transform">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+          </div>
+          <div class="pipe pipe-2"></div>
+          <div class="node node-3" data-label="Model">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div class="pipe pipe-3"></div>
+          <div class="node node-4" data-label="Visualize">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">About <span class="accent">Me</span></h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I started out as a frontend developer — React, TypeScript, GraphQL — building products for early-stage startups.</p>
+          <p>At some point I got more interested in the data behind the apps than the apps themselves. How it was collected, how it moved, how it turned into something useful. So I made the switch to data engineering and haven't looked back.</p>
+          <p>These days I work mostly in the Microsoft Azure ecosystem — Fabric, ADF, Databricks, Power BI. Building pipelines, modeling data, making sure the right people have the right numbers at the right time.</p>
+          <p>The software background still shapes how I think — I approach data systems the way I used to approach software. Clean architecture, maintainability, not just making it work.</p>
+          <p>If you're building something data-heavy or need someone who understands both the engineering and the product side — feel free to reach out.</p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Data Engineering</h3>
+            <p>Azure Fabric, ADF, Databricks, PySpark — building production pipelines daily</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Web Development</h3>
+            <p>React, TypeScript, Node.js — full-stack experience from startup to enterprise</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Client-Focused</h3>
+            <p>"Most reliable out of 600+ freelancers" — real feedback from real clients</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            <h3>Data Engineering</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag primary">Microsoft Fabric</span>
+            <span class="skill-tag primary">Azure Data Factory</span>
+            <span class="skill-tag primary">Azure Databricks</span>
+            <span class="skill-tag primary">PySpark</span>
+            <span class="skill-tag primary">Apache Spark</span>
+            <span class="skill-tag">Medallion Architecture</span>
+            <span class="skill-tag">Delta Tables</span>
+            <span class="skill-tag">Azure Synapse Analytics</span>
+            <span class="skill-tag">Azure SQL Data Warehouse</span>
+            <span class="skill-tag">Google BigQuery</span>
+            <span class="skill-tag">Snowflake</span>
+            <span class="skill-tag">Airflow</span>
+            <span class="skill-tag">Power Automate</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <h3>Business Intelligence</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag primary">Power BI</span>
+            <span class="skill-tag primary">DAX</span>
+            <span class="skill-tag">Looker Studio</span>
+            <span class="skill-tag">Excel (Advanced)</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            <h3>Cloud Platforms</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag primary">Microsoft Azure</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <h3>Programming &amp; Data</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag primary">Python</span>
+            <span class="skill-tag primary">SQL</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <h3>Frontend / Full-Stack</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">React.js</span>
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag">Material-UI</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">GraphQL</span>
+            <span class="skill-tag">Firebase</span>
+            <span class="skill-tag">Redux</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <h3>DevOps</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Deployment Pipelines</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section" id="experience">
+    <div class="container">
+      <h2 class="section-title">Work <span class="accent">Experience</span></h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker active"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Senior Data Engineer</h3>
+                <span class="timeline-company">Folio3 Software</span>
+              </div>
+              <span class="timeline-date">Jan 2026 – Present</span>
+            </div>
+            <span class="timeline-location">Karachi, On-site</span>
+            <ul class="timeline-details">
+              <li>Building ETL pipelines with Azure Data Factory and PySpark in Databricks</li>
+              <li>Implementing Medallion Architecture (Raw → Bronze → Silver → Gold) using Delta Tables in Microsoft Fabric</li>
+              <li>Pulling data from Dynamics 365 Finance & Operations and building reports in Fabric</li>
+              <li>Managing deployment pipelines across environments/workspaces</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>Azure Data Factory</span>
+              <span>PySpark</span>
+              <span>Databricks</span>
+              <span>Microsoft Fabric</span>
+              <span>Delta Tables</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Data Engineer</h3>
+                <span class="timeline-company">Folio3 Software</span>
+              </div>
+              <span class="timeline-date">Aug 2023 – Dec 2025</span>
+            </div>
+            <span class="timeline-location">Karachi, On-site</span>
+            <ul class="timeline-details">
+              <li>Developed ETL pipelines with ADF and PySpark for large-volume daily data processing</li>
+              <li>Created Delta Tables in Databricks using Medallion Architecture</li>
+              <li>Built views in Azure SQL Data Warehouse for Power BI reports</li>
+              <li>Developed DAX reports and dashboards for business intelligence</li>
+              <li>Used deployment pipelines to move resources between workspaces</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>ADF</span>
+              <span>PySpark</span>
+              <span>Databricks</span>
+              <span>Power BI</span>
+              <span>DAX</span>
+              <span>Azure SQL DW</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Frontend Developer</h3>
+                <span class="timeline-company">Connect4Healing, Inc.</span>
+              </div>
+              <span class="timeline-date">Sep 2023 – Jan 2024</span>
+            </div>
+            <span class="timeline-location">Remote (US)</span>
+            <ul class="timeline-details">
+              <li>Built and maintained UI using React and Material-UI</li>
+              <li>Integrated Vonage APIs for real-time video conferencing</li>
+              <li>Implemented email/SMS notifications with SendGrid and Twilio</li>
+              <li>Firebase for real-time database, integrated with AWS + .NET Framework APIs</li>
+              <li>Ensured HIPAA compliance</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>React</span>
+              <span>Material-UI</span>
+              <span>Firebase</span>
+              <span>Vonage</span>
+              <span>HIPAA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Full-Stack Developer</h3>
+                <span class="timeline-company">PrivacyLabs</span>
+              </div>
+              <span class="timeline-date">Jan 2022 – Sep 2023</span>
+            </div>
+            <span class="timeline-location">Remote (Freelance)</span>
+            <ul class="timeline-details">
+              <li>Led development of secure web apps focused on privacy and GDPR compliance</li>
+              <li>React.js frontend + Node.js backend</li>
+              <li>30% reduction in load times through code refactoring</li>
+              <li>Built the company MVP directly with the CEO (Daniel O'Neil)</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>React.js</span>
+              <span>Node.js</span>
+              <span>GDPR</span>
+              <span>Privacy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Software Engineer</h3>
+                <span class="timeline-company">Aciano Technologies</span>
+              </div>
+              <span class="timeline-date">Jan 2022 – Jun 2022</span>
+            </div>
+            <span class="timeline-location">Karachi, On-site (Part-time)</span>
+            <ul class="timeline-details">
+              <li>Transformed Figma designs into React Native mobile app</li>
+              <li>Integrated Redux Persist and backend APIs</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>React Native</span>
+              <span>Redux</span>
+              <span>Figma</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Frontend Engineer</h3>
+                <span class="timeline-company">Worktrim</span>
+              </div>
+              <span class="timeline-date">Feb 2021 – Apr 2021</span>
+            </div>
+            <span class="timeline-location">Remote (US, Contract)</span>
+            <ul class="timeline-details">
+              <li>React.js components from Figma designs</li>
+              <li>Material-UI v4, JWT authentication, Formik + Yup form validation</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>React.js</span>
+              <span>Material-UI</span>
+              <span>JWT</span>
+              <span>Formik</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Web Developer</h3>
+                <span class="timeline-company">Upwork / Fiverr (Freelance)</span>
+              </div>
+              <span class="timeline-date">2020 – 2021</span>
+            </div>
+            <span class="timeline-location">Remote</span>
+            <ul class="timeline-details">
+              <li>React.js, JavaScript web projects for various clients</li>
+            </ul>
+            <div class="timeline-tags">
+              <span>React.js</span>
+              <span>JavaScript</span>
+              <span>Freelance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Azilchain</h3>
+          <p>Full-stack blockchain platform built with React, Node.js, Contentful CMS, and AWS infrastructure.</p>
+          <div class="project-tags">
+            <span>React</span>
+            <span>Node.js</span>
+            <span>Contentful</span>
+            <span>AWS</span>
+          </div>
+          <a href="https://www.azilchain.com/" target="_blank" rel="noopener noreferrer" class="project-link">
+            View Live
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Connect4Healing</h3>
+          <p>Healthcare web platform with video conferencing, scheduling via FullCalendar, and full HIPAA compliance.</p>
+          <div class="project-tags">
+            <span>React</span>
+            <span>Vonage</span>
+            <span>Firebase</span>
+            <span>HIPAA</span>
+          </div>
+          <a href="https://connect4healing.net/" target="_blank" rel="noopener noreferrer" class="project-link">
+            View Live
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          </div>
+          <h3>AI Recipe Creator</h3>
+          <p>AI-powered recipe platform using OpenAI API with Stripe subscription for premium access. Built for a client.</p>
+          <div class="project-tags">
+            <span>React.js</span>
+            <span>Node.js</span>
+            <span>OpenAI</span>
+            <span>Firebase</span>
+            <span>Stripe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="section" id="certifications">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">Certifications</span></h2>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="9" r="6"/><path d="M9 9l1.5 1.5L14 7"/></svg>
+          </div>
+          <div class="cert-info">
+            <h3>Fabric Data Engineer Associate</h3>
+            <span class="cert-issuer">Microsoft Certified</span>
+            <span class="cert-date">Issued May 2025 · Expires May 2026</span>
+            <span class="cert-id">ID: 61F9F2CA639009E5</span>
+          </div>
+          <div class="cert-status active">Active</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="9" r="6"/><path d="M9 9l1.5 1.5L14 7"/></svg>
+          </div>
+          <div class="cert-info">
+            <h3>Fabric Analytics Engineer Associate</h3>
+            <span class="cert-issuer">Microsoft Certified</span>
+            <span class="cert-date">Issued Dec 2024 · Expired Dec 2025</span>
+            <span class="cert-id">ID: 7A425F6E7C170FD7</span>
+          </div>
+          <div class="cert-status">Expired</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15l-2 5 2-1 2 1-2-5z"/><circle cx="12" cy="9" r="6"/><path d="M9 9l1.5 1.5L14 7"/></svg>
+          </div>
+          <div class="cert-info">
+            <h3>Getting Started with Google Kubernetes Engine</h3>
+            <span class="cert-issuer">Google · NED University</span>
+          </div>
+          <div class="cert-status">Completed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section section-alt" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">What People <span class="accent">Say</span></h2>
+      <p class="section-subtitle">Real feedback from clients and colleagues</p>
+
+      <!-- Featured Testimonial -->
+      <div class="testimonial-featured">
+        <div class="testimonial-quote-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" opacity="0.3"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        </div>
+        <blockquote>
+          "To date, Haris is the most reliable, present, dedicated and professional freelancer I've hired — and I've hired and worked with over 600. His speed and professionalism are truly commendable. What stands out the most is his ability to grasp end-goals without the need for micromanagement. I'm confident in our continued collaboration and look forward to working with him long-term."
+        </blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-author-info">
+            <strong>Mike Soertsz</strong>
+            <span>CTO, Building Product for Startups</span>
+          </div>
+          <div class="testimonial-badge">Most reliable out of 600+ freelancers</div>
+        </div>
+      </div>
+
+      <!-- Other Testimonials Grid -->
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <blockquote>
+            "Haris was the most honest and effective freelancer I have ever worked with. I knew that when I assigned a task to him, he would accomplish the task effectively. I could trust his judgment on his capabilities, skills, and expected task completion timeframe. This allowed my focus to be on the project. I would highly recommend Haris as a developer."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-author-info">
+              <strong>Daniel O'Neil</strong>
+              <span>CEO @ PrivacyLabs</span>
+            </div>
+            <div class="testimonial-badge small">Most honest and effective freelancer</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <blockquote>
+            "I've had the pleasure to work with Haris on a private project where he was hired to develop a web-based application with AWS back-end components. He was always patient in understanding our needs and quick to implement changes when required. Given his level of expertise and engagement, he makes you feel as if you're his only client. He is of course highly recommended and the first person I'll pull in for any related projects."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-author-info">
+              <strong>Tron Mason, MBA</strong>
+              <span>Engineering Team Lead, U.S. House of Representatives</span>
+            </div>
+            <div class="testimonial-badge small">Makes you feel like you're his only client</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <blockquote>
+            "Haris worked on a portion of a web-based project (front-end) for a few months as a contractor. He is honest about the amount of time he completes on projects and is easy to work with. I also found him to be very accommodating to working with clients out of his time zone. When I had questions, he was quick to respond. I would recommend him."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-author-info">
+              <strong>Kristen Burke, MBA, MS</strong>
+              <span>Regional Toxicology Liaison & Founder/CEO</span>
+            </div>
+            <div class="testimonial-badge small">Honest, responsive, easy to work with</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <blockquote>
+            "Haris is one of few honest developers out there. He accurately reports associated details and has been a pleasure to work with. He's responsive and provides good quality work. I recommend working with Haris."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-author-info">
+              <strong>Cesar Diaz</strong>
+              <span>Entrepreneur & Investor</span>
+            </div>
+            <div class="testimonial-badge small">One of few honest developers</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <blockquote>
+            "Haris is an exceptional coder and problem solver. His attention to detail and ability to find creative solutions make him a valuable asset to any team. He is a keen learner and always seeks out opportunities to improve his skills. His talent and dedication make him stand out among his peers and I have no doubt that he will continue to excel in his career."
+          </blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-author-info">
+              <strong>Ahmed Ali</strong>
+              <span>Blockchain Engineer @ TruFin Labs</span>
+            </div>
+            <div class="testimonial-badge small">Exceptional coder and problem solver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <div class="container">
+      <h2 class="section-title"><span class="accent">Education</span></h2>
+      <div class="education-grid">
+        <div class="education-card">
+          <div class="education-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+          </div>
+          <div class="education-info">
+            <h3>NED University of Engineering & Technology</h3>
+            <span class="education-degree">Bachelor of Engineering — Computer Software Engineering</span>
+            <span class="education-date">2019 – 2023 · CGPA: 3.78</span>
+            <p class="education-details">Level II PEC Accreditation (Washington Accord equivalent). Key courses: AI, Probability & Statistics, Parallel & Distributed Computing, Computer Systems Security, Database Management Systems, Data Structures & Algorithms, Software Engineering, OOP.</p>
+          </div>
+        </div>
+        <div class="education-card">
+          <div class="education-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="education-info">
+            <h3>Adamjee Govt. Science College</h3>
+            <span class="education-degree">Intermediate — Pre-Engineering</span>
+            <span class="education-date">Grade: 89%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <h2 class="section-title">Get in <span class="accent">Touch</span></h2>
+      <p class="section-subtitle">Building something data-heavy? Need someone who gets both engineering and product? Let's talk.</p>
+      <div class="contact-grid">
+        <a href="mailto:harisaqeel.2001@gmail.com" class="contact-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">harisaqeel.2001@gmail.com</span>
+        </a>
+        <a href="tel:+923347357425" class="contact-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+92-334-7357425</span>
+        </a>
+        <a href="https://github.com/haris-aqeel" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value">haris-aqeel</span>
+        </a>
+        <a href="https://www.linkedin.com/in/haris-aqeel/" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">haris-aqeel</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span>&copy; 2026 Haris Aqeel. Built with purpose.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
