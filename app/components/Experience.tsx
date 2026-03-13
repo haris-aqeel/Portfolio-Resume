@@ -123,12 +123,12 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
     <div ref={ref} className="relative flex items-start gap-6 md:gap-0">
       {/* Center line dot */}
       <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 z-10">
-        <div className="w-3 h-3 rounded-full bg-[#6366f1] ring-4 ring-[#0a0a0a]" />
+        <div className="w-3 h-3 rounded-full bg-[#D4A853] ring-4 ring-[#09090B] shadow-[0_0_10px_rgba(212,168,83,0.3)]" />
       </div>
 
       {/* Mobile dot */}
       <div className="md:hidden flex-shrink-0 mt-6">
-        <div className="w-3 h-3 rounded-full bg-[#6366f1] ring-4 ring-[#0a0a0a]" />
+        <div className="w-3 h-3 rounded-full bg-[#D4A853] ring-4 ring-[#09090B]" />
       </div>
 
       {/* Card — desktop positioning */}
@@ -140,18 +140,18 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
           isLeft ? "md:mr-auto md:pr-12" : "md:ml-auto md:pl-12"
         }`}
       >
-        <div className="p-5 rounded-xl border border-[#222222] bg-[#111111] card-hover">
+        <div className="premium-card p-5 rounded-xl card-hover">
           {/* Company Header */}
           <div className="flex items-center gap-3 mb-3">
             <CompanyLogo company={job.company} size={40} />
             <div>
-              <h3 className="text-lg font-semibold text-[#f4f4f5]">
+              <h3 className="text-lg font-semibold text-[#FAFAF9]">
                 {job.company}
               </h3>
-              <div className="flex items-center gap-2 mt-1 text-xs text-[#71717a]">
+              <div className="flex items-center gap-2 mt-1 text-xs text-[#71717A]">
                 <MapPin size={12} />
                 <span>{job.location}</span>
-                <span className="px-2 py-0.5 rounded-full bg-[#1a1a1a] border border-[#222222] text-[10px] font-medium">
+                <span className="px-2 py-0.5 rounded-full premium-tag text-[10px] font-medium">
                   {job.type}
                 </span>
               </div>
@@ -164,9 +164,9 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
               key={role.period}
               className="flex items-center gap-2 mb-2 text-sm"
             >
-              <Briefcase size={13} className="text-[#22d3ee]" />
-              <span className="text-[#f4f4f5] font-medium">{role.title}</span>
-              <span className="text-[#71717a] text-xs flex items-center gap-1">
+              <Briefcase size={13} className="text-[#D4A853]" />
+              <span className="text-[#FAFAF9] font-medium">{role.title}</span>
+              <span className="text-[#71717A] text-xs flex items-center gap-1">
                 <Calendar size={10} />
                 {role.period}
               </span>
@@ -178,9 +178,9 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
             {job.achievements.map((a, i) => (
               <li
                 key={i}
-                className="text-sm text-[#a1a1aa] flex items-start gap-2"
+                className="text-sm text-[#A1A1AA] flex items-start gap-2"
               >
-                <span className="text-[#6366f1] mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-[#6366f1]" />
+                <span className="mt-2 flex-shrink-0 w-1 h-1 rounded-full bg-[#D4A853]" />
                 {a}
               </li>
             ))}
@@ -191,7 +191,7 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
             {job.skills.map((s) => (
               <span
                 key={s}
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#1a1a1a] border border-[#222222] text-[11px] text-[#71717a] font-[family-name:var(--font-jetbrains)]"
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#09090B] border border-[#27272A] text-[11px] text-[#71717A] font-[family-name:var(--font-jetbrains)] hover:border-[#D4A853]/20 hover:text-[#A1A1AA] transition-colors"
               >
                 <TechIcon name={s} size={10} />
                 {s}
@@ -208,23 +208,25 @@ export default function Experience() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="experience" className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="relative py-24 sm:py-32">
+      <div className="section-divider mb-24" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
+          <span className="section-label font-[family-name:var(--font-jetbrains)]">
             Career Path
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
             Work <span className="gradient-text">Experience</span>
           </h2>
-          <p className="text-[#71717a] mt-3 max-w-xl mx-auto text-sm">
+          <p className="text-[#71717A] mt-4 max-w-xl mx-auto text-sm leading-relaxed">
             From freelance frontend to senior data engineering — a journey across
             startups, enterprises, and everything in between.
           </p>
@@ -233,8 +235,8 @@ export default function Experience() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#6366f1]/50 via-[#222222] to-transparent" />
-          <div className="md:hidden absolute left-[5px] top-0 bottom-0 w-px bg-gradient-to-b from-[#6366f1]/50 via-[#222222] to-transparent" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#D4A853]/40 via-[#27272A] to-transparent" />
+          <div className="md:hidden absolute left-[5px] top-0 bottom-0 w-px bg-gradient-to-b from-[#D4A853]/40 via-[#27272A] to-transparent" />
 
           <div className="space-y-8 md:space-y-12">
             {jobs.map((job, i) => (

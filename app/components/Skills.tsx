@@ -24,7 +24,7 @@ const skillGroups: SkillGroup[] = [
   {
     title: "Data Engineering",
     icon: Database,
-    color: "#6366f1",
+    color: "#D4A853",
     skills: [
       "Azure Data Factory",
       "Azure Databricks",
@@ -42,7 +42,7 @@ const skillGroups: SkillGroup[] = [
   {
     title: "Analytics & BI",
     icon: BarChart3,
-    color: "#22d3ee",
+    color: "#3B82F6",
     skills: [
       "Power BI",
       "DAX",
@@ -54,7 +54,7 @@ const skillGroups: SkillGroup[] = [
   {
     title: "Cloud Platforms",
     icon: Cloud,
-    color: "#a78bfa",
+    color: "#8B5CF6",
     skills: [
       "Microsoft Azure",
       "AWS (Amplify, Lambda, S3, CloudFront, Cognito)",
@@ -66,7 +66,7 @@ const skillGroups: SkillGroup[] = [
   {
     title: "Full-Stack (Prior)",
     icon: Code2,
-    color: "#f472b6",
+    color: "#EC4899",
     skills: [
       "React.js",
       "Next.js",
@@ -86,7 +86,7 @@ const skillGroups: SkillGroup[] = [
   {
     title: "AI & Automation",
     icon: Bot,
-    color: "#34d399",
+    color: "#10B981",
     skills: [
       "OpenAI Integration",
       "Microsoft Power Automate",
@@ -98,7 +98,7 @@ const skillGroups: SkillGroup[] = [
   {
     title: "DevOps & Tools",
     icon: GitBranch,
-    color: "#fb923c",
+    color: "#F97316",
     skills: [
       "AWS CDK",
       "Git",
@@ -109,10 +109,10 @@ const skillGroups: SkillGroup[] = [
 ];
 
 const timeline = [
-  { year: "2020", label: "Freelance Frontend", color: "#f472b6" },
-  { year: "2022", label: "Full-Stack", color: "#a78bfa" },
-  { year: "2023", label: "Data Engineering", color: "#22d3ee" },
-  { year: "2026", label: "Senior DE", color: "#6366f1" },
+  { year: "2020", label: "Freelance Frontend", color: "#EC4899" },
+  { year: "2022", label: "Full-Stack", color: "#8B5CF6" },
+  { year: "2023", label: "Data Engineering", color: "#3B82F6" },
+  { year: "2026", label: "Senior DE", color: "#D4A853" },
 ];
 
 function SkillCard({ group, index }: { group: SkillGroup; index: number }) {
@@ -124,22 +124,25 @@ function SkillCard({ group, index }: { group: SkillGroup; index: number }) {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-5 rounded-xl border border-[#222222] bg-[#111111] card-hover"
+      className="premium-card p-5 rounded-xl card-hover group"
     >
       <div className="flex items-center gap-3 mb-4">
         <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center"
-          style={{ backgroundColor: `${group.color}15` }}
+          className="w-10 h-10 rounded-lg flex items-center justify-center transition-shadow duration-300"
+          style={{
+            backgroundColor: `${group.color}12`,
+            boxShadow: `0 0 0px ${group.color}00`,
+          }}
         >
           <group.icon size={18} style={{ color: group.color }} />
         </div>
-        <h3 className="text-sm font-semibold text-[#f4f4f5]">{group.title}</h3>
+        <h3 className="text-sm font-semibold text-[#FAFAF9]">{group.title}</h3>
       </div>
       <div className="flex flex-wrap gap-2">
         {group.skills.map((skill) => (
           <span
             key={skill}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs bg-[#1a1a1a] border border-[#222222] text-[#a1a1aa] hover:text-[#f4f4f5] hover:border-[#333] transition-colors duration-200 font-[family-name:var(--font-jetbrains)]"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs bg-[#09090B] border border-[#27272A] text-[#A1A1AA] hover:text-[#FAFAF9] hover:border-[#D4A853]/25 transition-all duration-200 font-[family-name:var(--font-jetbrains)]"
           >
             <TechIcon name={skill} size={12} />
             {skill}
@@ -155,23 +158,25 @@ export default function Skills() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="skills" className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="relative py-24 sm:py-32">
+      <div className="section-divider mb-24" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
+          <span className="section-label font-[family-name:var(--font-jetbrains)]">
             Tech Stack
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
             Skills & <span className="gradient-text">Technologies</span>
           </h2>
-          <p className="text-[#71717a] mt-3 max-w-xl mx-auto text-sm">
+          <p className="text-[#71717A] mt-4 max-w-xl mx-auto text-sm leading-relaxed">
             A cross-functional skill set spanning data engineering, cloud
             platforms, analytics, and full-stack development.
           </p>
@@ -189,9 +194,9 @@ export default function Skills() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16"
+          className="mt-20"
         >
-          <h3 className="text-center text-sm font-semibold text-[#71717a] mb-8">
+          <h3 className="text-center text-sm font-medium text-[#71717A] mb-10 tracking-wide">
             Timeline of My Tech Evolution
           </h3>
           <div
@@ -202,20 +207,23 @@ export default function Skills() {
               <div key={item.year} className="flex items-center">
                 <div className="flex flex-col items-center">
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                    style={{ backgroundColor: item.color }}
+                    className="w-11 h-11 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-lg"
+                    style={{
+                      backgroundColor: item.color,
+                      boxShadow: `0 0 20px ${item.color}30`,
+                    }}
                   >
                     {item.year.slice(-2)}
                   </div>
-                  <span className="text-[11px] text-[#71717a] mt-2 font-[family-name:var(--font-jetbrains)]">
+                  <span className="text-[11px] text-[#71717A] mt-2.5 font-[family-name:var(--font-jetbrains)]">
                     {item.year}
                   </span>
-                  <span className="text-[10px] text-[#a1a1aa] mt-0.5 whitespace-nowrap">
+                  <span className="text-[10px] text-[#A1A1AA] mt-0.5 whitespace-nowrap">
                     {item.label}
                   </span>
                 </div>
                 {i < timeline.length - 1 && (
-                  <div className="w-16 sm:w-24 h-px bg-gradient-to-r from-[#222222] via-[#333333] to-[#222222] mx-3" />
+                  <div className="w-16 sm:w-28 h-px bg-gradient-to-r from-[#27272A] via-[#3F3F46] to-[#27272A] mx-4" />
                 )}
               </div>
             ))}

@@ -28,20 +28,18 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "glass shadow-lg"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? "glass shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#6366f1] to-[#22d3ee] flex items-center justify-center font-bold text-sm text-white">
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#D4A853] to-[#B8922E] flex items-center justify-center font-bold text-sm text-[#09090B] transition-shadow duration-300 group-hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]">
               HA
             </div>
-            <span className="text-sm font-medium text-[#71717a] hidden sm:block font-[family-name:var(--font-jetbrains)]">
+            <span className="text-sm font-medium text-[#71717A] hidden sm:block font-[family-name:var(--font-jetbrains)] tracking-wide">
               haris.dev
             </span>
           </a>
@@ -52,7 +50,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[#71717a] hover:text-[#f4f4f5] transition-colors duration-200"
+                className="text-[13px] text-[#A1A1AA] hover:text-[#D4A853] transition-colors duration-300 tracking-wide"
               >
                 {link.label}
               </a>
@@ -61,19 +59,19 @@ export default function Navbar() {
 
           {/* Available Badge + Mobile Toggle */}
           <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#222222] bg-[#111111]">
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#27272A] bg-[#18181B]/80">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22c55e]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
               </span>
-              <span className="text-xs text-[#22c55e] font-medium">
+              <span className="text-xs text-[#10B981] font-medium tracking-wide">
                 Available for work
               </span>
             </div>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 text-[#71717a] hover:text-[#f4f4f5]"
+              className="md:hidden p-2 text-[#A1A1AA] hover:text-[#D4A853] transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -89,25 +87,25 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-[#222222]"
+            className="md:hidden border-t border-[#27272A] bg-[#09090B]/95 backdrop-blur-xl"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block text-sm text-[#71717a] hover:text-[#f4f4f5] transition-colors py-2"
+                  className="block text-sm text-[#A1A1AA] hover:text-[#D4A853] transition-colors py-2.5 px-2 rounded-lg hover:bg-[#18181B]"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="flex items-center gap-2 pt-2">
+              <div className="flex items-center gap-2 pt-3 px-2">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22c55e] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22c55e]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
                 </span>
-                <span className="text-xs text-[#22c55e] font-medium">
+                <span className="text-xs text-[#10B981] font-medium">
                   Available for work
                 </span>
               </div>

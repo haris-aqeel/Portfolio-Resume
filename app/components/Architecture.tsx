@@ -27,11 +27,11 @@ const tabIcons = [Layers, Zap, RefreshCw, Settings, Sparkles];
 /* ── Legend items ── */
 
 const legendItems = [
-  { color: "#22d3ee", label: "Source" },
-  { color: "#6366f1", label: "Processing" },
-  { color: "#9333ea", label: "Storage" },
-  { color: "#22c55e", label: "Consumption" },
-  { color: "#f59e0b", label: "Governance" },
+  { color: "#3B82F6", label: "Source" },
+  { color: "#D4A853", label: "Processing" },
+  { color: "#8B5CF6", label: "Storage" },
+  { color: "#10B981", label: "Consumption" },
+  { color: "#F59E0B", label: "Governance" },
 ];
 
 /* ── Walkthrough renderer ── */
@@ -43,28 +43,28 @@ function Walkthrough({
 }) {
   return (
     <div className="space-y-4">
-      <p className="text-sm text-zinc-400 leading-relaxed">{data.intro}</p>
+      <p className="text-sm text-[#A1A1AA] leading-relaxed">{data.intro}</p>
 
       <div className="space-y-4">
         {data.sections.map((s: WalkthroughSection, i: number) => (
           <div key={i}>
-            <h4 className="text-sm font-semibold text-zinc-200 mb-1">
+            <h4 className="text-sm font-semibold text-[#E4E4E7] mb-1">
               {s.title}
             </h4>
-            <p className="text-sm text-zinc-400 leading-relaxed">{s.text}</p>
+            <p className="text-sm text-[#A1A1AA] leading-relaxed">{s.text}</p>
           </div>
         ))}
       </div>
 
       {data.decisions && data.decisions.length > 0 && (
-        <div className="border-t border-zinc-800 pt-4">
-          <h4 className="text-sm font-semibold text-zinc-200 mb-2">
+        <div className="border-t border-[#27272A] pt-4">
+          <h4 className="text-sm font-semibold text-[#E4E4E7] mb-2">
             Key design decisions:
           </h4>
-          <ul className="text-sm text-zinc-400 space-y-1">
+          <ul className="text-sm text-[#A1A1AA] space-y-1">
             {data.decisions.map((d: string, i: number) => (
               <li key={i} className="flex gap-2">
-                <span className="text-zinc-600 select-none">&mdash;</span>
+                <span className="text-[#D4A853] select-none">&mdash;</span>
                 <span>{d}</span>
               </li>
             ))}
@@ -85,34 +85,34 @@ export default function Architecture() {
   const current = architectures[activeTab];
 
   return (
-    <section id="architecture" className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="architecture" className="relative py-24 sm:py-32">
+      <div className="section-divider mb-24" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── Section Header ── */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
+          <span className="section-label font-[family-name:var(--font-jetbrains)]">
             System Design
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
             Data Engineering{" "}
             <span className="gradient-text">Architecture Showcase</span>
           </h2>
-          <p className="text-zinc-500 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+          <p className="text-[#71717A] mt-5 max-w-2xl mx-auto text-sm leading-relaxed">
             I don&apos;t just run pipelines &mdash; I design the systems that
             pipelines live inside. Below are five architecture patterns
-            I&apos;ve built, studied, or can speak to in depth. Each one
-            reflects how I think about data: as infrastructure that has to be
-            trustworthy before it can be useful.
+            I&apos;ve built, studied, or can speak to in depth.
           </p>
         </motion.div>
 
         {/* ── Tab Navigation (pill-style) ── */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
           {architectures.map((arch, i) => {
             const Icon = tabIcons[i];
             const isActive = activeTab === i;
@@ -123,10 +123,10 @@ export default function Architecture() {
                   setActiveTab(i);
                   setWalkthroughOpen(false);
                 }}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? "bg-[#6366f1] text-white shadow-lg shadow-indigo-500/25"
-                    : "bg-zinc-900 border border-zinc-800 text-zinc-500 hover:text-zinc-200 hover:border-zinc-700"
+                    ? "bg-gradient-to-r from-[#D4A853] to-[#B8922E] text-[#09090B] shadow-lg shadow-[#D4A853]/20"
+                    : "bg-[#18181B] border border-[#27272A] text-[#71717A] hover:text-[#A1A1AA] hover:border-[#3F3F46]"
                 }`}
               >
                 <Icon size={14} />
@@ -150,18 +150,18 @@ export default function Architecture() {
           >
             {/* Title + one-liner */}
             <div className="mb-4">
-              <h3 className="text-lg font-bold text-zinc-100">
+              <h3 className="text-lg font-bold text-[#FAFAF9]">
                 {current.tabLabel}
               </h3>
-              <p className="text-sm text-zinc-500 mt-1">
+              <p className="text-sm text-[#71717A] mt-1">
                 {current.oneLiner}
               </p>
             </div>
 
             {/* ReactFlow Diagram */}
             <div
-              className="rounded-xl border border-zinc-800 overflow-hidden"
-              style={{ height: 700, background: "#0a0a0a" }}
+              className="rounded-xl border border-[#27272A] overflow-hidden"
+              style={{ height: 700, background: "#09090B" }}
             >
               <ReactFlow
                 nodes={current.nodes}
@@ -178,20 +178,20 @@ export default function Architecture() {
                 minZoom={0.3}
                 maxZoom={1.5}
               >
-                <Background color="#1a1a1a" gap={20} />
+                <Background color="#1C1C20" gap={20} />
                 <Controls
                   showInteractive={false}
-                  className="!bg-zinc-900 !border-zinc-800 !rounded-lg !shadow-lg [&>button]:!bg-zinc-900 [&>button]:!border-zinc-800 [&>button]:!text-zinc-500 [&>button:hover]:!text-zinc-200"
+                  className="!bg-[#18181B] !border-[#27272A] !rounded-lg !shadow-lg [&>button]:!bg-[#18181B] [&>button]:!border-[#27272A] [&>button]:!text-[#71717A] [&>button:hover]:!text-[#D4A853]"
                 />
               </ReactFlow>
             </div>
 
             {/* Legend */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
               {legendItems.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-2 text-xs text-zinc-500"
+                  className="flex items-center gap-2 text-xs text-[#71717A]"
                 >
                   <div
                     className="w-3 h-3 rounded-sm"
@@ -200,16 +200,16 @@ export default function Architecture() {
                   {item.label}
                 </div>
               ))}
-              <div className="flex items-center gap-2 text-xs text-zinc-500">
-                <div className="w-6 h-0.5 bg-indigo-500" />
+              <div className="flex items-center gap-2 text-xs text-[#71717A]">
+                <div className="w-6 h-0.5 bg-[#D4A853]" />
                 Batch
               </div>
-              <div className="flex items-center gap-2 text-xs text-zinc-500">
-                <div className="w-6 h-0.5 border-t-2 border-dashed border-cyan-400" />
+              <div className="flex items-center gap-2 text-xs text-[#71717A]">
+                <div className="w-6 h-0.5 border-t-2 border-dashed border-[#3B82F6]" />
                 Streaming
               </div>
-              <div className="flex items-center gap-2 text-xs text-zinc-500">
-                <div className="w-6 h-0.5 border-t-2 border-dashed border-amber-500" />
+              <div className="flex items-center gap-2 text-xs text-[#71717A]">
+                <div className="w-6 h-0.5 border-t-2 border-dashed border-[#F59E0B]" />
                 Governance
               </div>
             </div>
@@ -219,7 +219,7 @@ export default function Architecture() {
               {/* Mobile toggle */}
               <button
                 onClick={() => setWalkthroughOpen(!walkthroughOpen)}
-                className="sm:hidden w-full flex items-center justify-between px-4 py-3 rounded-lg bg-zinc-900 border border-zinc-800 text-sm text-zinc-400 mb-3"
+                className="sm:hidden w-full flex items-center justify-between px-4 py-3 rounded-lg bg-[#18181B] border border-[#27272A] text-sm text-[#A1A1AA] mb-3"
               >
                 <span>Architecture Walkthrough</span>
                 <ChevronDown
@@ -234,7 +234,7 @@ export default function Architecture() {
               <div
                 className={`${
                   walkthroughOpen ? "block" : "hidden"
-                } sm:block rounded-xl bg-zinc-900/50 border border-zinc-800 p-6`}
+                } sm:block rounded-xl premium-card p-6`}
               >
                 <Walkthrough data={current.walkthrough} />
               </div>
@@ -247,7 +247,7 @@ export default function Architecture() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center text-zinc-600 text-sm mt-12 max-w-2xl mx-auto leading-relaxed italic"
+          className="text-center text-[#52525B] text-sm mt-14 max-w-2xl mx-auto leading-relaxed italic"
         >
           These aren&apos;t diagrams copied from documentation. They&apos;re
           how I think about system design &mdash; the trade-offs, the failure

@@ -128,20 +128,22 @@ export default function Testimonials() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="testimonials" className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="relative py-24 sm:py-32">
+      <div className="section-divider mb-24" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
+          <span className="section-label font-[family-name:var(--font-jetbrains)]">
             Social Proof
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
             What People <span className="gradient-text">Say</span>
           </h2>
         </motion.div>
@@ -151,12 +153,12 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-12 p-4 rounded-xl border border-[#222222] bg-[#111111]"
+          className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-14 p-5 rounded-xl premium-card"
         >
           {upworkStats.map((stat) => (
             <div key={stat.label} className="flex items-center gap-2">
-              <stat.icon size={14} className="text-[#22c55e]" />
-              <span className="text-xs sm:text-sm font-medium text-[#f4f4f5]">
+              <stat.icon size={14} className="text-[#D4A853]" />
+              <span className="text-xs sm:text-sm font-medium text-[#FAFAF9]">
                 {stat.label}
               </span>
             </div>
@@ -164,10 +166,10 @@ export default function Testimonials() {
         </motion.div>
 
         {/* LinkedIn Recommendations — Masonry Grid */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6">
-            <Linkedin size={16} className="text-[#0a66c2]" />
-            <h3 className="text-sm font-semibold text-[#f4f4f5]">
+        <div className="mb-14">
+          <div className="flex items-center gap-2 mb-8">
+            <Linkedin size={16} className="text-[#0A66C2]" />
+            <h3 className="text-sm font-semibold text-[#FAFAF9] tracking-wide">
               LinkedIn Recommendations
             </h3>
           </div>
@@ -178,18 +180,18 @@ export default function Testimonials() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
-                className="break-inside-avoid p-5 rounded-xl border border-[#222222] bg-[#111111] card-hover"
+                className="break-inside-avoid premium-card p-5 rounded-xl card-hover"
               >
-                <Quote size={16} className="text-[#6366f1] mb-3" />
-                <p className="text-sm text-[#a1a1aa] leading-relaxed mb-4">
+                <Quote size={16} className="text-[#D4A853]/60 mb-3" />
+                <p className="text-sm text-[#A1A1AA] leading-relaxed mb-4">
                   &ldquo;{rec.quote}&rdquo;
                 </p>
-                <div className="border-t border-[#222222] pt-3">
-                  <p className="text-sm font-semibold text-[#f4f4f5]">
+                <div className="border-t border-[#27272A] pt-3">
+                  <p className="text-sm font-semibold text-[#FAFAF9]">
                     {rec.name}
                   </p>
-                  <p className="text-xs text-[#71717a]">{rec.title}</p>
-                  <p className="text-[10px] text-[#71717a] mt-1 font-[family-name:var(--font-jetbrains)]">
+                  <p className="text-xs text-[#71717A]">{rec.title}</p>
+                  <p className="text-[10px] text-[#52525B] mt-1 font-[family-name:var(--font-jetbrains)]">
                     {rec.date} · {rec.relation}
                   </p>
                 </div>
@@ -199,10 +201,10 @@ export default function Testimonials() {
         </div>
 
         {/* Upwork Reviews — Compact Cards */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6">
-            <Star size={16} className="text-[#22c55e]" />
-            <h3 className="text-sm font-semibold text-[#f4f4f5]">
+        <div className="mb-14">
+          <div className="flex items-center gap-2 mb-8">
+            <Star size={16} className="text-[#D4A853]" />
+            <h3 className="text-sm font-semibold text-[#FAFAF9] tracking-wide">
               Upwork Reviews
             </h3>
           </div>
@@ -213,24 +215,24 @@ export default function Testimonials() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
-                className="p-4 rounded-xl border border-[#222222] bg-[#111111] card-hover"
+                className="premium-card p-4 rounded-xl card-hover"
               >
                 <div className="flex gap-0.5 mb-2">
                   {[...Array(5)].map((_, j) => (
                     <Star
                       key={j}
                       size={12}
-                      className="text-[#eab308] fill-[#eab308]"
+                      className="text-[#D4A853] fill-[#D4A853]"
                     />
                   ))}
                 </div>
-                <p className="text-sm text-[#a1a1aa] leading-relaxed mb-3">
+                <p className="text-sm text-[#A1A1AA] leading-relaxed mb-3">
                   &ldquo;{review.quote}&rdquo;
                 </p>
-                <div className="flex items-center justify-between text-[10px] text-[#71717a] font-[family-name:var(--font-jetbrains)]">
+                <div className="flex items-center justify-between text-[10px] text-[#71717A] font-[family-name:var(--font-jetbrains)]">
                   <span>{review.date}</span>
                   {review.amount && (
-                    <span className="text-[#22c55e]">{review.amount}</span>
+                    <span className="text-[#D4A853]">{review.amount}</span>
                   )}
                 </div>
               </motion.div>
@@ -245,7 +247,7 @@ export default function Testimonials() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-center"
         >
-          <h3 className="text-sm font-semibold text-[#71717a] mb-6">
+          <h3 className="text-sm font-medium text-[#71717A] mb-8 tracking-wide">
             What Clients Say Most
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -254,11 +256,11 @@ export default function Testimonials() {
               return (
                 <span
                   key={word.text}
-                  className="px-3 py-1.5 rounded-lg border border-[#222222] bg-[#111111] text-[#a1a1aa] hover:text-[#f4f4f5] hover:border-[#6366f1]/50 transition-all duration-200"
+                  className="px-3 py-1.5 rounded-lg border border-[#27272A] bg-[#18181B] text-[#A1A1AA] hover:text-[#D4A853] hover:border-[#D4A853]/30 transition-all duration-300"
                   style={{ fontSize: `${size}rem` }}
                 >
                   {word.text}{" "}
-                  <span className="text-[#71717a] text-xs">({word.count})</span>
+                  <span className="text-[#52525B] text-xs">({word.count})</span>
                 </span>
               );
             })}

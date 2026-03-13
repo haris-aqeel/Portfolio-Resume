@@ -8,8 +8,10 @@ export default function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="contact" className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative py-24 sm:py-32">
+      <div className="section-divider mb-24" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -17,32 +19,35 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="max-w-2xl mx-auto"
         >
-          <div className="p-8 sm:p-10 rounded-2xl border border-zinc-800 bg-zinc-900/50 text-center">
+          <div className="relative p-8 sm:p-12 rounded-2xl premium-card text-center overflow-hidden">
+            {/* Background glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-[radial-gradient(ellipse,rgba(212,168,83,0.06)_0%,transparent_70%)] pointer-events-none" />
+
             {/* Status */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-950 mb-5">
+            <div className="relative inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#27272A] bg-[#09090B] mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
               </span>
-              <span className="text-xs text-emerald-500 font-medium">
+              <span className="text-xs text-[#10B981] font-medium tracking-wide">
                 Available Now
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold mb-3">
+            <h2 className="relative text-2xl sm:text-3xl font-bold mb-3 font-[family-name:var(--font-playfair)]">
               Let&apos;s work{" "}
               <span className="gradient-text">together</span>
             </h2>
-            <p className="text-sm text-zinc-500 mb-6 max-w-md mx-auto">
+            <p className="relative text-sm text-[#71717A] mb-8 max-w-md mx-auto leading-relaxed">
               Open to data engineering contracts, consulting, and full-time
               roles.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+            <div className="relative flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
               <a
                 href="mailto:haris@placeholder.com"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all duration-200 hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] w-full sm:w-auto justify-center"
+                className="btn-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm w-full sm:w-auto justify-center"
               >
                 <Mail size={16} />
                 Email Me
@@ -51,7 +56,7 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/haris-aqeel/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-medium text-sm transition-all duration-200 w-full sm:w-auto justify-center"
+                className="btn-secondary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm w-full sm:w-auto justify-center"
               >
                 <Linkedin size={16} />
                 LinkedIn
@@ -60,7 +65,7 @@ export default function Contact() {
                 href="https://www.upwork.com/freelancers/~placeholder"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 font-medium text-sm transition-all duration-200 w-full sm:w-auto justify-center"
+                className="btn-secondary inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm w-full sm:w-auto justify-center"
               >
                 <ExternalLink size={16} />
                 Upwork
@@ -68,10 +73,10 @@ export default function Contact() {
             </div>
 
             {/* Location */}
-            <div className="flex items-center justify-center gap-2 text-sm text-zinc-500">
+            <div className="relative flex items-center justify-center gap-2 text-sm text-[#71717A]">
               <MapPin size={14} />
               <span>Karachi, Pakistan</span>
-              <span className="text-zinc-700">&middot;</span>
+              <span className="text-[#3F3F46]">&middot;</span>
               <span>Open to remote</span>
             </div>
           </div>

@@ -68,65 +68,67 @@ export default function Certifications() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 sm:py-32">
+      <div className="section-divider mb-24" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="text-center mb-16"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
+          <span className="section-label font-[family-name:var(--font-jetbrains)]">
             Credentials
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
             Certifications & <span className="gradient-text">Badges</span>
           </h2>
         </motion.div>
 
         {/* ── Featured: Active Certifications ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           {activeCerts.map((cert, i) => (
             <motion.div
               key={cert.name}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative p-5 rounded-xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/5 via-zinc-900 to-zinc-900 overflow-hidden transition-all duration-300 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/5"
+              className="group relative p-6 rounded-xl border border-[#D4A853]/20 bg-gradient-to-br from-[#D4A853]/5 via-[#18181B] to-[#18181B] overflow-hidden transition-all duration-300 hover:border-[#D4A853]/40 hover:shadow-lg hover:shadow-[#D4A853]/5"
             >
               {/* Subtle top glow */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent" />
 
               {/* Active badge */}
-              <div className="flex items-center gap-1.5 mb-3">
-                <ShieldCheck size={14} className="text-emerald-500" />
-                <span className="text-[10px] text-emerald-500 font-semibold uppercase tracking-wider">
+              <div className="flex items-center gap-1.5 mb-4">
+                <ShieldCheck size={14} className="text-[#10B981]" />
+                <span className="text-[10px] text-[#10B981] font-semibold uppercase tracking-[0.15em]">
                   Active Certification
                 </span>
               </div>
 
               {/* Cert name */}
-              <h3 className="text-base font-bold text-zinc-100 leading-snug mb-3">
+              <h3 className="text-base font-bold text-[#FAFAF9] leading-snug mb-3">
                 {cert.name}
               </h3>
 
               {/* Issuer */}
               <div className="flex items-center gap-2 mb-3">
                 <IssuerIcon issuer={cert.issuer} size={20} />
-                <span className="text-sm text-zinc-400 font-medium">
+                <span className="text-sm text-[#A1A1AA] font-medium">
                   {cert.issuer}
                 </span>
               </div>
 
               {/* Date info */}
-              <div className="flex items-center gap-1.5 text-[11px] text-zinc-500 font-[family-name:var(--font-jetbrains)]">
+              <div className="flex items-center gap-1.5 text-[11px] text-[#71717A] font-[family-name:var(--font-jetbrains)]">
                 <Calendar size={10} />
                 <span>{cert.date}</span>
                 {cert.expires && (
                   <>
-                    <span className="text-zinc-700">&middot;</span>
+                    <span className="text-[#3F3F46]">&middot;</span>
                     <span>Expires {cert.expires}</span>
                   </>
                 )}
@@ -143,19 +145,19 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 15 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
-              className="flex items-start gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-900/50 transition-colors duration-200 hover:border-zinc-700 hover:bg-zinc-900"
+              className="flex items-start gap-3 p-4 rounded-xl border border-[#27272A] bg-[#18181B]/50 transition-all duration-200 hover:border-[#3F3F46] hover:bg-[#18181B]"
             >
-              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-9 h-9 rounded-lg bg-[#27272A] flex items-center justify-center flex-shrink-0 mt-0.5">
                 <IssuerIcon issuer={cert.issuer} size={18} />
               </div>
               <div className="min-w-0">
-                <h4 className="text-sm font-semibold text-zinc-200 leading-snug">
+                <h4 className="text-sm font-semibold text-[#E4E4E7] leading-snug">
                   {cert.name}
                 </h4>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-zinc-500">{cert.issuer}</span>
-                  <span className="text-zinc-700">&middot;</span>
-                  <span className="text-[11px] text-zinc-600 font-[family-name:var(--font-jetbrains)]">
+                  <span className="text-xs text-[#71717A]">{cert.issuer}</span>
+                  <span className="text-[#3F3F46]">&middot;</span>
+                  <span className="text-[11px] text-[#52525B] font-[family-name:var(--font-jetbrains)]">
                     {cert.date}
                   </span>
                 </div>
