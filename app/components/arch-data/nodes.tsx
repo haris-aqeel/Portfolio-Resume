@@ -106,6 +106,7 @@ function WideNode({ data }: NodeProps<Node<ArchNodeData>>) {
       >
         <Handle type="target" position={Position.Top} id="top" className="!bg-slate-600 !w-2 !h-2 !border-0" />
         <Handle type="target" position={Position.Left} id="left" className="!bg-transparent !w-1 !h-1 !border-0" />
+        <Handle type="target" position={Position.Right} id="right" className="!bg-transparent !w-1 !h-1 !border-0" />
 
         <div className="text-sm font-bold text-slate-100">{data.label}</div>
         {data.sublabel && (
@@ -113,7 +114,7 @@ function WideNode({ data }: NodeProps<Node<ArchNodeData>>) {
         )}
 
         <Handle type="source" position={Position.Bottom} id="bottom" className="!bg-slate-600 !w-2 !h-2 !border-0" />
-        <Handle type="source" position={Position.Right} id="right" className="!bg-transparent !w-1 !h-1 !border-0" />
+        <Handle type="source" position={Position.Right} id="right-out" className="!bg-transparent !w-1 !h-1 !border-0" />
       </div>
     </div>
   );
