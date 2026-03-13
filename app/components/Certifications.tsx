@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { ShieldCheck, Calendar } from "lucide-react";
+import { Award, Calendar } from "lucide-react";
 import { IssuerIcon } from "./TechIcon";
 
 interface Cert {
@@ -55,9 +55,9 @@ const certs: Cert[] = [
     date: "Aug 2020",
   },
   {
-    name: "Networking Academy Learn-A-Thon 2021 & 2022",
+    name: "Networking Academy Learn-A-Thon",
     issuer: "Cisco",
-    date: "2021\u20132022",
+    date: "2021-2022",
   },
 ];
 
@@ -68,101 +68,96 @@ export default function Certifications() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section className="py-24 lg:py-32 bg-slate-900/30">
+      <div className="section-container">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
-            Credentials
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
-            Certifications & <span className="gradient-text">Badges</span>
-          </h2>
-        </motion.div>
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <p className="text-primary font-mono text-sm mb-2">Credentials</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">
+              Certifications & Badges
+            </h2>
+          </div>
 
-        {/* ── Featured: Active Certifications ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-          {activeCerts.map((cert, i) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative p-5 rounded-xl border border-indigo-500/30 bg-gradient-to-br from-indigo-500/5 via-zinc-900 to-zinc-900 overflow-hidden transition-all duration-300 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/5"
-            >
-              {/* Subtle top glow */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+          {/* Active Certifications */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            {activeCerts.map((cert, i) => (
+              <motion.div
+                key={cert.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="relative p-6 rounded-xl border border-primary/30 bg-primary/5 overflow-hidden"
+              >
+                {/* Top highlight */}
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-              {/* Active badge */}
-              <div className="flex items-center gap-1.5 mb-3">
-                <ShieldCheck size={14} className="text-emerald-500" />
-                <span className="text-[10px] text-emerald-500 font-semibold uppercase tracking-wider">
-                  Active Certification
-                </span>
-              </div>
-
-              {/* Cert name */}
-              <h3 className="text-base font-bold text-zinc-100 leading-snug mb-3">
-                {cert.name}
-              </h3>
-
-              {/* Issuer */}
-              <div className="flex items-center gap-2 mb-3">
-                <IssuerIcon issuer={cert.issuer} size={20} />
-                <span className="text-sm text-zinc-400 font-medium">
-                  {cert.issuer}
-                </span>
-              </div>
-
-              {/* Date info */}
-              <div className="flex items-center gap-1.5 text-[11px] text-zinc-500 font-[family-name:var(--font-jetbrains)]">
-                <Calendar size={10} />
-                <span>{cert.date}</span>
-                {cert.expires && (
-                  <>
-                    <span className="text-zinc-700">&middot;</span>
-                    <span>Expires {cert.expires}</span>
-                  </>
-                )}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ── Other Certifications ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {otherCerts.map((cert, i) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 15 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
-              className="flex items-start gap-3 p-4 rounded-xl border border-zinc-800 bg-zinc-900/50 transition-colors duration-200 hover:border-zinc-700 hover:bg-zinc-900"
-            >
-              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <IssuerIcon issuer={cert.issuer} size={18} />
-              </div>
-              <div className="min-w-0">
-                <h4 className="text-sm font-semibold text-zinc-200 leading-snug">
-                  {cert.name}
-                </h4>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-zinc-500">{cert.issuer}</span>
-                  <span className="text-zinc-700">&middot;</span>
-                  <span className="text-[11px] text-zinc-600 font-[family-name:var(--font-jetbrains)]">
-                    {cert.date}
+                {/* Active Badge */}
+                <div className="flex items-center gap-2 mb-4">
+                  <Award size={14} className="text-primary" />
+                  <span className="text-[10px] font-mono text-primary uppercase tracking-wider">
+                    Active
                   </span>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+
+                {/* Cert Name */}
+                <h3 className="text-base font-semibold text-slate-100 leading-snug mb-3">
+                  {cert.name}
+                </h3>
+
+                {/* Issuer */}
+                <div className="flex items-center gap-2 mb-3">
+                  <IssuerIcon issuer={cert.issuer} size={18} />
+                  <span className="text-sm text-muted">{cert.issuer}</span>
+                </div>
+
+                {/* Date */}
+                <div className="flex items-center gap-2 text-xs text-muted-foreground font-mono">
+                  <Calendar size={10} />
+                  <span>{cert.date}</span>
+                  {cert.expires && (
+                    <>
+                      <span className="text-slate-700">-</span>
+                      <span>{cert.expires}</span>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Other Certifications */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {otherCerts.map((cert, i) => (
+              <motion.div
+                key={cert.name}
+                initial={{ opacity: 0, y: 15 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
+                className="premium-card p-4"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0">
+                    <IssuerIcon issuer={cert.issuer} size={16} />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-medium text-slate-200 leading-snug line-clamp-2">
+                      {cert.name}
+                    </h4>
+                    <p className="text-[11px] text-muted mt-1 font-mono">
+                      {cert.issuer} - {cert.date}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

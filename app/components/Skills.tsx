@@ -2,224 +2,156 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {
-  Database,
-  BarChart3,
-  Cloud,
-  Code2,
-  Bot,
-  GitBranch,
-} from "lucide-react";
-import { useRef } from "react";
 import { TechIcon } from "./TechIcon";
 
-interface SkillGroup {
-  title: string;
-  icon: React.ElementType;
-  color: string;
+interface SkillCategory {
+  name: string;
   skills: string[];
 }
 
-const skillGroups: SkillGroup[] = [
+const skillCategories: SkillCategory[] = [
   {
-    title: "Data Engineering",
-    icon: Database,
-    color: "#6366f1",
+    name: "Data Engineering",
     skills: [
+      "Microsoft Fabric",
       "Azure Data Factory",
       "Azure Databricks",
       "PySpark",
-      "Microsoft Fabric",
       "Delta Lake",
-      "Medallion Architecture",
-      "ETL/ELT Pipelines",
       "Azure SQL Data Warehouse",
       "Google BigQuery",
       "Looker Studio",
-      "Data Modeling",
     ],
   },
   {
-    title: "Analytics & BI",
-    icon: BarChart3,
-    color: "#22d3ee",
+    name: "Analytics & BI",
     skills: [
       "Power BI",
       "DAX",
       "Excel",
-      "Data Visualization",
       "Dynamics 365 F&O",
     ],
   },
   {
-    title: "Cloud Platforms",
-    icon: Cloud,
-    color: "#a78bfa",
+    name: "Cloud Platforms",
     skills: [
       "Microsoft Azure",
-      "AWS (Amplify, Lambda, S3, CloudFront, Cognito)",
+      "AWS",
       "Google Cloud Platform",
-      "Serverless Architecture",
       "Vercel",
     ],
   },
   {
-    title: "Full-Stack (Prior)",
-    icon: Code2,
-    color: "#f472b6",
+    name: "Programming",
     skills: [
-      "React.js",
-      "Next.js",
+      "Python",
+      "SQL",
       "TypeScript",
       "JavaScript",
+      "React.js",
+      "Next.js",
       "Node.js",
-      "Python",
-      "Express.js",
-      "MongoDB",
-      "MySQL",
-      "Firebase",
-      "Redux",
+    ],
+  },
+  {
+    name: "DevOps & Tools",
+    skills: [
+      "Git",
+      "Docker (basic)",
+      "AWS CDK",
       "REST APIs",
       "GraphQL",
     ],
   },
-  {
-    title: "AI & Automation",
-    icon: Bot,
-    color: "#34d399",
-    skills: [
-      "OpenAI Integration",
-      "Microsoft Power Automate",
-      "Chatbot Development",
-      "Gemini/Bard Integration",
-      "AI Model Integration",
-    ],
-  },
-  {
-    title: "DevOps & Tools",
-    icon: GitBranch,
-    color: "#fb923c",
-    skills: [
-      "AWS CDK",
-      "Git",
-      "Docker (basic)",
-      "CI/CD Deployment Pipelines",
-    ],
-  },
 ];
-
-const timeline = [
-  { year: "2020", label: "Freelance Frontend", color: "#f472b6" },
-  { year: "2022", label: "Full-Stack", color: "#a78bfa" },
-  { year: "2023", label: "Data Engineering", color: "#22d3ee" },
-  { year: "2026", label: "Senior DE", color: "#6366f1" },
-];
-
-function SkillCard({ group, index }: { group: SkillGroup; index: number }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.15 });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-5 rounded-xl border border-[#222222] bg-[#111111] card-hover"
-    >
-      <div className="flex items-center gap-3 mb-4">
-        <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center"
-          style={{ backgroundColor: `${group.color}15` }}
-        >
-          <group.icon size={18} style={{ color: group.color }} />
-        </div>
-        <h3 className="text-sm font-semibold text-[#f4f4f5]">{group.title}</h3>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {group.skills.map((skill) => (
-          <span
-            key={skill}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs bg-[#1a1a1a] border border-[#222222] text-[#a1a1aa] hover:text-[#f4f4f5] hover:border-[#333] transition-colors duration-200 font-[family-name:var(--font-jetbrains)]"
-          >
-            <TechIcon name={skill} size={12} />
-            {skill}
-          </span>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
 
 export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="skills" className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section id="skills" className="py-24 lg:py-32">
+      <div className="section-container">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
-            Tech Stack
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
-            Skills & <span className="gradient-text">Technologies</span>
-          </h2>
-          <p className="text-[#71717a] mt-3 max-w-xl mx-auto text-sm">
-            A cross-functional skill set spanning data engineering, cloud
-            platforms, analytics, and full-stack development.
-          </p>
-        </motion.div>
+          {/* Section Header */}
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">
+              <span className="text-primary font-mono text-xl mr-2">03.</span>
+              Skills & Technologies
+            </h2>
+            <div className="h-px flex-1 bg-slate-700/50 max-w-xs" />
+          </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skillGroups.map((group, i) => (
-            <SkillCard key={group.title} group={group} index={i} />
-          ))}
-        </div>
-
-        {/* Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16"
-        >
-          <h3 className="text-center text-sm font-semibold text-[#71717a] mb-8">
-            Timeline of My Tech Evolution
-          </h3>
-          <div
-            ref={scrollRef}
-            className="flex items-center justify-center gap-0 overflow-x-auto pb-4"
-          >
-            {timeline.map((item, i) => (
-              <div key={item.year} className="flex items-center">
-                <div className="flex flex-col items-center">
-                  <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                    style={{ backgroundColor: item.color }}
-                  >
-                    {item.year.slice(-2)}
-                  </div>
-                  <span className="text-[11px] text-[#71717a] mt-2 font-[family-name:var(--font-jetbrains)]">
-                    {item.year}
-                  </span>
-                  <span className="text-[10px] text-[#a1a1aa] mt-0.5 whitespace-nowrap">
-                    {item.label}
-                  </span>
-                </div>
-                {i < timeline.length - 1 && (
-                  <div className="w-16 sm:w-24 h-px bg-gradient-to-r from-[#222222] via-[#333333] to-[#222222] mx-3" />
-                )}
-              </div>
+          {/* Skills Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillCategories.map((category, categoryIndex) => (
+              <motion.div
+                key={category.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
+                className="premium-card p-6"
+              >
+                <h3 className="text-sm font-semibold text-slate-100 mb-4">
+                  {category.name}
+                </h3>
+                <ul className="space-y-2.5">
+                  {category.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="flex items-center gap-3 text-sm text-muted"
+                    >
+                      <span className="text-primary flex-shrink-0">
+                        <TechIcon name={skill} size={16} />
+                      </span>
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             ))}
           </div>
+
+          {/* Certifications Highlight */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-12"
+          >
+            <h3 className="text-sm font-semibold text-slate-100 mb-6">
+              Active Certifications
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {[
+                "Fabric Data Engineer Associate",
+                "Fabric Analytics Engineer Associate",
+                "Azure Data Fundamentals",
+              ].map((cert) => (
+                <div
+                  key={cert}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary/30 bg-primary/5 text-sm text-slate-100"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="text-primary"
+                  >
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                  </svg>
+                  {cert}
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

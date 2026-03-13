@@ -29,18 +29,18 @@ const techMap: Record<string, { slug: string; color: string }> = {
   "AWS (Amplify, Lambda, S3, CloudFront, Cognito)": { slug: "amazonaws", color: "FF9900" },
   "AWS": { slug: "amazonaws", color: "FF9900" },
   "Google Cloud Platform": { slug: "googlecloud", color: "4285F4" },
-  "Vercel": { slug: "vercel", color: "e0e0e0" },
+  "Vercel": { slug: "vercel", color: "5eead4" },
 
   // Full-Stack
   "React.js": { slug: "react", color: "61DAFB" },
   "React": { slug: "react", color: "61DAFB" },
   "React Native": { slug: "react", color: "61DAFB" },
-  "Next.js": { slug: "nextdotjs", color: "e0e0e0" },
+  "Next.js": { slug: "nextdotjs", color: "5eead4" },
   "TypeScript": { slug: "typescript", color: "3178C6" },
   "JavaScript": { slug: "javascript", color: "F7DF1E" },
   "Node.js": { slug: "nodedotjs", color: "5FA04E" },
   "Python": { slug: "python", color: "3776AB" },
-  "Express.js": { slug: "express", color: "e0e0e0" },
+  "Express.js": { slug: "express", color: "94a3b8" },
   "MongoDB": { slug: "mongodb", color: "47A248" },
   "MySQL": { slug: "mysql", color: "4479A1" },
   "Firebase": { slug: "firebase", color: "DD2C00" },
@@ -48,7 +48,7 @@ const techMap: Record<string, { slug: string; color: string }> = {
   "GraphQL": { slug: "graphql", color: "E10098" },
 
   // AI
-  "OpenAI Integration": { slug: "openai", color: "e0e0e0" },
+  "OpenAI Integration": { slug: "openai", color: "5eead4" },
   "Microsoft Power Automate": { slug: "microsoftazure", color: "0078D4" },
   "Gemini/Bard Integration": { slug: "google", color: "4285F4" },
 
@@ -62,11 +62,11 @@ const techMap: Record<string, { slug: string; color: string }> = {
   "MUI": { slug: "mui", color: "007FFF" },
   "Material-UI": { slug: "mui", color: "007FFF" },
   "HTML/CSS": { slug: "html5", color: "E34F26" },
-  "JWT": { slug: "jsonwebtokens", color: "e0e0e0" },
+  "JWT": { slug: "jsonwebtokens", color: "5eead4" },
   "Formik": { slug: "react", color: "61DAFB" },
-  "Vonage": { slug: "vonage", color: "e0e0e0" },
+  "Vonage": { slug: "vonage", color: "5eead4" },
   "REST APIs": { slug: "fastapi", color: "009688" },
-  "GDPR": { slug: "shieldsdotio", color: "e0e0e0" },
+  "GDPR": { slug: "shieldsdotio", color: "5eead4" },
   "Encryption": { slug: "letsencrypt", color: "003A70" },
 };
 

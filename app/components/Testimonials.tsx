@@ -2,266 +2,174 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {
-  Star,
-  Award,
-  TrendingUp,
-  Clock,
-  ThumbsUp,
-  Quote,
-  Linkedin,
-} from "lucide-react";
+import { Star, Quote, Award, TrendingUp, Clock, ThumbsUp } from "lucide-react";
 
-/* ─── Upwork Stats ─── */
 const upworkStats = [
-  { label: "Top Rated Plus", icon: Award },
-  { label: "100% JSS", icon: ThumbsUp },
-  { label: "$60K+ Earned", icon: TrendingUp },
-  { label: "47 Jobs", icon: Star },
-  { label: "1,519 Hours", icon: Clock },
-  { label: "5.0 Rating", icon: Star },
+  { label: "Top Rated Plus", icon: Award, value: "" },
+  { label: "Job Success", icon: ThumbsUp, value: "100%" },
+  { label: "Earned", icon: TrendingUp, value: "$60K+" },
+  { label: "Hours", icon: Clock, value: "1,519" },
 ];
 
-/* ─── LinkedIn Recommendations ─── */
 const linkedinRecs = [
   {
     name: "Daniel O'Neil",
     title: "CEO @ PrivacyLabs",
     quote:
-      "Haris worked for my startup for 11 months, where he was able to create our MVP. Haris was the most honest and effective freelancer I have ever worked with. I knew that when I assigned a task to him, he would accomplish the task effectively... I could trust his judgment on his capabilities, skills, and expected task completion timeframe.",
-    date: "April 2024",
+      "Haris worked for my startup for 11 months, where he was able to create our MVP. Haris was the most honest and effective freelancer I have ever worked with. I knew that when I assigned a task to him, he would accomplish the task effectively.",
     relation: "Direct manager",
   },
   {
     name: "Mike Soertsz",
     title: "CTO | Building Product for Startups",
     quote:
-      "To date, Haris is the most reliable, present, dedicated and professional freelancer I've hired, and I've hired and worked with over 600 now... His speed and professionalism are truly commendable.",
-    date: "August 2023",
+      "To date, Haris is the most reliable, present, dedicated and professional freelancer I've hired, and I've hired and worked with over 600 now. His speed and professionalism are truly commendable.",
     relation: "Direct manager",
   },
   {
     name: "Tron Mason, MBA",
     title: "Engineering Team Lead, U.S. House of Representatives",
     quote:
-      "He was always patient in understanding our needs and quick to implement changes... Given his level of expertise and engagement, he makes you feel as if you're his only client.",
-    date: "August 2023",
+      "He was always patient in understanding our needs and quick to implement changes. Given his level of expertise and engagement, he makes you feel as if you're his only client.",
     relation: "Client",
   },
   {
     name: "Kristen Burke, MBA, MS",
-    title: "Founder/CEO · Cross-Functional Project Leader",
+    title: "Founder/CEO",
     quote:
       "He is honest about the amount of time he completes on projects and is easy to work with. I also found him to be very accommodating to working with clients out of his time zone.",
-    date: "March 2024",
     relation: "Client",
-  },
-  {
-    name: "Cesar Diaz",
-    title: "Entrepreneur, Investor",
-    quote:
-      "Haris is one of few honest developers out there. He accurately reports associated details and has been a pleasure to work with. He's responsive and provides good quality work.",
-    date: "August 2023",
-    relation: "Client",
-  },
-  {
-    name: "Ahmed Ali",
-    title: "Blockchain Engineer @ TruYields",
-    quote:
-      "Haris is an exceptional coder and problem solver. His attention to detail and ability to find creative solutions make him a valuable asset to any team. He is a reliable and efficient team member.",
-    date: "January 2023",
-    relation: "Colleague",
   },
 ];
 
-/* ─── Upwork Reviews ─── */
 const upworkReviews = [
   {
     quote: "Incredible speed and communication! Built the MVP I was looking for in record time.",
-    amount: "$200",
-    date: "Dec 2024",
+    rating: 5,
   },
   {
     quote: "Harris is a great React developer. Outstanding skills and always available. Communication is super perfect.",
-    amount: "$25,110 · 817hrs",
-    date: "Dec 2024",
+    rating: 5,
   },
   {
     quote: "Haris is an amazing developer with excellent communication skills. Extremely passionate and knowledgeable full stack developer.",
-    amount: "$500",
-    date: "Sep 2024",
+    rating: 5,
   },
   {
     quote: "Terrific freelancer, diligent and hard-working. An excellent problem solver.",
-    amount: "$1,639",
-    date: "Dec 2024",
+    rating: 5,
   },
-  {
-    quote: "Haris is an excellent and hard working developer who has provided non-stop excellent work.",
-    amount: "$2,090",
-    date: "Dec 2022",
-  },
-  {
-    quote: "He was great. Was super fast and high quality work. Haris is fantastic and a great expert in web development.",
-    amount: "",
-    date: "Oct 2021",
-  },
-  {
-    quote: "Haris was a great choice for my project. Communicated well, understood the assignment, and executed quickly.",
-    amount: "$100",
-    date: "Apr 2023",
-  },
-];
-
-/* ─── Word Cloud Tags ─── */
-const wordCloud = [
-  { text: "Reliable", count: 14 },
-  { text: "Committed to Quality", count: 12 },
-  { text: "Clear Communicator", count: 9 },
-  { text: "Collaborative", count: 7 },
-  { text: "Solution Oriented", count: 7 },
-  { text: "Professional", count: 3 },
-  { text: "Detail Oriented", count: 2 },
 ];
 
 export default function Testimonials() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="testimonials" className="relative py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section id="testimonials" className="py-24 lg:py-32">
+      <div className="section-container">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
         >
-          <span className="text-xs font-[family-name:var(--font-jetbrains)] text-[#6366f1] tracking-wider uppercase">
-            Social Proof
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
-            What People <span className="gradient-text">Say</span>
-          </h2>
-        </motion.div>
+          {/* Section Header */}
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">
+              <span className="text-primary font-mono text-xl mr-2">04.</span>
+              What People Say
+            </h2>
+            <div className="h-px flex-1 bg-slate-700/50 max-w-xs" />
+          </div>
 
-        {/* Upwork Stats Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-12 p-4 rounded-xl border border-[#222222] bg-[#111111]"
-        >
-          {upworkStats.map((stat) => (
-            <div key={stat.label} className="flex items-center gap-2">
-              <stat.icon size={14} className="text-[#22c55e]" />
-              <span className="text-xs sm:text-sm font-medium text-[#f4f4f5]">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </motion.div>
+          {/* Upwork Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+          >
+            {upworkStats.map((stat) => (
+              <div
+                key={stat.label}
+                className="premium-card p-4 text-center"
+              >
+                <stat.icon size={20} className="mx-auto text-primary mb-2" />
+                {stat.value && (
+                  <p className="text-xl font-bold text-slate-100">{stat.value}</p>
+                )}
+                <p className="text-xs text-muted mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </motion.div>
 
-        {/* LinkedIn Recommendations — Masonry Grid */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6">
-            <Linkedin size={16} className="text-[#0a66c2]" />
-            <h3 className="text-sm font-semibold text-[#f4f4f5]">
+          {/* LinkedIn Recommendations */}
+          <div className="mb-12">
+            <h3 className="text-sm font-semibold text-slate-100 mb-6 flex items-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-[#0a66c2]">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
               LinkedIn Recommendations
             </h3>
-          </div>
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-            {linkedinRecs.map((rec, i) => (
-              <motion.div
-                key={rec.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
-                className="break-inside-avoid p-5 rounded-xl border border-[#222222] bg-[#111111] card-hover"
-              >
-                <Quote size={16} className="text-[#6366f1] mb-3" />
-                <p className="text-sm text-[#a1a1aa] leading-relaxed mb-4">
-                  &ldquo;{rec.quote}&rdquo;
-                </p>
-                <div className="border-t border-[#222222] pt-3">
-                  <p className="text-sm font-semibold text-[#f4f4f5]">
-                    {rec.name}
-                  </p>
-                  <p className="text-xs text-[#71717a]">{rec.title}</p>
-                  <p className="text-[10px] text-[#71717a] mt-1 font-[family-name:var(--font-jetbrains)]">
-                    {rec.date} · {rec.relation}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Upwork Reviews — Compact Cards */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6">
-            <Star size={16} className="text-[#22c55e]" />
-            <h3 className="text-sm font-semibold text-[#f4f4f5]">
-              Upwork Reviews
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {upworkReviews.map((review, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
-                className="p-4 rounded-xl border border-[#222222] bg-[#111111] card-hover"
-              >
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(5)].map((_, j) => (
-                    <Star
-                      key={j}
-                      size={12}
-                      className="text-[#eab308] fill-[#eab308]"
-                    />
-                  ))}
-                </div>
-                <p className="text-sm text-[#a1a1aa] leading-relaxed mb-3">
-                  &ldquo;{review.quote}&rdquo;
-                </p>
-                <div className="flex items-center justify-between text-[10px] text-[#71717a] font-[family-name:var(--font-jetbrains)]">
-                  <span>{review.date}</span>
-                  {review.amount && (
-                    <span className="text-[#22c55e]">{review.amount}</span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Word Cloud */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center"
-        >
-          <h3 className="text-sm font-semibold text-[#71717a] mb-6">
-            What Clients Say Most
-          </h3>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {wordCloud.map((word) => {
-              const size = Math.max(0.75, word.count / 14) * 1.2;
-              return (
-                <span
-                  key={word.text}
-                  className="px-3 py-1.5 rounded-lg border border-[#222222] bg-[#111111] text-[#a1a1aa] hover:text-[#f4f4f5] hover:border-[#6366f1]/50 transition-all duration-200"
-                  style={{ fontSize: `${size}rem` }}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {linkedinRecs.map((rec, i) => (
+                <motion.div
+                  key={rec.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                  className="premium-card p-6"
                 >
-                  {word.text}{" "}
-                  <span className="text-[#71717a] text-xs">({word.count})</span>
-                </span>
-              );
-            })}
+                  <Quote size={20} className="text-primary/50 mb-4" />
+                  <p className="text-sm text-muted leading-relaxed mb-6">
+                    &ldquo;{rec.quote}&rdquo;
+                  </p>
+                  <div className="border-t border-slate-700/50 pt-4">
+                    <p className="text-sm font-medium text-slate-100">
+                      {rec.name}
+                    </p>
+                    <p className="text-xs text-muted mt-0.5">{rec.title}</p>
+                    <span className="inline-block mt-2 px-2 py-0.5 text-[10px] font-mono text-primary bg-primary/10 rounded">
+                      {rec.relation}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Upwork Reviews */}
+          <div>
+            <h3 className="text-sm font-semibold text-slate-100 mb-6 flex items-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-[#14a800]">
+                <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
+              </svg>
+              Client Reviews
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {upworkReviews.map((review, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
+                  className="premium-card p-5"
+                >
+                  <div className="flex gap-0.5 mb-3">
+                    {[...Array(review.rating)].map((_, j) => (
+                      <Star
+                        key={j}
+                        size={12}
+                        className="text-amber-400 fill-amber-400"
+                      />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted leading-relaxed">
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

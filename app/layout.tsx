@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,9 +13,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Haris Aqeel — Senior Data Engineer",
+  title: "Haris Aqeel | Senior Data Engineer",
   description:
-    "Data Engineer who thinks like a software engineer. Building scalable data systems with Azure, Databricks, and Power BI.",
+    "Senior Data Engineer specializing in Microsoft Fabric, Azure, and Databricks. Building scalable data platforms with software engineering principles.",
   keywords: [
     "Data Engineer",
     "Azure",
@@ -24,6 +24,17 @@ export const metadata: Metadata = {
     "Microsoft Fabric",
     "Portfolio",
   ],
+  openGraph: {
+    title: "Haris Aqeel | Senior Data Engineer",
+    description: "Building scalable data platforms with software engineering principles.",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0f172a",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -34,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-[family-name:var(--font-inter)] antialiased bg-[#0a0a0a] text-[#f4f4f5]`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         {children}
       </body>
