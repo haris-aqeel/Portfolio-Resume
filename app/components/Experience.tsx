@@ -2,11 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {
-  MapPin,
-  Calendar,
-  Briefcase,
-} from "lucide-react";
+import { MapPin, Calendar, Briefcase } from "lucide-react";
 import { CompanyLogo, TechIcon } from "./TechIcon";
 
 interface Job {
@@ -121,37 +117,36 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
 
   return (
     <div ref={ref} className="relative flex items-start gap-6 md:gap-0">
-      {/* Center line dot */}
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 z-10">
-        <div className="w-3 h-3 rounded-full bg-[#D4A853] ring-4 ring-[#09090B] shadow-[0_0_10px_rgba(212,168,83,0.3)]" />
+      {/* Center dot */}
+      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-8 z-10">
+        <div className="w-3 h-3 rounded-full bg-[#0071E3] ring-[6px] ring-black shadow-[0_0_15px_rgba(0,113,227,0.4)]" />
       </div>
 
       {/* Mobile dot */}
-      <div className="md:hidden flex-shrink-0 mt-6">
-        <div className="w-3 h-3 rounded-full bg-[#D4A853] ring-4 ring-[#09090B]" />
+      <div className="md:hidden flex-shrink-0 mt-8">
+        <div className="w-3 h-3 rounded-full bg-[#0071E3] ring-4 ring-black" />
       </div>
 
-      {/* Card — desktop positioning */}
       <motion.div
         initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
         animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={`flex-1 md:w-[calc(50%-2rem)] ${
-          isLeft ? "md:mr-auto md:pr-12" : "md:ml-auto md:pl-12"
+          isLeft ? "md:mr-auto md:pr-14" : "md:ml-auto md:pl-14"
         }`}
       >
-        <div className="premium-card p-5 rounded-xl card-hover">
+        <div className="bento-card p-6">
           {/* Company Header */}
-          <div className="flex items-center gap-3 mb-3">
-            <CompanyLogo company={job.company} size={40} />
+          <div className="flex items-center gap-3 mb-4">
+            <CompanyLogo company={job.company} size={44} />
             <div>
-              <h3 className="text-lg font-semibold text-[#FAFAF9]">
+              <h3 className="text-[17px] font-semibold text-[#F5F5F7]">
                 {job.company}
               </h3>
-              <div className="flex items-center gap-2 mt-1 text-xs text-[#71717A]">
-                <MapPin size={12} />
+              <div className="flex items-center gap-2 mt-1 text-[12px] text-[#86868B]">
+                <MapPin size={11} />
                 <span>{job.location}</span>
-                <span className="px-2 py-0.5 rounded-full premium-tag text-[10px] font-medium">
+                <span className="px-2 py-0.5 rounded-full bg-white/[0.06] text-[10px] font-medium text-[#86868B]">
                   {job.type}
                 </span>
               </div>
@@ -162,11 +157,11 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
           {job.roles.map((role) => (
             <div
               key={role.period}
-              className="flex items-center gap-2 mb-2 text-sm"
+              className="flex items-center gap-2 mb-2 text-[14px]"
             >
-              <Briefcase size={13} className="text-[#D4A853]" />
-              <span className="text-[#FAFAF9] font-medium">{role.title}</span>
-              <span className="text-[#71717A] text-xs flex items-center gap-1">
+              <Briefcase size={13} className="text-[#2997FF]" />
+              <span className="text-[#F5F5F7] font-medium">{role.title}</span>
+              <span className="text-[#86868B] text-[12px] flex items-center gap-1">
                 <Calendar size={10} />
                 {role.period}
               </span>
@@ -174,24 +169,24 @@ function TimelineCard({ job, index }: { job: Job; index: number }) {
           ))}
 
           {/* Achievements */}
-          <ul className="mt-3 space-y-1.5">
+          <ul className="mt-4 space-y-2">
             {job.achievements.map((a, i) => (
               <li
                 key={i}
-                className="text-sm text-[#A1A1AA] flex items-start gap-2"
+                className="text-[14px] text-[#86868B] flex items-start gap-2.5 leading-relaxed"
               >
-                <span className="mt-2 flex-shrink-0 w-1 h-1 rounded-full bg-[#D4A853]" />
+                <span className="mt-2 flex-shrink-0 w-[5px] h-[5px] rounded-full bg-[#2997FF]/50" />
                 {a}
               </li>
             ))}
           </ul>
 
           {/* Skills */}
-          <div className="flex flex-wrap gap-1.5 mt-4">
+          <div className="flex flex-wrap gap-1.5 mt-5">
             {job.skills.map((s) => (
               <span
                 key={s}
-                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#09090B] border border-[#27272A] text-[11px] text-[#71717A] font-[family-name:var(--font-jetbrains)] hover:border-[#D4A853]/20 hover:text-[#A1A1AA] transition-colors"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.04] text-[11px] text-[#86868B] font-[family-name:var(--font-jetbrains)] hover:bg-white/[0.08] hover:text-[#F5F5F7] transition-all duration-200"
               >
                 <TechIcon name={s} size={10} />
                 {s}
@@ -208,37 +203,34 @@ export default function Experience() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="experience" className="relative py-24 sm:py-32">
-      <div className="section-divider mb-24" />
+    <section id="experience" className="relative py-28 sm:py-36">
+      <div className="section-divider" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+      <div className="max-w-[1120px] mx-auto px-6 pt-28">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-20"
         >
           <span className="section-label font-[family-name:var(--font-jetbrains)]">
-            Career Path
+            Career
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
-            Work <span className="gradient-text">Experience</span>
+          <h2 className="heading-lg text-[#F5F5F7] mt-4">
+            Work Experience
           </h2>
-          <p className="text-[#71717A] mt-4 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-[#86868B] mt-4 max-w-[520px] mx-auto text-[16px] leading-relaxed">
             From freelance frontend to senior data engineering — a journey across
             startups, enterprises, and everything in between.
           </p>
         </motion.div>
 
-        {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#D4A853]/40 via-[#27272A] to-transparent" />
-          <div className="md:hidden absolute left-[5px] top-0 bottom-0 w-px bg-gradient-to-b from-[#D4A853]/40 via-[#27272A] to-transparent" />
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#0071E3]/40 via-white/[0.06] to-transparent" />
+          <div className="md:hidden absolute left-[5px] top-0 bottom-0 w-px bg-gradient-to-b from-[#0071E3]/40 via-white/[0.06] to-transparent" />
 
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-6 md:space-y-10">
             {jobs.map((job, i) => (
               <TimelineCard key={job.company} job={job} index={i} />
             ))}

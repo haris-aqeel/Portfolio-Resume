@@ -68,27 +68,26 @@ export default function Certifications() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="section-divider mb-24" />
+    <section className="relative py-28 sm:py-36">
+      <div className="section-divider" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+      <div className="max-w-[1120px] mx-auto px-6 pt-28">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
           <span className="section-label font-[family-name:var(--font-jetbrains)]">
             Credentials
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
-            Certifications & <span className="gradient-text">Badges</span>
+          <h2 className="heading-lg text-[#F5F5F7] mt-4">
+            Certifications
           </h2>
         </motion.div>
 
-        {/* ── Featured: Active Certifications ── */}
+        {/* Featured Active Certs */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           {activeCerts.map((cert, i) => (
             <motion.div
@@ -96,48 +95,47 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative p-6 rounded-xl border border-[#D4A853]/20 bg-gradient-to-br from-[#D4A853]/5 via-[#18181B] to-[#18181B] overflow-hidden transition-all duration-300 hover:border-[#D4A853]/40 hover:shadow-lg hover:shadow-[#D4A853]/5"
+              className="group relative bento-card p-6 overflow-hidden"
             >
-              {/* Subtle top glow */}
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent" />
+              {/* Glow */}
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2997FF]/30 to-transparent" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[100px] bg-[radial-gradient(ellipse,rgba(41,151,255,0.06)_0%,transparent_70%)] pointer-events-none" />
 
-              {/* Active badge */}
-              <div className="flex items-center gap-1.5 mb-4">
-                <ShieldCheck size={14} className="text-[#10B981]" />
-                <span className="text-[10px] text-[#10B981] font-semibold uppercase tracking-[0.15em]">
-                  Active Certification
-                </span>
-              </div>
+              <div className="relative">
+                <div className="flex items-center gap-1.5 mb-4">
+                  <ShieldCheck size={14} className="text-[#30D158]" />
+                  <span className="text-[10px] text-[#30D158] font-semibold uppercase tracking-[0.15em]">
+                    Active
+                  </span>
+                </div>
 
-              {/* Cert name */}
-              <h3 className="text-base font-bold text-[#FAFAF9] leading-snug mb-3">
-                {cert.name}
-              </h3>
+                <h3 className="text-[16px] font-semibold text-[#F5F5F7] leading-snug mb-4">
+                  {cert.name}
+                </h3>
 
-              {/* Issuer */}
-              <div className="flex items-center gap-2 mb-3">
-                <IssuerIcon issuer={cert.issuer} size={20} />
-                <span className="text-sm text-[#A1A1AA] font-medium">
-                  {cert.issuer}
-                </span>
-              </div>
+                <div className="flex items-center gap-2.5 mb-3">
+                  <IssuerIcon issuer={cert.issuer} size={22} />
+                  <span className="text-[14px] text-[#86868B] font-medium">
+                    {cert.issuer}
+                  </span>
+                </div>
 
-              {/* Date info */}
-              <div className="flex items-center gap-1.5 text-[11px] text-[#71717A] font-[family-name:var(--font-jetbrains)]">
-                <Calendar size={10} />
-                <span>{cert.date}</span>
-                {cert.expires && (
-                  <>
-                    <span className="text-[#3F3F46]">&middot;</span>
-                    <span>Expires {cert.expires}</span>
-                  </>
-                )}
+                <div className="flex items-center gap-1.5 text-[11px] text-[#48484A] font-[family-name:var(--font-jetbrains)]">
+                  <Calendar size={10} />
+                  <span>{cert.date}</span>
+                  {cert.expires && (
+                    <>
+                      <span className="text-[#2C2C2E]">·</span>
+                      <span>Expires {cert.expires}</span>
+                    </>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* ── Other Certifications ── */}
+        {/* Other Certs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {otherCerts.map((cert, i) => (
             <motion.div
@@ -145,19 +143,19 @@ export default function Certifications() {
               initial={{ opacity: 0, y: 15 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.3 + i * 0.05 }}
-              className="flex items-start gap-3 p-4 rounded-xl border border-[#27272A] bg-[#18181B]/50 transition-all duration-200 hover:border-[#3F3F46] hover:bg-[#18181B]"
+              className="flex items-start gap-3 p-4 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300"
             >
-              <div className="w-9 h-9 rounded-lg bg-[#27272A] flex items-center justify-center flex-shrink-0 mt-0.5">
-                <IssuerIcon issuer={cert.issuer} size={18} />
+              <div className="w-10 h-10 rounded-xl bg-white/[0.04] flex items-center justify-center flex-shrink-0">
+                <IssuerIcon issuer={cert.issuer} size={20} />
               </div>
               <div className="min-w-0">
-                <h4 className="text-sm font-semibold text-[#E4E4E7] leading-snug">
+                <h4 className="text-[14px] font-medium text-[#D1D1D6] leading-snug">
                   {cert.name}
                 </h4>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-[#71717A]">{cert.issuer}</span>
-                  <span className="text-[#3F3F46]">&middot;</span>
-                  <span className="text-[11px] text-[#52525B] font-[family-name:var(--font-jetbrains)]">
+                <div className="flex items-center gap-2 mt-1.5">
+                  <span className="text-[12px] text-[#48484A]">{cert.issuer}</span>
+                  <span className="text-[#2C2C2E]">·</span>
+                  <span className="text-[11px] text-[#48484A] font-[family-name:var(--font-jetbrains)]">
                     {cert.date}
                   </span>
                 </div>

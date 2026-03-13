@@ -25,90 +25,77 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass shadow-lg" : "bg-transparent"
+        scrolled ? "glass border-b border-white/[0.04]" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-[1120px] mx-auto px-6">
+        <div className="flex items-center justify-between h-12">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#D4A853] to-[#B8922E] flex items-center justify-center font-bold text-sm text-[#09090B] transition-shadow duration-300 group-hover:shadow-[0_0_20px_rgba(212,168,83,0.3)]">
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className="w-7 h-7 rounded-[8px] bg-[#0071E3] flex items-center justify-center font-semibold text-[11px] text-white tracking-tight transition-transform duration-300 group-hover:scale-110">
               HA
             </div>
-            <span className="text-sm font-medium text-[#71717A] hidden sm:block font-[family-name:var(--font-jetbrains)] tracking-wide">
-              haris.dev
-            </span>
           </a>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[13px] text-[#A1A1AA] hover:text-[#D4A853] transition-colors duration-300 tracking-wide"
+                className="text-[12px] text-[#86868B] hover:text-[#F5F5F7] transition-colors duration-300"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* Available Badge + Mobile Toggle */}
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#27272A] bg-[#18181B]/80">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
+          {/* Status + Mobile */}
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-1.5">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#30D158] opacity-75" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#30D158]" />
               </span>
-              <span className="text-xs text-[#10B981] font-medium tracking-wide">
-                Available for work
+              <span className="text-[11px] text-[#30D158] font-medium">
+                Available
               </span>
             </div>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 text-[#A1A1AA] hover:text-[#D4A853] transition-colors"
+              className="md:hidden p-1.5 text-[#86868B] hover:text-[#F5F5F7] transition-colors"
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-[#27272A] bg-[#09090B]/95 backdrop-blur-xl"
+            className="md:hidden glass border-t border-white/[0.04]"
           >
-            <div className="px-4 py-4 space-y-1">
+            <div className="px-6 py-5 space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block text-sm text-[#A1A1AA] hover:text-[#D4A853] transition-colors py-2.5 px-2 rounded-lg hover:bg-[#18181B]"
+                  className="block text-[15px] text-[#86868B] hover:text-[#F5F5F7] transition-colors py-2"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="flex items-center gap-2 pt-3 px-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
-                </span>
-                <span className="text-xs text-[#10B981] font-medium">
-                  Available for work
-                </span>
-              </div>
             </div>
           </motion.div>
         )}

@@ -1,30 +1,27 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #09090B;
-  --color-foreground: #FAFAF9;
-  --color-surface: #18181B;
-  --color-surface-light: #1C1C20;
-  --color-border: #27272A;
-  --color-border-light: #3F3F46;
-  --color-primary: #D4A853;
-  --color-primary-light: #E4C767;
-  --color-primary-dark: #B8922E;
-  --color-accent: #3B82F6;
-  --color-success: #10B981;
-  --color-muted: #A1A1AA;
-  --color-warm-white: #FAF5EF;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-jetbrains: "JetBrains Mono", ui-monospace, monospace;
-  --font-playfair: "Playfair Display", Georgia, "Times New Roman", serif;
+  --color-background: #000000;
+  --color-foreground: #F5F5F7;
+  --color-surface: #1D1D1F;
+  --color-surface-light: #2D2D2F;
+  --color-border: #1D1D1F;
+  --color-primary: #0071E3;
+  --color-primary-light: #2997FF;
+  --color-accent: #BF5AF2;
+  --color-success: #30D158;
+  --color-muted: #86868B;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-inter: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-jetbrains: "JetBrains Mono", "SF Mono", monospace;
+  --font-playfair: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #27272A #09090B;
+  scrollbar-color: #333 #000;
 }
 
 html {
@@ -32,24 +29,26 @@ html {
 }
 
 body {
-  background: #09090B;
-  color: #FAFAF9;
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  background: #000000;
+  color: #F5F5F7;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(212, 168, 83, 0.25);
-  color: #FAFAF9;
+  background: rgba(0, 113, 227, 0.3);
+  color: #F5F5F7;
 }
 
 /* ── Keyframes ── */
 
 @keyframes pulse-green {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  50% { opacity: 0.4; }
 }
 
-@keyframes gradient-border {
+@keyframes gradient-shift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -57,93 +56,192 @@ body {
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-12px); }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
 }
 
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes glow-pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-/* ── Premium Utilities ── */
 
 .animate-pulse-green {
   animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* ── Typography ── */
+
+.heading-xl {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.heading-lg {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.heading-md {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* ── Gradient Text ── */
+
 .gradient-text {
-  background: linear-gradient(135deg, #D4A853, #E4C767, #F5D98A);
+  background: linear-gradient(135deg, #2997FF 0%, #BF5AF2 50%, #FF375F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-cool {
-  background: linear-gradient(135deg, #3B82F6, #60A5FA);
+.gradient-text-subtle {
+  background: linear-gradient(135deg, #F5F5F7 0%, #86868B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ── Glass ── */
 
 .glass {
-  background: rgba(9, 9, 11, 0.85);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(212, 168, 83, 0.08);
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
-.glow-primary {
-  box-shadow: 0 0 30px rgba(212, 168, 83, 0.08), 0 0 60px rgba(212, 168, 83, 0.04);
+/* ── Cards ── */
+
+.card-surface {
+  background: #1D1D1F;
+  border-radius: 20px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
 }
 
-.glow-accent {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+.card-surface:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .card-hover {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(212, 168, 83, 0.05);
-  border-color: rgba(212, 168, 83, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.premium-card {
-  background: linear-gradient(145deg, #18181B 0%, #1C1C20 50%, #18181B 100%);
-  border: 1px solid #27272A;
-  position: relative;
+/* ── Bento Card ── */
+
+.bento-card {
+  background: rgba(29, 29, 31, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
   overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.premium-card::before {
+.bento-card:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ── Spotlight / Glow ── */
+
+.spotlight {
+  position: relative;
+}
+
+.spotlight::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.3), transparent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(ellipse at center, rgba(41, 151, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
+
+/* ── Section styling ── */
+
+.section-label {
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #2997FF;
+  font-weight: 600;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+/* ── Buttons ── */
+
+.btn-primary {
+  background: #0071E3;
+  color: #FFFFFF;
+  font-weight: 500;
+  border-radius: 980px;
+  transition: all 0.3s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary:hover {
+  background: #0077ED;
+  transform: scale(1.02);
+  box-shadow: 0 4px 30px rgba(0, 113, 227, 0.35);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #F5F5F7;
+  font-weight: 500;
+  border-radius: 980px;
+  border: none;
+  transition: all 0.3s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Premium tag ── */
+
+.premium-tag {
+  background: rgba(255, 255, 255, 0.06);
+  color: #86868B;
+}
+
+/* ── Grid background ── */
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ── Animated gradient border (for featured items) ── */
 
 .gradient-border-animated {
   position: relative;
@@ -155,9 +253,9 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #D4A853, #E4C767, #D4A853);
+  background: linear-gradient(135deg, #2997FF, #BF5AF2, #2997FF);
   background-size: 200% 200%;
-  animation: gradient-border 3s ease infinite;
+  animation: gradient-shift 4s ease infinite;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
@@ -165,104 +263,29 @@ body {
   pointer-events: none;
 }
 
-/* Shimmer line effect */
-.shimmer-line {
+/* ── Premium card with glow top ── */
+
+.premium-card {
+  background: #1D1D1F;
+  border: 1px solid rgba(255, 255, 255, 0.04);
   position: relative;
   overflow: hidden;
 }
 
-.shimmer-line::after {
+.premium-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 83, 0.4) 50%, transparent 100%);
-  background-size: 200% 100%;
-  animation: shimmer 4s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
 }
 
-/* Grain texture overlay */
-.grain-overlay::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  right: -50%;
-  bottom: -50%;
-  width: 200%;
-  height: 200%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  pointer-events: none;
-  z-index: 1;
-  animation: grain 8s steps(10) infinite;
-  opacity: 0.4;
-}
+/* ── ReactFlow ── */
 
-/* Grid background pattern */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(39, 39, 42, 0.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(39, 39, 42, 0.3) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* Elegant divider */
-.section-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.2), transparent);
-  margin: 0 auto;
-}
-
-/* Premium button styles */
-.btn-primary {
-  background: linear-gradient(135deg, #D4A853 0%, #B8922E 100%);
-  color: #09090B;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary:hover {
-  box-shadow: 0 0 30px rgba(212, 168, 83, 0.3), 0 10px 30px rgba(0, 0, 0, 0.2);
-  transform: translateY(-1px);
-}
-
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn-primary:hover::after {
-  left: 100%;
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 1px solid rgba(212, 168, 83, 0.3);
-  color: #D4A853;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background: rgba(212, 168, 83, 0.08);
-  border-color: rgba(212, 168, 83, 0.5);
-}
-
-/* ReactFlow custom styles */
 .react-flow__node {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", -apple-system, sans-serif;
 }
 
 .react-flow__edge-path {
@@ -274,20 +297,4 @@ body {
   to {
     stroke-dashoffset: -10;
   }
-}
-
-/* Section label */
-.section-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #D4A853;
-  font-weight: 500;
-}
-
-/* Premium tag */
-.premium-tag {
-  background: rgba(212, 168, 83, 0.08);
-  border: 1px solid rgba(212, 168, 83, 0.15);
-  color: #D4A853;
 }

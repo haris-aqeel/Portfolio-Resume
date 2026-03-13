@@ -20,21 +20,15 @@ import {
 import { architectures, nodeTypes } from "./arch-data";
 import type { ArchitectureDiagram, WalkthroughSection } from "./arch-data";
 
-/* ── Tab config with icons ── */
-
 const tabIcons = [Layers, Zap, RefreshCw, Settings, Sparkles];
 
-/* ── Legend items ── */
-
 const legendItems = [
-  { color: "#3B82F6", label: "Source" },
-  { color: "#D4A853", label: "Processing" },
-  { color: "#8B5CF6", label: "Storage" },
-  { color: "#10B981", label: "Consumption" },
-  { color: "#F59E0B", label: "Governance" },
+  { color: "#2997FF", label: "Source" },
+  { color: "#BF5AF2", label: "Processing" },
+  { color: "#FF375F", label: "Storage" },
+  { color: "#30D158", label: "Consumption" },
+  { color: "#FF9F0A", label: "Governance" },
 ];
-
-/* ── Walkthrough renderer ── */
 
 function Walkthrough({
   data,
@@ -42,29 +36,29 @@ function Walkthrough({
   data: ArchitectureDiagram["walkthrough"];
 }) {
   return (
-    <div className="space-y-4">
-      <p className="text-sm text-[#A1A1AA] leading-relaxed">{data.intro}</p>
+    <div className="space-y-5">
+      <p className="text-[14px] text-[#86868B] leading-relaxed">{data.intro}</p>
 
       <div className="space-y-4">
         {data.sections.map((s: WalkthroughSection, i: number) => (
           <div key={i}>
-            <h4 className="text-sm font-semibold text-[#E4E4E7] mb-1">
+            <h4 className="text-[14px] font-semibold text-[#D1D1D6] mb-1">
               {s.title}
             </h4>
-            <p className="text-sm text-[#A1A1AA] leading-relaxed">{s.text}</p>
+            <p className="text-[14px] text-[#86868B] leading-relaxed">{s.text}</p>
           </div>
         ))}
       </div>
 
       {data.decisions && data.decisions.length > 0 && (
-        <div className="border-t border-[#27272A] pt-4">
-          <h4 className="text-sm font-semibold text-[#E4E4E7] mb-2">
+        <div className="border-t border-white/[0.04] pt-4">
+          <h4 className="text-[14px] font-semibold text-[#D1D1D6] mb-2">
             Key design decisions:
           </h4>
-          <ul className="text-sm text-[#A1A1AA] space-y-1">
+          <ul className="text-[14px] text-[#86868B] space-y-1.5">
             {data.decisions.map((d: string, i: number) => (
               <li key={i} className="flex gap-2">
-                <span className="text-[#D4A853] select-none">&mdash;</span>
+                <span className="text-[#2997FF]">&mdash;</span>
                 <span>{d}</span>
               </li>
             ))}
@@ -75,8 +69,6 @@ function Walkthrough({
   );
 }
 
-/* ── Main Section ── */
-
 export default function Architecture() {
   const [activeTab, setActiveTab] = useState(0);
   const [walkthroughOpen, setWalkthroughOpen] = useState(false);
@@ -85,33 +77,30 @@ export default function Architecture() {
   const current = architectures[activeTab];
 
   return (
-    <section id="architecture" className="relative py-24 sm:py-32">
-      <div className="section-divider mb-24" />
+    <section id="architecture" className="relative py-28 sm:py-36">
+      <div className="section-divider" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* ── Section Header ── */}
+      <div className="max-w-[1120px] mx-auto px-6 pt-28">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
           <span className="section-label font-[family-name:var(--font-jetbrains)]">
             System Design
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-4 font-[family-name:var(--font-playfair)]">
-            Data Engineering{" "}
-            <span className="gradient-text">Architecture Showcase</span>
+          <h2 className="heading-lg text-[#F5F5F7] mt-4">
+            Architecture Showcase
           </h2>
-          <p className="text-[#71717A] mt-5 max-w-2xl mx-auto text-sm leading-relaxed">
-            I don&apos;t just run pipelines &mdash; I design the systems that
-            pipelines live inside. Below are five architecture patterns
-            I&apos;ve built, studied, or can speak to in depth.
+          <p className="text-[#86868B] mt-5 max-w-[600px] mx-auto text-[16px] leading-relaxed">
+            Five architecture patterns I&apos;ve built, studied, or can speak to
+            in depth. Each reflects how I think about data as infrastructure.
           </p>
         </motion.div>
 
-        {/* ── Tab Navigation (pill-style) ── */}
+        {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {architectures.map((arch, i) => {
             const Icon = tabIcons[i];
@@ -123,23 +112,21 @@ export default function Architecture() {
                   setActiveTab(i);
                   setWalkthroughOpen(false);
                 }}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium transition-all duration-300 ${
                   isActive
-                    ? "bg-gradient-to-r from-[#D4A853] to-[#B8922E] text-[#09090B] shadow-lg shadow-[#D4A853]/20"
-                    : "bg-[#18181B] border border-[#27272A] text-[#71717A] hover:text-[#A1A1AA] hover:border-[#3F3F46]"
+                    ? "bg-[#0071E3] text-white shadow-[0_4px_20px_rgba(0,113,227,0.3)]"
+                    : "bg-white/[0.04] text-[#86868B] hover:text-[#F5F5F7] hover:bg-white/[0.08]"
                 }`}
               >
                 <Icon size={14} />
                 <span className="hidden sm:inline">{arch.tabLabel}</span>
-                <span className="sm:hidden">
-                  {arch.tabLabel.split(" ")[0]}
-                </span>
+                <span className="sm:hidden">{arch.tabLabel.split(" ")[0]}</span>
               </button>
             );
           })}
         </div>
 
-        {/* ── Active Tab Content ── */}
+        {/* Content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={current.id}
@@ -148,20 +135,18 @@ export default function Architecture() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35 }}
           >
-            {/* Title + one-liner */}
             <div className="mb-4">
-              <h3 className="text-lg font-bold text-[#FAFAF9]">
+              <h3 className="text-[18px] font-semibold text-[#F5F5F7]">
                 {current.tabLabel}
               </h3>
-              <p className="text-sm text-[#71717A] mt-1">
+              <p className="text-[14px] text-[#86868B] mt-1">
                 {current.oneLiner}
               </p>
             </div>
 
-            {/* ReactFlow Diagram */}
             <div
-              className="rounded-xl border border-[#27272A] overflow-hidden"
-              style={{ height: 700, background: "#09090B" }}
+              className="rounded-2xl border border-white/[0.04] overflow-hidden"
+              style={{ height: 700, background: "#0A0A0A" }}
             >
               <ReactFlow
                 nodes={current.nodes}
@@ -178,48 +163,35 @@ export default function Architecture() {
                 minZoom={0.3}
                 maxZoom={1.5}
               >
-                <Background color="#1C1C20" gap={20} />
+                <Background color="#1D1D1F" gap={20} />
                 <Controls
                   showInteractive={false}
-                  className="!bg-[#18181B] !border-[#27272A] !rounded-lg !shadow-lg [&>button]:!bg-[#18181B] [&>button]:!border-[#27272A] [&>button]:!text-[#71717A] [&>button:hover]:!text-[#D4A853]"
+                  className="!bg-[#1D1D1F] !border-white/[0.04] !rounded-xl !shadow-lg [&>button]:!bg-[#1D1D1F] [&>button]:!border-white/[0.04] [&>button]:!text-[#86868B] [&>button:hover]:!text-[#F5F5F7]"
                 />
               </ReactFlow>
             </div>
 
             {/* Legend */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-5">
+            <div className="flex flex-wrap items-center justify-center gap-5 mt-5">
               {legendItems.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-2 text-xs text-[#71717A]"
+                  className="flex items-center gap-2 text-[12px] text-[#86868B]"
                 >
                   <div
-                    className="w-3 h-3 rounded-sm"
+                    className="w-3 h-3 rounded"
                     style={{ backgroundColor: item.color }}
                   />
                   {item.label}
                 </div>
               ))}
-              <div className="flex items-center gap-2 text-xs text-[#71717A]">
-                <div className="w-6 h-0.5 bg-[#D4A853]" />
-                Batch
-              </div>
-              <div className="flex items-center gap-2 text-xs text-[#71717A]">
-                <div className="w-6 h-0.5 border-t-2 border-dashed border-[#3B82F6]" />
-                Streaming
-              </div>
-              <div className="flex items-center gap-2 text-xs text-[#71717A]">
-                <div className="w-6 h-0.5 border-t-2 border-dashed border-[#F59E0B]" />
-                Governance
-              </div>
             </div>
 
-            {/* ── Walkthrough ── */}
+            {/* Walkthrough */}
             <div className="mt-6">
-              {/* Mobile toggle */}
               <button
                 onClick={() => setWalkthroughOpen(!walkthroughOpen)}
-                className="sm:hidden w-full flex items-center justify-between px-4 py-3 rounded-lg bg-[#18181B] border border-[#27272A] text-sm text-[#A1A1AA] mb-3"
+                className="sm:hidden w-full flex items-center justify-between px-5 py-3 rounded-xl bg-white/[0.04] text-[14px] text-[#86868B] mb-3"
               >
                 <span>Architecture Walkthrough</span>
                 <ChevronDown
@@ -230,11 +202,10 @@ export default function Architecture() {
                 />
               </button>
 
-              {/* Content — always visible on sm+, toggled on mobile */}
               <div
                 className={`${
                   walkthroughOpen ? "block" : "hidden"
-                } sm:block rounded-xl premium-card p-6`}
+                } sm:block bento-card p-6`}
               >
                 <Walkthrough data={current.walkthrough} />
               </div>
@@ -242,17 +213,15 @@ export default function Architecture() {
           </motion.div>
         </AnimatePresence>
 
-        {/* ── Section Footer ── */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center text-[#52525B] text-sm mt-14 max-w-2xl mx-auto leading-relaxed italic"
+          className="text-center text-[#48484A] text-[14px] mt-14 max-w-[600px] mx-auto leading-relaxed italic"
         >
           These aren&apos;t diagrams copied from documentation. They&apos;re
-          how I think about system design &mdash; the trade-offs, the failure
-          modes, the decisions that aren&apos;t in any tutorial. If you want to
-          talk through any of these in depth, I&apos;m happy to.
+          how I think about system design — the trade-offs, the failure
+          modes, the decisions that aren&apos;t in any tutorial.
         </motion.p>
       </div>
     </section>
