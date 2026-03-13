@@ -19,32 +19,30 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
           className="text-center max-w-[640px] mx-auto"
         >
-          {/* Spotlight glow */}
           <div className="relative">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[radial-gradient(ellipse,rgba(41,151,255,0.08)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[radial-gradient(ellipse,rgba(255,160,0,0.06)_0%,transparent_70%)] pointer-events-none" />
 
             <div className="relative">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] mb-8">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#30D158] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#30D158]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#34A853] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#34A853]" />
                 </span>
-                <span className="text-[12px] text-[#30D158] font-medium">
+                <span className="text-[12px] text-[#34A853] font-medium">
                   Available Now
                 </span>
               </div>
 
-              <h2 className="heading-lg text-[#F5F5F7] mb-4">
+              <h2 className="heading-lg text-white mb-4">
                 Let&apos;s build something<br />
                 <span className="gradient-text">great together.</span>
               </h2>
 
-              <p className="text-[16px] text-[#86868B] mb-10 leading-relaxed">
+              <p className="text-[16px] text-[#9AA0A6] mb-10 leading-relaxed">
                 Open to data engineering contracts, consulting, and full-time
                 roles. Let&apos;s talk about your next project.
               </p>
 
-              {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
                 <a
                   href="mailto:haris@placeholder.com"
@@ -74,10 +72,10 @@ export default function Contact() {
                 </a>
               </div>
 
-              <div className="flex items-center justify-center gap-2 text-[14px] text-[#48484A]">
+              <div className="flex items-center justify-center gap-2 text-[14px] text-[#6B6B6F]">
                 <MapPin size={14} />
                 <span>Karachi, Pakistan</span>
-                <span className="text-[#2C2C2E]">·</span>
+                <span className="text-[#3C3C3F]">&middot;</span>
                 <span>Open to remote</span>
               </div>
             </div>

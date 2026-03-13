@@ -80,9 +80,9 @@ const companyLogos: Record<string, { file: string; bg?: string }> = {
 
 /* Company fallback initials for companies without logos */
 const companyFallback: Record<string, { initials: string; color: string }> = {
-  "PrivacyLabs": { initials: "PL", color: "#BF5AF2" },
-  "Aciano Technologies": { initials: "AT", color: "#FF9F0A" },
-  "Worktrim": { initials: "WT", color: "#30D158" },
+  "PrivacyLabs": { initials: "PL", color: "#AB47BC" },
+  "Aciano Technologies": { initials: "AT", color: "#FFA000" },
+  "Worktrim": { initials: "WT", color: "#34A853" },
 };
 
 /* Cert issuer logos (local files) */

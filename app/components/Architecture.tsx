@@ -3,62 +3,41 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import {
-  ReactFlow,
-  Background,
-  Controls,
-} from "@xyflow/react";
+import { ReactFlow, Background, Controls } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import {
-  Layers,
-  Zap,
-  RefreshCw,
-  Settings,
-  Sparkles,
-  ChevronDown,
-} from "lucide-react";
+import { Layers, Zap, RefreshCw, Settings, Sparkles, ChevronDown } from "lucide-react";
 import { architectures, nodeTypes } from "./arch-data";
 import type { ArchitectureDiagram, WalkthroughSection } from "./arch-data";
 
 const tabIcons = [Layers, Zap, RefreshCw, Settings, Sparkles];
 
 const legendItems = [
-  { color: "#2997FF", label: "Source" },
-  { color: "#BF5AF2", label: "Processing" },
-  { color: "#FF375F", label: "Storage" },
-  { color: "#30D158", label: "Consumption" },
-  { color: "#FF9F0A", label: "Governance" },
+  { color: "#4285F4", label: "Source" },
+  { color: "#FFA000", label: "Processing" },
+  { color: "#AB47BC", label: "Storage" },
+  { color: "#34A853", label: "Consumption" },
+  { color: "#FF7043", label: "Governance" },
 ];
 
-function Walkthrough({
-  data,
-}: {
-  data: ArchitectureDiagram["walkthrough"];
-}) {
+function Walkthrough({ data }: { data: ArchitectureDiagram["walkthrough"] }) {
   return (
     <div className="space-y-5">
-      <p className="text-[14px] text-[#86868B] leading-relaxed">{data.intro}</p>
-
+      <p className="text-[14px] text-[#9AA0A6] leading-relaxed">{data.intro}</p>
       <div className="space-y-4">
         {data.sections.map((s: WalkthroughSection, i: number) => (
           <div key={i}>
-            <h4 className="text-[14px] font-semibold text-[#D1D1D6] mb-1">
-              {s.title}
-            </h4>
-            <p className="text-[14px] text-[#86868B] leading-relaxed">{s.text}</p>
+            <h4 className="text-[14px] font-bold text-white mb-1">{s.title}</h4>
+            <p className="text-[14px] text-[#9AA0A6] leading-relaxed">{s.text}</p>
           </div>
         ))}
       </div>
-
       {data.decisions && data.decisions.length > 0 && (
-        <div className="border-t border-white/[0.04] pt-4">
-          <h4 className="text-[14px] font-semibold text-[#D1D1D6] mb-2">
-            Key design decisions:
-          </h4>
-          <ul className="text-[14px] text-[#86868B] space-y-1.5">
+        <div className="border-t border-white/[0.06] pt-4">
+          <h4 className="text-[14px] font-bold text-white mb-2">Key design decisions:</h4>
+          <ul className="text-[14px] text-[#9AA0A6] space-y-1.5">
             {data.decisions.map((d: string, i: number) => (
               <li key={i} className="flex gap-2">
-                <span className="text-[#2997FF]">&mdash;</span>
+                <span className="text-[#FFA000]">&mdash;</span>
                 <span>{d}</span>
               </li>
             ))}
@@ -73,30 +52,16 @@ export default function Architecture() {
   const [activeTab, setActiveTab] = useState(0);
   const [walkthroughOpen, setWalkthroughOpen] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
-
   const current = architectures[activeTab];
 
   return (
-    <section id="architecture" className="relative py-28 sm:py-36">
-      <div className="section-divider" />
-
-      <div className="max-w-[1120px] mx-auto px-6 pt-28">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
-          <span className="section-label font-[family-name:var(--font-jetbrains)]">
-            System Design
-          </span>
-          <h2 className="heading-lg text-[#F5F5F7] mt-4">
-            Architecture Showcase
-          </h2>
-          <p className="text-[#86868B] mt-5 max-w-[600px] mx-auto text-[16px] leading-relaxed">
-            Five architecture patterns I&apos;ve built, studied, or can speak to
-            in depth. Each reflects how I think about data as infrastructure.
+    <section id="architecture" className="relative section-light py-28 sm:py-36">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-14">
+          <span className="section-label font-[family-name:var(--font-jetbrains)]">System Design</span>
+          <h2 className="heading-lg mt-4" style={{ color: "#1B1B1F" }}>Architecture Showcase</h2>
+          <p className="text-[#5F6368] mt-5 max-w-[600px] mx-auto text-[16px] leading-relaxed">
+            Five architecture patterns I&apos;ve built, studied, or can speak to in depth.
           </p>
         </motion.div>
 
@@ -108,14 +73,11 @@ export default function Architecture() {
             return (
               <button
                 key={arch.id}
-                onClick={() => {
-                  setActiveTab(i);
-                  setWalkthroughOpen(false);
-                }}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-medium transition-all duration-300 ${
+                onClick={() => { setActiveTab(i); setWalkthroughOpen(false); }}
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
                   isActive
-                    ? "bg-[#0071E3] text-white shadow-[0_4px_20px_rgba(0,113,227,0.3)]"
-                    : "bg-white/[0.04] text-[#86868B] hover:text-[#F5F5F7] hover:bg-white/[0.08]"
+                    ? "bg-[#FFA000] text-[#1B1B1F] shadow-[0_4px_16px_rgba(255,160,0,0.25)]"
+                    : "bg-white text-[#5F6368] border border-[#E8EAED] hover:border-[#FFA000] hover:text-[#FFA000]"
                 }`}
               >
                 <Icon size={14} />
@@ -126,103 +88,51 @@ export default function Architecture() {
           })}
         </div>
 
-        {/* Content */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={current.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.35 }}
-          >
+          <motion.div key={current.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.35 }}>
             <div className="mb-4">
-              <h3 className="text-[18px] font-semibold text-[#F5F5F7]">
-                {current.tabLabel}
-              </h3>
-              <p className="text-[14px] text-[#86868B] mt-1">
-                {current.oneLiner}
-              </p>
+              <h3 className="text-[18px] font-bold" style={{ color: "#1B1B1F" }}>{current.tabLabel}</h3>
+              <p className="text-[14px] text-[#5F6368] mt-1">{current.oneLiner}</p>
             </div>
 
-            <div
-              className="rounded-2xl border border-white/[0.04] overflow-hidden"
-              style={{ height: 700, background: "#0A0A0A" }}
-            >
+            {/* Diagram in dark card */}
+            <div className="rounded-3xl overflow-hidden border border-[#E8EAED]" style={{ height: 700, background: "#1B1B1F" }}>
               <ReactFlow
-                nodes={current.nodes}
-                edges={current.edges}
-                nodeTypes={nodeTypes}
-                fitView
-                fitViewOptions={{ padding: 0.25 }}
+                nodes={current.nodes} edges={current.edges} nodeTypes={nodeTypes}
+                fitView fitViewOptions={{ padding: 0.25 }}
                 proOptions={{ hideAttribution: true }}
-                nodesDraggable={false}
-                nodesConnectable={false}
-                elementsSelectable={false}
-                panOnDrag={true}
-                zoomOnScroll={true}
-                minZoom={0.3}
-                maxZoom={1.5}
+                nodesDraggable={false} nodesConnectable={false} elementsSelectable={false}
+                panOnDrag={true} zoomOnScroll={true} minZoom={0.3} maxZoom={1.5}
               >
-                <Background color="#1D1D1F" gap={20} />
-                <Controls
-                  showInteractive={false}
-                  className="!bg-[#1D1D1F] !border-white/[0.04] !rounded-xl !shadow-lg [&>button]:!bg-[#1D1D1F] [&>button]:!border-white/[0.04] [&>button]:!text-[#86868B] [&>button:hover]:!text-[#F5F5F7]"
-                />
+                <Background color="#292929" gap={20} />
+                <Controls showInteractive={false} className="!bg-[#292929] !border-[#3C3C3F] !rounded-xl !shadow-lg [&>button]:!bg-[#292929] [&>button]:!border-[#3C3C3F] [&>button]:!text-[#9AA0A6] [&>button:hover]:!text-white" />
               </ReactFlow>
             </div>
 
-            {/* Legend */}
             <div className="flex flex-wrap items-center justify-center gap-5 mt-5">
               {legendItems.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-2 text-[12px] text-[#86868B]"
-                >
-                  <div
-                    className="w-3 h-3 rounded"
-                    style={{ backgroundColor: item.color }}
-                  />
+                <div key={item.label} className="flex items-center gap-2 text-[12px] text-[#5F6368]">
+                  <div className="w-3 h-3 rounded" style={{ backgroundColor: item.color }} />
                   {item.label}
                 </div>
               ))}
             </div>
 
-            {/* Walkthrough */}
+            {/* Walkthrough - dark card */}
             <div className="mt-6">
               <button
                 onClick={() => setWalkthroughOpen(!walkthroughOpen)}
-                className="sm:hidden w-full flex items-center justify-between px-5 py-3 rounded-xl bg-white/[0.04] text-[14px] text-[#86868B] mb-3"
+                className="sm:hidden w-full flex items-center justify-between px-5 py-3 rounded-xl bg-[#1B1B1F] text-[14px] text-[#9AA0A6] mb-3"
               >
                 <span>Architecture Walkthrough</span>
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform ${
-                    walkthroughOpen ? "rotate-180" : ""
-                  }`}
-                />
+                <ChevronDown size={16} className={`transition-transform ${walkthroughOpen ? "rotate-180" : ""}`} />
               </button>
-
-              <div
-                className={`${
-                  walkthroughOpen ? "block" : "hidden"
-                } sm:block bento-card p-6`}
-              >
+              <div className={`${walkthroughOpen ? "block" : "hidden"} sm:block rounded-3xl bg-[#1B1B1F] p-8`}>
                 <Walkthrough data={current.walkthrough} />
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center text-[#48484A] text-[14px] mt-14 max-w-[600px] mx-auto leading-relaxed italic"
-        >
-          These aren&apos;t diagrams copied from documentation. They&apos;re
-          how I think about system design — the trade-offs, the failure
-          modes, the decisions that aren&apos;t in any tutorial.
-        </motion.p>
       </div>
     </section>
   );

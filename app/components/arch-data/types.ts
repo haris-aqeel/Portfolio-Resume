@@ -35,18 +35,18 @@ export interface ArchitectureDiagram {
 /* ── Color Palette ── */
 
 export const C = {
-  cyan: "#2997FF",
-  indigo: "#0071E3",
-  purple: "#BF5AF2",
-  gray: "#86868B",
-  bronze: "#cd7f32",
-  silver: "#86868B",
-  gold: "#FF9F0A",
-  teal: "#5AC8FA",
-  green: "#30D158",
-  amber: "#FF9F0A",
-  red: "#FF375F",
-  blue: "#2997FF",
+  cyan: "#4285F4",
+  indigo: "#4285F4",
+  purple: "#AB47BC",
+  gray: "#9AA0A6",
+  bronze: "#FF7043",
+  silver: "#9AA0A6",
+  gold: "#FFA000",
+  teal: "#4285F4",
+  green: "#34A853",
+  amber: "#FFA000",
+  red: "#EA4335",
+  blue: "#4285F4",
 };
 
 /* ── Node Helper ── */

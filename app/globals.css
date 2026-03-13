@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #000000;
-  --color-foreground: #F5F5F7;
-  --color-surface: #1D1D1F;
-  --color-surface-light: #2D2D2F;
-  --color-border: #1D1D1F;
-  --color-primary: #0071E3;
-  --color-primary-light: #2997FF;
-  --color-accent: #BF5AF2;
-  --color-success: #30D158;
-  --color-muted: #86868B;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
-  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-inter: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-jetbrains: "JetBrains Mono", "SF Mono", monospace;
-  --font-playfair: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-background: #1B1B1F;
+  --color-foreground: #FFFFFF;
+  --color-surface: #292929;
+  --color-surface-light: #333336;
+  --color-border: #3C3C3F;
+  --color-primary: #FFA000;
+  --color-primary-light: #FFB300;
+  --color-accent: #FFA000;
+  --color-success: #34A853;
+  --color-muted: #9AA0A6;
+  --font-sans: "Google Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", "Roboto Mono", monospace;
+  --font-display: "Google Sans", "Inter", -apple-system, sans-serif;
+  --font-inter: "Inter", -apple-system, sans-serif;
+  --font-jetbrains: "JetBrains Mono", "Roboto Mono", monospace;
+  --font-playfair: "Inter", -apple-system, sans-serif;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #333 #000;
+  scrollbar-color: #3C3C3F #1B1B1F;
 }
 
 html {
@@ -29,16 +29,16 @@ html {
 }
 
 body {
-  background: #000000;
-  color: #F5F5F7;
+  background: #1B1B1F;
+  color: #FFFFFF;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: rgba(0, 113, 227, 0.3);
-  color: #F5F5F7;
+  background: rgba(255, 160, 0, 0.25);
+  color: #FFFFFF;
 }
 
 /* ── Keyframes ── */
@@ -59,16 +59,6 @@ body {
   50% { transform: translateY(-12px); }
 }
 
-@keyframes glow-breathe {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-}
-
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .animate-pulse-green {
   animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -76,172 +66,174 @@ body {
 /* ── Typography ── */
 
 .heading-xl {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #FFFFFF;
 }
 
 .heading-lg {
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: #FFFFFF;
 }
 
 .heading-md {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: #FFFFFF;
 }
 
-/* ── Gradient Text ── */
+/* ── Gradient text ── */
 
 .gradient-text {
-  background: linear-gradient(135deg, #2997FF 0%, #BF5AF2 50%, #FF375F 100%);
+  background: linear-gradient(135deg, #FFA000 0%, #FF6D00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-subtle {
-  background: linear-gradient(135deg, #F5F5F7 0%, #86868B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ── Glass ── */
+/* ── Glass nav ── */
 
 .glass {
-  background: rgba(0, 0, 0, 0.72);
+  background: rgba(27, 27, 31, 0.85);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Warm glass card (like Firebase banner) ── */
+
+.warm-glass {
+  background: linear-gradient(135deg, rgba(255, 160, 0, 0.08) 0%, rgba(41, 41, 41, 0.9) 100%);
+  border: 1px solid rgba(255, 160, 0, 0.12);
+  border-radius: 24px;
 }
 
 /* ── Cards ── */
 
-.card-surface {
-  background: #1D1D1F;
-  border-radius: 20px;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
-}
-
-.card-surface:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
 .card-hover {
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
 }
 
-/* ── Bento Card ── */
-
 .bento-card {
-  background: rgba(29, 29, 31, 0.7);
-  backdrop-filter: blur(10px);
+  background: #292929;
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .bento-card:hover {
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  background: #2F2F32;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
   transform: translateY(-2px);
 }
 
-/* ── Spotlight / Glow ── */
-
-.spotlight {
+.premium-card {
+  background: #292929;
+  border-radius: 24px;
   position: relative;
+  overflow: hidden;
 }
 
-.spotlight::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120%;
-  height: 120%;
-  background: radial-gradient(ellipse at center, rgba(41, 151, 255, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+/* ── Light section ── */
+
+.section-light {
+  background: #F8F9FA;
 }
 
-/* ── Section styling ── */
+.section-light .heading-lg,
+.section-light .heading-xl,
+.section-light .heading-md {
+  color: #1B1B1F;
+}
+
+.section-light .section-label {
+  color: #FFA000;
+}
+
+.section-light .bento-card {
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.section-light .bento-card:hover {
+  background: #FFFFFF;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+
+/* ── Buttons ── */
+
+.btn-primary {
+  background: #FFA000;
+  color: #1B1B1F;
+  font-weight: 600;
+  border-radius: 980px;
+  transition: all 0.25s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary:hover {
+  background: #FFB300;
+  box-shadow: 0 4px 24px rgba(255, 160, 0, 0.35);
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #FFA000;
+  font-weight: 600;
+  border-radius: 980px;
+  border: 2px solid #FFA000;
+  transition: all 0.25s ease;
+  letter-spacing: -0.01em;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 160, 0, 0.08);
+}
+
+/* ── Section label ── */
 
 .section-label {
-  font-size: 0.8125rem;
-  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #2997FF;
+  color: #FFA000;
   font-weight: 600;
 }
 
 .section-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
-}
-
-/* ── Buttons ── */
-
-.btn-primary {
-  background: #0071E3;
-  color: #FFFFFF;
-  font-weight: 500;
-  border-radius: 980px;
-  transition: all 0.3s ease;
-  letter-spacing: -0.01em;
-}
-
-.btn-primary:hover {
-  background: #0077ED;
-  transform: scale(1.02);
-  box-shadow: 0 4px 30px rgba(0, 113, 227, 0.35);
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: #F5F5F7;
-  font-weight: 500;
-  border-radius: 980px;
-  border: none;
-  transition: all 0.3s ease;
-  letter-spacing: -0.01em;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* ── Premium tag ── */
 
 .premium-tag {
-  background: rgba(255, 255, 255, 0.06);
-  color: #86868B;
+  background: rgba(255, 160, 0, 0.1);
+  color: #FFA000;
 }
-
-/* ── Grid background ── */
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
-/* ── Animated gradient border (for featured items) ── */
+/* ── Animated gradient border ── */
 
 .gradient-border-animated {
   position: relative;
@@ -253,7 +245,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #2997FF, #BF5AF2, #2997FF);
+  background: linear-gradient(135deg, #FFA000, #FF6D00, #FFA000);
   background-size: 200% 200%;
   animation: gradient-shift 4s ease infinite;
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -261,25 +253,6 @@ body {
   mask-composite: exclude;
   -webkit-mask-composite: xor;
   pointer-events: none;
-}
-
-/* ── Premium card with glow top ── */
-
-.premium-card {
-  background: #1D1D1F;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  position: relative;
-  overflow: hidden;
-}
-
-.premium-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
 }
 
 /* ── ReactFlow ── */
