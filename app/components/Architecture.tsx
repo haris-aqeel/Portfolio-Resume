@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
@@ -17,7 +17,7 @@ import {
   Sparkles,
   ChevronDown,
 } from "lucide-react";
-import { architectures, nodeTypes } from "./arch-data";
+import { architectures, nodeTypes as importedNodeTypes } from "./arch-data";
 import type { ArchitectureDiagram, WalkthroughSection } from "./arch-data";
 
 const tabIcons = [Layers, Zap, RefreshCw, Settings, Sparkles];
@@ -75,6 +75,9 @@ export default function Architecture() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const current = architectures[activeTab];
+  
+  // Memoize nodeTypes to prevent React Flow warning about object recreation
+  const nodeTypes = useMemo(() => importedNodeTypes, []);
 
   return (
     <section id="architecture" className="py-24 lg:py-32">
