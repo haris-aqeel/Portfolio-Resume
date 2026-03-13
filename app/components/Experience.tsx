@@ -94,34 +94,46 @@ export default function Experience() {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl"
+          className="max-w-4xl mx-auto"
         >
           {/* Section Header */}
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">
-              <span className="text-primary font-mono text-xl mr-2">02.</span>
-              Where I've Worked
+          <div className="text-center mb-16">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4 }}
+              className="text-primary font-mono text-sm mb-4"
+            >
+              Experience
+            </motion.p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+              {"Where I've"} worked
             </h2>
-            <div className="h-px flex-1 bg-slate-700/50 max-w-xs" />
           </div>
 
           {/* Tabs Layout */}
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-12">
             {/* Tab List */}
-            <div className="flex md:flex-col overflow-x-auto md:overflow-visible border-b md:border-b-0 md:border-l-2 border-slate-700/50 -mb-px md:mb-0">
+            <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 lg:min-w-[200px]">
               {jobs.map((job, index) => (
                 <button
                   key={job.company}
                   onClick={() => setActiveTab(index)}
-                  className={`relative px-5 py-3 text-sm font-mono whitespace-nowrap text-left transition-all ${
+                  className={`relative px-5 py-3 text-sm font-medium whitespace-nowrap text-left transition-all rounded-lg lg:rounded-l-lg lg:rounded-r-none ${
                     activeTab === index
-                      ? "text-primary bg-slate-800/30"
-                      : "text-muted hover:text-slate-100 hover:bg-slate-800/20"
+                      ? "text-primary bg-surface"
+                      : "text-muted hover:text-white hover:bg-surface/50"
                   }`}
                 >
-                  {/* Active indicator */}
+                  {/* Active indicator for desktop */}
                   <span
-                    className={`absolute left-0 top-0 bottom-0 w-0.5 md:w-0.5 bg-primary transition-all ${
+                    className={`hidden lg:block absolute right-0 top-0 bottom-0 w-0.5 bg-primary transition-all ${
+                      activeTab === index ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  {/* Active indicator for mobile */}
+                  <span
+                    className={`lg:hidden absolute left-0 right-0 bottom-0 h-0.5 bg-primary transition-all ${
                       activeTab === index ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -135,18 +147,18 @@ export default function Experience() {
               {jobs.map((job, index) => (
                 <motion.div
                   key={job.company}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{
                     opacity: activeTab === index ? 1 : 0,
-                    y: activeTab === index ? 0 : 10,
+                    x: activeTab === index ? 0 : 20,
                   }}
                   transition={{ duration: 0.3 }}
                   className={`${activeTab === index ? "block" : "hidden"}`}
                 >
                   {/* Role Title */}
                   {job.roles.map((role, roleIndex) => (
-                    <div key={roleIndex} className={roleIndex > 0 ? "mt-6" : ""}>
-                      <h3 className="text-lg font-medium text-slate-100">
+                    <div key={roleIndex} className={roleIndex > 0 ? "mt-8" : ""}>
+                      <h3 className="text-xl font-semibold text-white">
                         {role.title}
                         <span className="text-primary">
                           {" @ "}
@@ -165,19 +177,19 @@ export default function Experience() {
                           )}
                         </span>
                       </h3>
-                      <p className="text-sm font-mono text-muted mt-1">
+                      <p className="text-sm text-muted mt-2 font-mono">
                         {role.period}
                       </p>
                     </div>
                   ))}
 
                   {/* Achievements */}
-                  <ul className="mt-6 space-y-3">
+                  <ul className="mt-8 space-y-4">
                     {job.achievements.map((achievement, i) => (
-                      <li key={i} className="flex gap-3 text-muted text-sm leading-relaxed">
-                        <span className="text-primary mt-1.5 flex-shrink-0">
-                          <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor">
-                            <path d="M0 4L4 0L8 4L4 8L0 4Z" />
+                      <li key={i} className="flex gap-4 text-muted leading-relaxed">
+                        <span className="text-primary mt-2 flex-shrink-0">
+                          <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor">
+                            <circle cx="3" cy="3" r="3" />
                           </svg>
                         </span>
                         {achievement}
@@ -186,11 +198,11 @@ export default function Experience() {
                   </ul>
 
                   {/* Skills */}
-                  <div className="flex flex-wrap gap-2 mt-6">
+                  <div className="flex flex-wrap gap-2 mt-8">
                     {job.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1 text-xs font-mono text-primary bg-primary/10 rounded-full"
+                        className="px-3 py-1.5 text-xs font-medium text-primary bg-primary/10 border border-primary/20 rounded-full"
                       >
                         {skill}
                       </span>

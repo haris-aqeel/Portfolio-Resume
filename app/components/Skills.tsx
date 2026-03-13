@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { TechIcon } from "./TechIcon";
+import { Award } from "lucide-react";
 
 interface SkillCategory {
   name: string;
@@ -65,6 +66,12 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
+const certifications = [
+  "Fabric Data Engineer Associate",
+  "Fabric Analytics Engineer Associate", 
+  "Azure Data Fundamentals",
+];
+
 export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -78,35 +85,41 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
         >
           {/* Section Header */}
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">
-              <span className="text-primary font-mono text-xl mr-2">03.</span>
+          <div className="text-center mb-16">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.4 }}
+              className="text-primary font-mono text-sm mb-4"
+            >
               Skills & Technologies
+            </motion.p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+              Tools I work with
             </h2>
-            <div className="h-px flex-1 bg-slate-700/50 max-w-xs" />
           </div>
 
           {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: categoryIndex * 0.1 }}
-                className="premium-card p-6"
+                className="p-6 rounded-2xl bg-surface border border-border hover:border-primary/30 transition-colors"
               >
-                <h3 className="text-sm font-semibold text-slate-100 mb-4">
+                <h3 className="text-base font-semibold text-white mb-5">
                   {category.name}
                 </h3>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {category.skills.map((skill) => (
                     <li
                       key={skill}
                       className="flex items-center gap-3 text-sm text-muted"
                     >
-                      <span className="text-primary flex-shrink-0">
-                        <TechIcon name={skill} size={16} />
+                      <span className="flex-shrink-0 text-primary">
+                        <TechIcon name={skill} size={18} />
                       </span>
                       {skill}
                     </li>
@@ -116,38 +129,26 @@ export default function Skills() {
             ))}
           </div>
 
-          {/* Certifications Highlight */}
+          {/* Certifications */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12"
+            className="mt-16 max-w-3xl mx-auto"
           >
-            <h3 className="text-sm font-semibold text-slate-100 mb-6">
-              Active Certifications
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {[
-                "Fabric Data Engineer Associate",
-                "Fabric Analytics Engineer Associate",
-                "Azure Data Fundamentals",
-              ].map((cert) => (
+            <div className="text-center mb-8">
+              <h3 className="text-lg font-semibold text-white">
+                Active Certifications
+              </h3>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {certifications.map((cert) => (
                 <div
                   key={cert}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary/30 bg-primary/5 text-sm text-slate-100"
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-full border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors"
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    className="text-primary"
-                  >
-                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                  </svg>
-                  {cert}
+                  <Award className="w-4 h-4 text-primary flex-shrink-0" />
+                  <span className="text-sm font-medium text-white">{cert}</span>
                 </div>
               ))}
             </div>

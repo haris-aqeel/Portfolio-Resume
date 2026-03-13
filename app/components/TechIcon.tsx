@@ -34,13 +34,13 @@ const techMap: Record<string, { slug: string; color: string }> = {
 
   // Cloud
   "Google Cloud Platform": { slug: "googlecloud", color: "4285F4" },
-  "Vercel": { slug: "vercel", color: "5eead4" },
+  "Vercel": { slug: "vercel", color: "ffffff" },
 
   // Full-Stack
   "React.js": { slug: "react", color: "61DAFB" },
   "React": { slug: "react", color: "61DAFB" },
   "React Native": { slug: "react", color: "61DAFB" },
-  "Next.js": { slug: "nextdotjs", color: "5eead4" },
+  "Next.js": { slug: "nextdotjs", color: "ffffff" },
   "TypeScript": { slug: "typescript", color: "3178C6" },
   "JavaScript": { slug: "javascript", color: "F7DF1E" },
   "Node.js": { slug: "nodedotjs", color: "5FA04E" },
@@ -53,7 +53,7 @@ const techMap: Record<string, { slug: string; color: string }> = {
   "GraphQL": { slug: "graphql", color: "E10098" },
 
   // AI
-  "OpenAI Integration": { slug: "openai", color: "5eead4" },
+  "OpenAI Integration": { slug: "openai", color: "ffffff" },
   "Gemini/Bard Integration": { slug: "googlegemini", color: "8E75B2" },
 
   // DevOps
@@ -84,9 +84,9 @@ const lucideFallbackMap: Record<string, { icon: React.ElementType; color: string
   "AWS (Amplify, Lambda, S3, CloudFront, Cognito)": { icon: Server, color: "#FF9900" },
   "AWS CDK": { icon: Server, color: "#FF9900" },
   "Microsoft Power Automate": { icon: Zap, color: "#0066FF" },
-  "JWT": { icon: Key, color: "#5eead4" },
-  "Vonage": { icon: Phone, color: "#5eead4" },
-  "GDPR": { icon: Shield, color: "#5eead4" },
+  "JWT": { icon: Key, color: "#ff9100" },
+  "Vonage": { icon: Phone, color: "#ff9100" },
+  "GDPR": { icon: Shield, color: "#ff9100" },
 };
 
 /* ── Company logos (local files in /public/logos/) ── */

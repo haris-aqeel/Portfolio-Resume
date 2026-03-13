@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 
 const socialLinks = [
   {
@@ -23,158 +23,137 @@ const socialLinks = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center">
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-transparent to-transparent pointer-events-none" />
-      
-      <div className="section-container w-full py-24 lg:py-32">
-        <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-16 items-start">
-          {/* Left Column - Fixed Navigation Hint */}
-          <div className="lg:sticky lg:top-24 lg:h-[calc(100vh-6rem)] flex flex-col justify-between">
-            <div>
-              {/* Name */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-100"
-              >
-                Haris Aqeel
-              </motion.h1>
-
-              {/* Title */}
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-lg sm:text-xl font-medium text-primary mt-3"
-              >
-                Senior Data Engineer
-              </motion.h2>
-
-              {/* Tagline */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-base text-muted mt-4 max-w-sm leading-relaxed"
-              >
-                I build scalable data platforms and pipelines that transform raw data into actionable insights.
-              </motion.p>
-
-              {/* Navigation Links */}
-              <motion.nav
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="hidden lg:flex flex-col gap-3 mt-12"
-              >
-                {[
-                  { label: "ABOUT", href: "#about" },
-                  { label: "EXPERIENCE", href: "#experience" },
-                  { label: "SKILLS", href: "#skills" },
-                  { label: "TESTIMONIALS", href: "#testimonials" },
-                  { label: "CONTACT", href: "#contact" },
-                ].map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="group flex items-center gap-4 text-xs font-medium tracking-widest text-muted hover:text-slate-100 transition-colors"
-                  >
-                    <span className="h-px w-8 bg-muted group-hover:w-16 group-hover:bg-slate-100 transition-all duration-300" />
-                    {link.label}
-                  </a>
-                ))}
-              </motion.nav>
-            </div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center gap-5 mt-8 lg:mt-0"
-            >
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-muted hover:text-primary transition-colors"
-                  aria-label={link.label}
-                >
-                  <link.icon size={22} />
-                </a>
-              ))}
-            </motion.div>
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4">
+      {/* Promotional Banner - Firebase Style */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="gradient-border px-6 py-4 mb-12 max-w-2xl w-full"
+      >
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-medium text-white">
+              Open to new opportunities
+            </p>
+            <p className="text-xs text-muted mt-1">
+              Looking for data engineering roles, consulting projects, and collaboration opportunities.
+            </p>
           </div>
-
-          {/* Right Column - Bio Content */}
-          <div className="lg:pt-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-6 text-muted leading-relaxed"
-            >
-              <p>
-                {"I'm"} a developer passionate about crafting robust, scalable data infrastructure that blends thoughtful architecture with engineering excellence. My favorite work lies at the intersection of data engineering and software development, creating systems that not only perform well but are meticulously built for maintainability and growth.
-              </p>
-
-              <p>
-                Currently, {"I'm"} a Senior Data Engineer at{" "}
-                <a
-                  href="https://folio3.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-100 hover:text-primary transition-colors font-medium"
-                >
-                  Folio3 Software
-                </a>
-                , specializing in the Microsoft ecosystem. I build end-to-end data platforms using{" "}
-                <span className="text-slate-100">Microsoft Fabric</span>,{" "}
-                <span className="text-slate-100">Azure Databricks</span>, and{" "}
-                <span className="text-slate-100">Power BI</span> — from lakehouse architecture and real-time pipelines to governed semantic layers.
-              </p>
-
-              <p>
-                In the past, {"I've"} had the opportunity to develop software across a variety of settings — from{" "}
-                <span className="text-slate-100">early-stage startups</span> and{" "}
-                <span className="text-slate-100">freelance consulting</span> to{" "}
-                <span className="text-slate-100">enterprise organizations</span>.
-                My journey started in frontend development with React and TypeScript, which continues to shape how I approach data systems today — with clean architecture, testability, and user-centric thinking.
-              </p>
-
-              <p>
-                When {"I'm"} not building data pipelines, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.
-              </p>
-            </motion.div>
-
-            {/* Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-8"
-            >
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-3 group"
-              >
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
-                </span>
-                <span className="text-sm text-muted group-hover:text-slate-100 transition-colors">
-                  Available for new opportunities
-                </span>
-                <ExternalLink size={14} className="text-muted group-hover:text-primary transition-colors" />
-              </a>
-            </motion.div>
-          </div>
+          <a
+            href="#contact"
+            className="flex-shrink-0 px-5 py-2.5 bg-primary hover:bg-primary-dark text-black text-sm font-semibold rounded-full transition-colors"
+          >
+            Get in Touch
+          </a>
         </div>
+      </motion.div>
+
+      {/* Main Hero Content - Centered like Firebase */}
+      <div className="max-w-4xl mx-auto text-center">
+        {/* Main Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
+        >
+          Build data platforms{" "}
+          <span className="inline-flex items-center gap-2 sm:gap-3">
+            <span className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl bg-primary/20">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+            <span className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl bg-amber-500/20">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-amber-500" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 3v18h18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M18 17V9M13 17V5M8 17v-3" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+          </span>{" "}
+          that scale
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-6 sm:mt-8 text-lg sm:text-xl text-muted max-w-2xl mx-auto leading-relaxed"
+        >
+          Senior Data Engineer crafting robust data infrastructure with{" "}
+          <span className="text-white">Microsoft Fabric</span>,{" "}
+          <span className="text-white">Azure</span>, and{" "}
+          <span className="text-white">Databricks</span>. 
+          A platform designed to support your data needs throughout the entire lifecycle.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <a
+            href="#experience"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-black text-sm font-semibold rounded-full transition-all"
+          >
+            View My Work
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-border hover:border-primary/50 text-white text-sm font-medium rounded-full transition-all hover:bg-surface"
+          >
+            Download Resume
+          </a>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 flex items-center justify-center gap-6"
+        >
+          {socialLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="p-3 rounded-full bg-surface hover:bg-surface-light border border-border hover:border-primary/30 text-muted hover:text-primary transition-all"
+              aria-label={link.label}
+            >
+              <link.icon size={20} />
+            </a>
+          ))}
+        </motion.div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <a href="#about" className="flex flex-col items-center gap-2 text-muted hover:text-primary transition-colors">
+          <span className="text-xs font-medium tracking-wider uppercase">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </motion.div>
+        </a>
+      </motion.div>
     </section>
   );
 }

@@ -23,10 +23,10 @@ import type { ArchitectureDiagram, WalkthroughSection } from "./arch-data";
 const tabIcons = [Layers, Zap, RefreshCw, Settings, Sparkles];
 
 const legendItems = [
-  { color: "#5eead4", label: "Source" },
+  { color: "#ff9100", label: "Source" },
   { color: "#38bdf8", label: "Processing" },
   { color: "#a78bfa", label: "Storage" },
-  { color: "#5eead4", label: "Consumption" },
+  { color: "#4ade80", label: "Consumption" },
   { color: "#fbbf24", label: "Governance" },
 ];
 
@@ -42,7 +42,7 @@ function Walkthrough({
       <div className="space-y-4">
         {data.sections.map((s: WalkthroughSection, i: number) => (
           <div key={i}>
-            <h4 className="text-sm font-semibold text-slate-200 mb-1">
+            <h4 className="text-sm font-semibold text-white mb-1">
               {s.title}
             </h4>
             <p className="text-sm text-muted leading-relaxed">{s.text}</p>
@@ -51,8 +51,8 @@ function Walkthrough({
       </div>
 
       {data.decisions && data.decisions.length > 0 && (
-        <div className="border-t border-slate-700/50 pt-4">
-          <h4 className="text-sm font-semibold text-slate-200 mb-2">
+        <div className="border-t border-border pt-4">
+          <h4 className="text-sm font-semibold text-white mb-2">
             Key design decisions:
           </h4>
           <ul className="text-sm text-muted space-y-1">
@@ -90,18 +90,18 @@ export default function Architecture() {
         >
           {/* Section Header */}
           <div className="text-center mb-12">
-            <p className="text-primary font-mono text-sm mb-2">System Design</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">
+            <p className="text-primary font-mono text-sm mb-4">System Design</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
               Architecture Showcase
             </h2>
-            <p className="text-muted mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+            <p className="text-muted mt-6 max-w-2xl mx-auto leading-relaxed">
               {"I don't"} just run pipelines - I design the systems that pipelines live inside. 
               Below are architecture patterns {"I've"} built, studied, or can speak to in depth.
             </p>
           </div>
 
           {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
             {architectures.map((arch, i) => {
               const Icon = tabIcons[i];
               const isActive = activeTab === i;
@@ -112,13 +112,13 @@ export default function Architecture() {
                     setActiveTab(i);
                     setWalkthroughOpen(false);
                   }}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                     isActive
-                      ? "bg-primary/10 text-primary border border-primary/30"
-                      : "bg-slate-800/50 border border-slate-700/50 text-muted hover:text-slate-100 hover:border-slate-600"
+                      ? "bg-primary text-black"
+                      : "bg-surface border border-border text-muted hover:text-white hover:border-primary/30"
                   }`}
                 >
-                  <Icon size={14} />
+                  <Icon size={16} />
                   <span className="hidden sm:inline">{arch.tabLabel}</span>
                   <span className="sm:hidden">{arch.tabLabel.split(" ")[0]}</span>
                 </button>
@@ -136,17 +136,17 @@ export default function Architecture() {
               transition={{ duration: 0.35 }}
             >
               {/* Title */}
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-slate-100">
+              <div className="mb-6 text-center">
+                <h3 className="text-xl font-bold text-white">
                   {current.tabLabel}
                 </h3>
-                <p className="text-sm text-muted mt-1">{current.oneLiner}</p>
+                <p className="text-sm text-muted mt-2">{current.oneLiner}</p>
               </div>
 
               {/* ReactFlow Diagram */}
               <div
-                className="rounded-xl border border-slate-700/50 overflow-hidden"
-                style={{ height: 600, background: "#0f172a" }}
+                className="rounded-2xl border border-border overflow-hidden"
+                style={{ height: 600, background: "#1a1a1a" }}
               >
                 <ReactFlow
                   nodes={current.nodes}
@@ -163,23 +163,23 @@ export default function Architecture() {
                   minZoom={0.3}
                   maxZoom={1.5}
                 >
-                  <Background color="#1e293b" gap={20} />
+                  <Background color="#2d2d2d" gap={20} />
                   <Controls
                     showInteractive={false}
-                    className="!bg-slate-900 !border-slate-700 !rounded-lg !shadow-lg [&>button]:!bg-slate-900 [&>button]:!border-slate-700 [&>button]:!text-muted [&>button:hover]:!text-slate-200"
+                    className="!bg-surface !border-border !rounded-lg !shadow-lg [&>button]:!bg-surface [&>button]:!border-border [&>button]:!text-muted [&>button:hover]:!text-white"
                   />
                 </ReactFlow>
               </div>
 
               {/* Legend */}
-              <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
+              <div className="flex flex-wrap items-center justify-center gap-6 mt-6">
                 {legendItems.map((item) => (
                   <div
                     key={item.label}
-                    className="flex items-center gap-2 text-xs text-muted"
+                    className="flex items-center gap-2 text-sm text-muted"
                   >
                     <div
-                      className="w-3 h-3 rounded-sm"
+                      className="w-3 h-3 rounded-full"
                       style={{ backgroundColor: item.color }}
                     />
                     {item.label}
@@ -188,10 +188,10 @@ export default function Architecture() {
               </div>
 
               {/* Walkthrough */}
-              <div className="mt-6">
+              <div className="mt-8">
                 <button
                   onClick={() => setWalkthroughOpen(!walkthroughOpen)}
-                  className="sm:hidden w-full flex items-center justify-between px-4 py-3 rounded-lg premium-card text-sm text-muted mb-3"
+                  className="sm:hidden w-full flex items-center justify-between px-5 py-4 rounded-xl bg-surface border border-border text-sm text-muted mb-4"
                 >
                   <span>Architecture Walkthrough</span>
                   <ChevronDown
@@ -203,7 +203,7 @@ export default function Architecture() {
                 <div
                   className={`${
                     walkthroughOpen ? "block" : "hidden"
-                  } sm:block premium-card p-6`}
+                  } sm:block p-6 rounded-2xl bg-surface border border-border`}
                 >
                   <Walkthrough data={current.walkthrough} />
                 </div>

@@ -68,7 +68,7 @@ export default function Certifications() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="py-24 lg:py-32 bg-slate-900/30">
+    <section className="py-24 lg:py-32 bg-surface/30">
       <div className="section-container">
         <motion.div
           ref={ref}
@@ -78,35 +78,35 @@ export default function Certifications() {
         >
           {/* Section Header */}
           <div className="text-center mb-12">
-            <p className="text-primary font-mono text-sm mb-2">Credentials</p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-100">
+            <p className="text-primary font-mono text-sm mb-4">Credentials</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
               Certifications & Badges
             </h2>
           </div>
 
           {/* Active Certifications */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10 max-w-4xl mx-auto">
             {activeCerts.map((cert, i) => (
               <motion.div
                 key={cert.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative p-6 rounded-xl border border-primary/30 bg-primary/5 overflow-hidden"
+                className="relative p-6 rounded-2xl border border-primary/30 bg-primary/5 overflow-hidden"
               >
                 {/* Top highlight */}
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent" />
 
                 {/* Active Badge */}
                 <div className="flex items-center gap-2 mb-4">
-                  <Award size={14} className="text-primary" />
-                  <span className="text-[10px] font-mono text-primary uppercase tracking-wider">
+                  <Award size={16} className="text-primary" />
+                  <span className="text-xs font-semibold text-primary uppercase tracking-wider">
                     Active
                   </span>
                 </div>
 
                 {/* Cert Name */}
-                <h3 className="text-base font-semibold text-slate-100 leading-snug mb-3">
+                <h3 className="text-base font-semibold text-white leading-snug mb-4">
                   {cert.name}
                 </h3>
 
@@ -118,11 +118,11 @@ export default function Certifications() {
 
                 {/* Date */}
                 <div className="flex items-center gap-2 text-xs text-muted-foreground font-mono">
-                  <Calendar size={10} />
+                  <Calendar size={12} />
                   <span>{cert.date}</span>
                   {cert.expires && (
                     <>
-                      <span className="text-slate-700">-</span>
+                      <span className="text-border">-</span>
                       <span>{cert.expires}</span>
                     </>
                   )}
@@ -132,24 +132,24 @@ export default function Certifications() {
           </div>
 
           {/* Other Certifications */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {otherCerts.map((cert, i) => (
               <motion.div
                 key={cert.name}
                 initial={{ opacity: 0, y: 15 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.3, delay: 0.3 + i * 0.05 }}
-                className="premium-card p-4"
+                className="p-4 rounded-xl bg-surface border border-border hover:border-primary/30 transition-colors"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center flex-shrink-0">
-                    <IssuerIcon issuer={cert.issuer} size={16} />
+                  <div className="w-9 h-9 rounded-lg bg-surface-light flex items-center justify-center flex-shrink-0">
+                    <IssuerIcon issuer={cert.issuer} size={18} />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="text-sm font-medium text-slate-200 leading-snug line-clamp-2">
+                    <h4 className="text-sm font-medium text-white leading-snug line-clamp-2">
                       {cert.name}
                     </h4>
-                    <p className="text-[11px] text-muted mt-1 font-mono">
+                    <p className="text-xs text-muted mt-1.5 font-mono">
                       {cert.issuer} - {cert.date}
                     </p>
                   </div>

@@ -22,18 +22,18 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="py-8 border-t border-slate-800/50">
+    <footer className="py-10 border-t border-border">
       <div className="section-container">
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-6">
           {/* Social Links */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target={link.href.startsWith("http") ? "_blank" : undefined}
                 rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="text-muted hover:text-primary transition-colors"
+                className="p-2.5 rounded-full bg-surface border border-border hover:border-primary/30 text-muted hover:text-primary transition-all"
                 aria-label={link.label}
               >
                 <link.icon size={18} />
@@ -46,7 +46,7 @@ export default function Footer() {
             href="https://github.com/haris-aqeel"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-muted-foreground hover:text-primary transition-colors font-mono"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
           >
             Designed & Built by Haris Aqeel
           </a>
