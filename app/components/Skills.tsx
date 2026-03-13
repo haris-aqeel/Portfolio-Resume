@@ -155,7 +155,7 @@ export default function Skills() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="skills" className="relative py-24 sm:py-32">
+    <section id="skills" className="relative py-16 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
