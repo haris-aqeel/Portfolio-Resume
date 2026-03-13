@@ -1,33 +1,38 @@
 "use client";
 
+import {
+  Database,
+  Cloud,
+  FileSpreadsheet,
+  Boxes,
+  Layers,
+  Warehouse,
+  BarChart3,
+  Table,
+  Server,
+  Shield,
+  Key,
+  Phone,
+  Zap,
+} from "lucide-react";
+
 /* ═══════════════════════════════════════════════════
    Tech logos  → Simple Icons CDN (brand colors)
    Company/Issuer logos → local files in /public/logos/
    ═══════════════════════════════════════════════════ */
 
 /* ── Tech slug + brand color mapping ── */
+/* Using verified SimpleIcons slugs from https://simpleicons.org/ */
 
 const techMap: Record<string, { slug: string; color: string }> = {
   // Data Engineering
-  "Azure Data Factory": { slug: "microsoftazure", color: "0078D4" },
+  "Azure Data Factory": { slug: "azuredataexplorer", color: "0078D4" },
   "Azure Databricks": { slug: "databricks", color: "FF3621" },
   "PySpark": { slug: "apachespark", color: "E25A1C" },
-  "Microsoft Fabric": { slug: "microsoftazure", color: "0078D4" },
-  "Delta Lake": { slug: "delta", color: "003366" },
-  "Azure SQL Data Warehouse": { slug: "microsoftazure", color: "0078D4" },
   "Google BigQuery": { slug: "googlebigquery", color: "669DF6" },
   "Looker Studio": { slug: "looker", color: "4285F4" },
 
-  // Analytics & BI
-  "Power BI": { slug: "powerbi", color: "F2C811" },
-  "DAX": { slug: "powerbi", color: "F2C811" },
-  "Excel": { slug: "microsoftexcel", color: "217346" },
-  "Dynamics 365 F&O": { slug: "dynamics365", color: "002050" },
-
   // Cloud
-  "Microsoft Azure": { slug: "microsoftazure", color: "0078D4" },
-  "AWS (Amplify, Lambda, S3, CloudFront, Cognito)": { slug: "amazonaws", color: "FF9900" },
-  "AWS": { slug: "amazonaws", color: "FF9900" },
   "Google Cloud Platform": { slug: "googlecloud", color: "4285F4" },
   "Vercel": { slug: "vercel", color: "5eead4" },
 
@@ -49,11 +54,9 @@ const techMap: Record<string, { slug: string; color: string }> = {
 
   // AI
   "OpenAI Integration": { slug: "openai", color: "5eead4" },
-  "Microsoft Power Automate": { slug: "microsoftazure", color: "0078D4" },
-  "Gemini/Bard Integration": { slug: "google", color: "4285F4" },
+  "Gemini/Bard Integration": { slug: "googlegemini", color: "8E75B2" },
 
   // DevOps
-  "AWS CDK": { slug: "amazonaws", color: "FF9900" },
   "Git": { slug: "git", color: "F05032" },
   "Docker (basic)": { slug: "docker", color: "2496ED" },
 
@@ -62,12 +65,28 @@ const techMap: Record<string, { slug: string; color: string }> = {
   "MUI": { slug: "mui", color: "007FFF" },
   "Material-UI": { slug: "mui", color: "007FFF" },
   "HTML/CSS": { slug: "html5", color: "E34F26" },
-  "JWT": { slug: "jsonwebtokens", color: "5eead4" },
   "Formik": { slug: "react", color: "61DAFB" },
-  "Vonage": { slug: "vonage", color: "5eead4" },
-  "REST APIs": { slug: "fastapi", color: "009688" },
-  "GDPR": { slug: "shieldsdotio", color: "5eead4" },
+  "REST APIs": { slug: "openapiinitiative", color: "6BA539" },
   "Encryption": { slug: "letsencrypt", color: "003A70" },
+};
+
+/* Icons that need Lucide fallback (no good SimpleIcons match) */
+const lucideFallbackMap: Record<string, { icon: React.ElementType; color: string }> = {
+  "Microsoft Fabric": { icon: Boxes, color: "#0078D4" },
+  "Delta Lake": { icon: Layers, color: "#003366" },
+  "Azure SQL Data Warehouse": { icon: Warehouse, color: "#0078D4" },
+  "Power BI": { icon: BarChart3, color: "#F2C811" },
+  "DAX": { icon: Table, color: "#F2C811" },
+  "Excel": { icon: FileSpreadsheet, color: "#217346" },
+  "Dynamics 365 F&O": { icon: Database, color: "#002050" },
+  "Microsoft Azure": { icon: Cloud, color: "#0078D4" },
+  "AWS": { icon: Server, color: "#FF9900" },
+  "AWS (Amplify, Lambda, S3, CloudFront, Cognito)": { icon: Server, color: "#FF9900" },
+  "AWS CDK": { icon: Server, color: "#FF9900" },
+  "Microsoft Power Automate": { icon: Zap, color: "#0066FF" },
+  "JWT": { icon: Key, color: "#5eead4" },
+  "Vonage": { icon: Phone, color: "#5eead4" },
+  "GDPR": { icon: Shield, color: "#5eead4" },
 };
 
 /* ── Company logos (local files in /public/logos/) ── */
@@ -94,7 +113,7 @@ const issuerLogos: Record<string, string> = {
   "Coursera": "/logos/coursera.png",
 };
 
-/* ── Tech Icon (colored brand logo from CDN) ── */
+/* ── Tech Icon (colored brand logo from CDN or Lucide fallback) ── */
 
 export function TechIcon({
   name,
@@ -105,6 +124,20 @@ export function TechIcon({
   size?: number;
   className?: string;
 }) {
+  // First check for Lucide fallback icons
+  const lucideFallback = lucideFallbackMap[name];
+  if (lucideFallback) {
+    const IconComponent = lucideFallback.icon;
+    return (
+      <IconComponent
+        size={size}
+        style={{ color: lucideFallback.color }}
+        className={`inline-block flex-shrink-0 ${className}`}
+      />
+    );
+  }
+
+  // Then check for SimpleIcons CDN icons
   const entry = techMap[name];
   if (!entry) return null;
 
