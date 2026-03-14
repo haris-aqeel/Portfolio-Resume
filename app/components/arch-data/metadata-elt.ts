@@ -14,7 +14,7 @@ export const metadataElt: ArchitectureDiagram = {
       type: "wide",
       sublabel: "source · target · load_type · watermark · format · schedule",
       badge: "production",
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
 
@@ -22,7 +22,7 @@ export const metadataElt: ArchitectureDiagram = {
     nd("md-master", XC, 180, "Master Pipeline (ADF / Fabric)", C.indigo, "Reads config at runtime and constructs pipeline logic dynamically via Lookup + ForEach activities", {
       sublabel: "Lookup Activity → ForEach Activity → Iterate Sources",
       badge: "production",
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
 
@@ -47,7 +47,7 @@ export const metadataElt: ArchitectureDiagram = {
     }),
     nd("md-cdc", X4[3], 350, "CDC Handler", C.cyan, "Change feed → incremental merge for near-real-time source sync", {
       items: ["Change Feed", "Incremental Merge"],
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
 
@@ -71,12 +71,12 @@ export const metadataElt: ArchitectureDiagram = {
     // Row 6 — Monitoring
     nd("md-log", 80, 850, "Pipeline Run Log Table", C.green, "Every pipeline run tracked: start time, end time, rows loaded, errors", {
       sublabel: "→ Power BI Pipeline Health Dashboard",
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
     nd("md-drift", 500, 850, "Schema Drift Alert", C.amber, "Detects schema changes at Bronze, logs to audit table, and notifies via Power Automate", {
       sublabel: "→ Power Automate Notification",
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
   ],
