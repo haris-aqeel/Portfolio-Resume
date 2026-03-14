@@ -86,34 +86,6 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="mt-24 sm:mt-32 pb-8"
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <div className="text-[36px] sm:text-[44px] font-extrabold text-white tracking-tight leading-none">
-                  <CountUp
-                    end={stat.value}
-                    suffix={stat.suffix}
-                    prefix={stat.prefix || ""}
-                    decimals={stat.decimals || 0}
-                    duration={2.5}
-                    enableScrollSpy
-                    scrollSpyOnce
-                  />
-                </div>
-                <div className="text-[13px] text-[#9AA0A6] mt-2 font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
