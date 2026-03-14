@@ -127,7 +127,7 @@ export default function Experience() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="experience" className="relative py-28 sm:py-36">
+    <section id="experience" className="relative pt-28 sm:pt-36 pb-12 sm:pb-16">
       <div className="section-divider" />
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-28">
         <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-16">

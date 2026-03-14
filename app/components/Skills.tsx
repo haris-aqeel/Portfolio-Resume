@@ -26,12 +26,12 @@ export default function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="skills" className="relative section-light py-28 sm:py-36">
+    <section id="skills" className="relative section-light pt-12 sm:pt-16 pb-16 sm:pb-20">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-16">
           <span className="section-label font-[family-name:var(--font-jetbrains)]">Expertise</span>
           <h2 className="heading-lg mt-4" style={{ color: "#1B1B1F" }}>Skills &amp; Technologies</h2>
-          <p className="text-[#5F6368] mt-4 max-w-[540px] mx-auto text-[16px] leading-relaxed">
+          <p className="text-[#3C4043] mt-4 max-w-[540px] mx-auto text-[16px] leading-relaxed">
             Easily integrate your data stack with platforms and tools I work with every day.
           </p>
         </motion.div>
@@ -53,7 +53,7 @@ export default function Skills() {
                   </div>
                   <div>
                     <h3 className="text-[16px] font-bold" style={{ color: "#1B1B1F" }}>{group.title}</h3>
-                    <p className="text-[13px] text-[#5F6368]">{group.description}</p>
+                    <p className="text-[13px] text-[#3C4043]">{group.description}</p>
                   </div>
                 </div>
                 <ArrowRight size={16} className="text-[#9AA0A6] group-hover:text-[#FFA000] group-hover:translate-x-0.5 transition-all shrink-0" />
@@ -61,7 +61,7 @@ export default function Skills() {
 
               <div className="flex flex-wrap gap-2 pl-[52px]">
                 {group.skills.map((skill) => (
-                  <span key={skill} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] bg-[#F1F3F4] text-[#5F6368] font-[family-name:var(--font-jetbrains)] hover:bg-[#E8EAED] hover:text-[#1B1B1F] transition-all">
+                  <span key={skill} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] bg-[#E8EAED] text-[#3C4043] font-[family-name:var(--font-jetbrains)] hover:bg-[#E8EAED] hover:text-[#1B1B1F] transition-all">
                     <TechIcon name={skill} size={11} />
                     {skill}
                   </span>

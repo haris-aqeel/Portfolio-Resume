@@ -76,13 +76,13 @@ const companyLogos: Record<string, { file: string; bg?: string }> = {
   "Folio3 Software": { file: "/logos/folio3.png" },
   "Connect4Healing, Inc.": { file: "/logos/connect4healing.png" },
   "Upwork / Fiverr": { file: "/logos/upwork.svg" },
+  "PrivacyLabs": { file: "/logos/privacylabs.svg" },
+  "Aciano Technologies": { file: "/logos/aciano.jpg" },
+  "Worktrim": { file: "/logos/worktrim.jpg" },
 };
 
 /* Company fallback initials for companies without logos */
 const companyFallback: Record<string, { initials: string; color: string }> = {
-  "PrivacyLabs": { initials: "PL", color: "#AB47BC" },
-  "Aciano Technologies": { initials: "AT", color: "#FFA000" },
-  "Worktrim": { initials: "WT", color: "#34A853" },
 };
 
 /* Cert issuer logos (local files) */

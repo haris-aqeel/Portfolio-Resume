@@ -2,15 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Star, Award, TrendingUp, Clock, ThumbsUp, Quote, Linkedin } from "lucide-react";
+import { Star, Quote, Linkedin } from "lucide-react";
 
-const upworkStats = [
-  { label: "Top Rated Plus", icon: Award, color: "#FFA000" },
-  { label: "100% JSS", icon: ThumbsUp, color: "#34A853" },
-  { label: "$60K+ Earned", icon: TrendingUp, color: "#4285F4" },
-  { label: "47 Jobs", icon: Star, color: "#FFA000" },
-  { label: "1,519 Hours", icon: Clock, color: "#9AA0A6" },
-  { label: "5.0 Rating", icon: Star, color: "#EA4335" },
+const stats = [
+  { value: "$100K+", label: "Earned" },
+  { value: "47+", label: "Projects Delivered" },
+  { value: "100%", label: "Job Success" },
+  { value: "5.0", label: "Client Rating" },
 ];
 
 const linkedinRecs = [
@@ -36,20 +34,20 @@ export default function Testimonials() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
-    <section id="testimonials" className="relative py-28 sm:py-36">
+    <section id="testimonials" className="relative pt-16 sm:pt-20 pb-12 sm:pb-16">
       <div className="section-divider" />
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-28">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-16">
         <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-16">
           <span className="section-label font-[family-name:var(--font-jetbrains)]">Reviews</span>
           <h2 className="heading-lg mt-4 max-w-[500px]">What people <span className="gradient-text">say.</span></h2>
         </motion.div>
 
-        {/* Stats grid */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }} className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-16">
-          {upworkStats.map((stat) => (
-            <div key={stat.label} className="bento-card p-4 text-center">
-              <stat.icon size={20} style={{ color: stat.color }} className="mx-auto mb-2.5" />
-              <span className="text-[12px] font-semibold text-white block leading-tight">{stat.label}</span>
+        {/* Stats row */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }} className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-16">
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center py-4">
+              <span className="text-[2rem] sm:text-[2.5rem] font-extrabold text-white tracking-tight block">{stat.value}</span>
+              <span className="text-[13px] text-[#9AA0A6] mt-1 block">{stat.label}</span>
             </div>
           ))}
         </motion.div>
@@ -75,11 +73,11 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Upwork */}
+        {/* Client Reviews */}
         <div>
           <div className="flex items-center gap-2 mb-8">
             <Star size={18} className="text-[#FFA000]" />
-            <h3 className="text-[16px] font-bold text-white">Upwork Reviews</h3>
+            <h3 className="text-[16px] font-bold text-white">Client Reviews</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {upworkReviews.map((review, i) => (

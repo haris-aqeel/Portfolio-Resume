@@ -5,8 +5,8 @@ import { ArrowRight } from "lucide-react";
 import CountUp from "react-countup";
 
 const stats = [
-  { value: 60, suffix: "K+", label: "Earned on Upwork", prefix: "$" },
-  { value: 47, suffix: "+", label: "Projects Delivered" },
+  { value: 100, suffix: "K+", label: "Earned", prefix: "$" },
+  { value: 50, suffix: "+", label: "Projects Delivered" },
   { value: 100, suffix: "%", label: "Job Success" },
   { value: 5.0, suffix: "", label: "Client Rating", decimals: 1 },
 ];

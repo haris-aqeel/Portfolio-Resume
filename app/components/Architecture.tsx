@@ -55,7 +55,7 @@ export default function Architecture() {
   const current = architectures[activeTab];
 
   return (
-    <section id="architecture" className="relative section-light py-28 sm:py-36">
+    <section id="architecture" className="relative section-light pt-12 sm:pt-16 pb-8 sm:pb-12">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center mb-14">
           <span className="section-label font-[family-name:var(--font-jetbrains)]">System Design</span>

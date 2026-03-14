@@ -2,16 +2,16 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Mail, Linkedin, ExternalLink, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, MapPin, ArrowRight } from "lucide-react";
 
 export default function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="contact" className="relative py-28 sm:py-36">
+    <section id="contact" className="relative pt-16 sm:pt-20 pb-20 sm:pb-28">
       <div className="section-divider" />
 
-      <div className="max-w-[1120px] mx-auto px-6 pt-28">
+      <div className="max-w-[1120px] mx-auto px-6 pt-16">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 40 }}
@@ -60,15 +60,6 @@ export default function Contact() {
                 >
                   <Linkedin size={16} />
                   LinkedIn
-                </a>
-                <a
-                  href="https://www.upwork.com/freelancers/~placeholder"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary inline-flex items-center gap-2 px-8 py-3.5 text-[15px] w-full sm:w-auto justify-center"
-                >
-                  <ExternalLink size={16} />
-                  Upwork
                 </a>
               </div>
 
