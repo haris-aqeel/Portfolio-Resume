@@ -5,21 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { ArchitectureDiagram, ArchNodeData } from "./arch-data";
 import type { Node } from "@xyflow/react";
 import { ChevronRight } from "lucide-react";
-
-/* ── Logo from Simple Icons CDN ── */
-
-function Logo({ slug, color, size = 24 }: { slug: string; color?: string; size?: number }) {
-  return (
-    <img
-      src={`https://cdn.simpleicons.org/${slug}/${color || "ffffff"}`}
-      alt=""
-      width={size}
-      height={size}
-      className="inline-block"
-      loading="lazy"
-    />
-  );
-}
+import { ServiceLogo } from "./ServiceLogo";
 
 /* ── Derive a meaningful layer name from node labels & context ── */
 
@@ -205,7 +191,7 @@ function NodeCard({ node, index, isWide }: { node: Node<ArchNodeData>; index: nu
             }}
           >
             {d.logo ? (
-              <Logo slug={d.logo} color={d.logoColor} size={24} />
+              <ServiceLogo slug={d.logo} color={d.logoColor} size={24} />
             ) : (
               <div className="w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-bold" style={{ backgroundColor: d.color, color: "#1B1B1F" }}>
                 {d.label.charAt(0)}
@@ -305,7 +291,7 @@ function PipelineHero({ layers }: { layers: LayerGroup[] }) {
                       style={{ backgroundColor: `${d.color}15` }}
                     >
                       {d.logo ? (
-                        <Logo slug={d.logo} color={d.logoColor} size={16} />
+                        <ServiceLogo slug={d.logo} color={d.logoColor} size={16} />
                       ) : (
                         <span className="text-[9px] font-bold" style={{ color: d.color }}>{d.label.charAt(0)}</span>
                       )}

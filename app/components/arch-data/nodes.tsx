@@ -2,20 +2,7 @@
 
 import { Position, Handle, type NodeProps, type Node } from "@xyflow/react";
 import type { ArchNodeData } from "./types";
-
-function LogoIcon({ slug, color, size = 28 }: { slug: string; color?: string; size?: number }) {
-  const c = color || "ffffff";
-  return (
-    <img
-      src={`https://cdn.simpleicons.org/${slug}/${c}`}
-      alt=""
-      width={size}
-      height={size}
-      className="inline-block"
-      loading="lazy"
-    />
-  );
-}
+import { ServiceLogo } from "../ServiceLogo";
 
 /* ── Standard Pipeline Node ── */
 
@@ -72,7 +59,7 @@ function ArchNode({ data }: NodeProps<Node<ArchNodeData>>) {
               className="w-10 h-10 rounded-xl flex items-center justify-center"
               style={{ backgroundColor: `${data.color}15` }}
             >
-              <LogoIcon slug={data.logo} color={data.logoColor} size={22} />
+              <ServiceLogo slug={data.logo} color={data.logoColor} size={22} />
             </div>
           </div>
         )}
@@ -138,7 +125,7 @@ function WideNode({ data }: NodeProps<Node<ArchNodeData>>) {
               className="w-11 h-11 rounded-xl flex items-center justify-center"
               style={{ backgroundColor: `${data.color}15` }}
             >
-              <LogoIcon slug={data.logo} color={data.logoColor} size={26} />
+              <ServiceLogo slug={data.logo} color={data.logoColor} size={26} />
             </div>
           </div>
         )}
