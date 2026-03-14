@@ -93,6 +93,7 @@ const issuerLogos: Record<string, string> = {
   "Cisco": "/logos/cisco.svg",
   "LinkedIn": "/logos/linkedin.png",
   "Coursera": "/logos/coursera.png",
+  "Blockchain Training Alliance": "/logos/bta.jpg",
 };
 
 /* ── Tech Icon (colored brand logo from CDN) ── */

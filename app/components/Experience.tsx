@@ -65,7 +65,7 @@ const jobs: Job[] = [
     company: "Upwork", location: "Remote · Worldwide", type: "Freelance",
     roles: [{ title: "Full-Stack Developer", period: "Jan 2020 – Present" }],
     achievements: [
-      "Top Rated Plus freelancer with 100% Job Success Score across 47+ projects",
+      "Top Rated Plus freelancer with 100% Job Success Score across 50+ projects",
       "Built AI map-based recommendation platform with Next.js, Supabase, and OpenAI API",
       "Redeveloped Old West Temecula travel site in Next.js with Turbopack and Vercel",
       "Automated email follow-ups using Power Automate, Zapier, and ChatGPT API",

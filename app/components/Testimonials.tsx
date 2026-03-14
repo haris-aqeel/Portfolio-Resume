@@ -6,7 +6,7 @@ import { Star, Quote, Linkedin } from "lucide-react";
 
 const stats = [
   { value: "$100K+", label: "Earned" },
-  { value: "47+", label: "Projects Delivered" },
+  { value: "50+", label: "Projects Delivered" },
   { value: "100%", label: "Job Success" },
   { value: "5.0", label: "Client Rating" },
 ];

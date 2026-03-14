@@ -45,7 +45,7 @@ export default function Contact() {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
                 <a
-                  href="mailto:haris@placeholder.com"
+                  href="mailto:harisaqeel.2001@gmail.com?subject=Project%20Inquiry&body=Hi%20Haris%2C%0A%0AI%27m%20interested%20in%20discussing%20a%20project.%20Here%20are%20some%20details%3A%0A%0AProject%20Type%3A%20%0ABudget%20Range%3A%20%0ATimeline%3A%20%0ADescription%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you!"
                   className="btn-primary group inline-flex items-center gap-2 px-8 py-3.5 text-[15px] w-full sm:w-auto justify-center"
                 >
                   <Mail size={16} />
