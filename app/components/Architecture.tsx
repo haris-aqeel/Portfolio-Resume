@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ReactFlow, Background, Controls } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import { Layers, Zap, RefreshCw, Settings, Sparkles, ChevronDown } from "lucide-react";
+import { Layers, Zap, RefreshCw, Settings, Sparkles, ChevronDown, LayoutGrid, GitBranch } from "lucide-react";
 import { architectures, nodeTypes } from "./arch-data";
 import type { ArchitectureDiagram, WalkthroughSection } from "./arch-data";
+import ArchitecturePipeline from "./ArchitecturePipeline";
 
 const tabIcons = [Layers, Zap, RefreshCw, Settings, Sparkles];
 
@@ -50,6 +51,7 @@ function Walkthrough({ data }: { data: ArchitectureDiagram["walkthrough"] }) {
 
 export default function Architecture() {
   const [activeTab, setActiveTab] = useState(0);
+  const [viewMode, setViewMode] = useState<"pipeline" | "diagram">("pipeline");
   const [walkthroughOpen, setWalkthroughOpen] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const current = architectures[activeTab];
@@ -65,58 +67,93 @@ export default function Architecture() {
           </p>
         </motion.div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {architectures.map((arch, i) => {
-            const Icon = tabIcons[i];
-            const isActive = activeTab === i;
-            return (
-              <button
-                key={arch.id}
-                onClick={() => { setActiveTab(i); setWalkthroughOpen(false); }}
-                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
-                  isActive
-                    ? "bg-[#FFA000] text-[#1B1B1F] shadow-[0_4px_16px_rgba(255,160,0,0.25)]"
-                    : "bg-white text-[#5F6368] border border-[#E8EAED] hover:border-[#FFA000] hover:text-[#FFA000]"
-                }`}
-              >
-                <Icon size={14} />
-                <span className="hidden sm:inline">{arch.tabLabel}</span>
-                <span className="sm:hidden">{arch.tabLabel.split(" ")[0]}</span>
-              </button>
-            );
-          })}
+        {/* Tabs + View Toggle */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+          <div className="flex flex-wrap justify-center gap-2">
+            {architectures.map((arch, i) => {
+              const Icon = tabIcons[i];
+              const isActive = activeTab === i;
+              return (
+                <button
+                  key={arch.id}
+                  onClick={() => { setActiveTab(i); setWalkthroughOpen(false); }}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
+                    isActive
+                      ? "bg-[#FFA000] text-[#1B1B1F] shadow-[0_4px_16px_rgba(255,160,0,0.25)]"
+                      : "bg-white text-[#5F6368] border border-[#E8EAED] hover:border-[#FFA000] hover:text-[#FFA000]"
+                  }`}
+                >
+                  <Icon size={14} />
+                  <span className="hidden sm:inline">{arch.tabLabel}</span>
+                  <span className="sm:hidden">{arch.tabLabel.split(" ")[0]}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* View mode toggle */}
+          <div className="flex items-center gap-1 bg-white border border-[#E8EAED] rounded-full p-1">
+            <button
+              onClick={() => setViewMode("pipeline")}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-medium transition-all duration-200 ${
+                viewMode === "pipeline"
+                  ? "bg-[#1B1B1F] text-white"
+                  : "text-[#5F6368] hover:text-[#1B1B1F]"
+              }`}
+            >
+              <LayoutGrid size={12} />
+              Pipeline
+            </button>
+            <button
+              onClick={() => setViewMode("diagram")}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-medium transition-all duration-200 ${
+                viewMode === "diagram"
+                  ? "bg-[#1B1B1F] text-white"
+                  : "text-[#5F6368] hover:text-[#1B1B1F]"
+              }`}
+            >
+              <GitBranch size={12} />
+              Diagram
+            </button>
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
-          <motion.div key={current.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.35 }}>
+          <motion.div key={`${current.id}-${viewMode}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.35 }}>
             <div className="mb-4">
               <h3 className="text-[18px] font-bold" style={{ color: "#1B1B1F" }}>{current.tabLabel}</h3>
               <p className="text-[14px] text-[#5F6368] mt-1">{current.oneLiner}</p>
             </div>
 
-            {/* Diagram in dark card */}
-            <div className="rounded-3xl overflow-hidden border border-[#E8EAED]" style={{ height: 700, background: "#1B1B1F" }}>
-              <ReactFlow
-                nodes={current.nodes} edges={current.edges} nodeTypes={nodeTypes}
-                fitView fitViewOptions={{ padding: 0.25 }}
-                proOptions={{ hideAttribution: true }}
-                nodesDraggable={false} nodesConnectable={false} elementsSelectable={false}
-                panOnDrag={true} zoomOnScroll={true} minZoom={0.3} maxZoom={1.5}
-              >
-                <Background color="#292929" gap={20} />
-                <Controls showInteractive={false} className="!bg-[#292929] !border-[#3C3C3F] !rounded-xl !shadow-lg [&>button]:!bg-[#292929] [&>button]:!border-[#3C3C3F] [&>button]:!text-[#9AA0A6] [&>button:hover]:!text-white" />
-              </ReactFlow>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-5 mt-5">
-              {legendItems.map((item) => (
-                <div key={item.label} className="flex items-center gap-2 text-[12px] text-[#5F6368]">
-                  <div className="w-3 h-3 rounded" style={{ backgroundColor: item.color }} />
-                  {item.label}
+            {viewMode === "pipeline" ? (
+              /* ── Pipeline View (default) ── */
+              <ArchitecturePipeline diagram={current} />
+            ) : (
+              /* ── ReactFlow Diagram View ── */
+              <>
+                <div className="rounded-3xl overflow-hidden border border-[#E8EAED]" style={{ height: 700, background: "#1B1B1F" }}>
+                  <ReactFlow
+                    nodes={current.nodes} edges={current.edges} nodeTypes={nodeTypes}
+                    fitView fitViewOptions={{ padding: 0.25 }}
+                    proOptions={{ hideAttribution: true }}
+                    nodesDraggable={false} nodesConnectable={false} elementsSelectable={false}
+                    panOnDrag={true} zoomOnScroll={true} minZoom={0.3} maxZoom={1.5}
+                  >
+                    <Background color="#292929" gap={20} />
+                    <Controls showInteractive={false} className="!bg-[#292929] !border-[#3C3C3F] !rounded-xl !shadow-lg [&>button]:!bg-[#292929] [&>button]:!border-[#3C3C3F] [&>button]:!text-[#9AA0A6] [&>button:hover]:!text-white" />
+                  </ReactFlow>
                 </div>
-              ))}
-            </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-5 mt-5">
+                  {legendItems.map((item) => (
+                    <div key={item.label} className="flex items-center gap-2 text-[12px] text-[#5F6368]">
+                      <div className="w-3 h-3 rounded" style={{ backgroundColor: item.color }} />
+                      {item.label}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* Walkthrough - dark card */}
             <div className="mt-6">
