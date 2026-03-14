@@ -20,14 +20,22 @@ const linkedinRecs = [
   { name: "Ahmed Ali", title: "Blockchain Engineer @ TruYields", quote: "Haris is an exceptional coder and problem solver. His attention to detail and ability to find creative solutions make him a valuable asset to any team. He is a reliable and efficient team member.", date: "January 2023", relation: "Colleague" },
 ];
 
-const upworkReviews = [
-  { quote: "Incredible speed and communication! Built the MVP I was looking for in record time.", amount: "$200", date: "Dec 2024" },
+const clientReviews = [
+  { quote: "Incredible speed and communication! Built the MVP I was looking for in record time. Will work with him again!", amount: "$200", date: "Dec 2024" },
   { quote: "Harris is a great React developer. Outstanding skills and always available. Communication is super perfect.", amount: "$25,110 · 817hrs", date: "Dec 2024" },
   { quote: "Haris is an amazing developer with excellent communication skills. Extremely passionate and knowledgeable full stack developer.", amount: "$500", date: "Sep 2024" },
-  { quote: "Terrific freelancer, diligent and hard-working. An excellent problem solver.", amount: "$1,639", date: "Dec 2024" },
-  { quote: "Haris is an excellent and hard working developer who has provided non-stop excellent work.", amount: "$2,090", date: "Dec 2022" },
-  { quote: "He was great. Was super fast and high quality work. Haris is fantastic and a great expert in web development.", amount: "", date: "Oct 2021" },
-  { quote: "Haris was a great choice for my project. Communicated well, understood the assignment, and executed quickly.", amount: "$100", date: "Apr 2023" },
+  { quote: "Haris is an exceptional Freelancer. He is hard working and terrific knowledge that enables him to problem solve quickly and autonomously. A great asset.", amount: "$1,150", date: "Jul 2024" },
+  { quote: "Terrific freelancer, diligent and hard-working. An excellent problem solver. I will hire again.", amount: "$1,639", date: "Dec 2024" },
+  { quote: "Understood detailed scope and did job accordingly. Good follow up and details. Will work with Haris again.", amount: "$2,350", date: "May 2023" },
+  { quote: "Great working with Haris again. Always honest and caring about his work.", amount: "$1,248", date: "Dec 2024" },
+  { quote: "Haris was excellent from the start taking on a short notice project. Very efficient and professional, even provided a long term solution while resolving the current issue.", amount: "$142", date: "Jan 2025" },
+  { quote: "Very good, quick work. Solution works just as expected. Haris is very helpful and readily available.", amount: "$65", date: "Jul 2024" },
+  { quote: "Haris is an excellent and hard working developer who has provided non-stop excellent work since we started our relationship.", amount: "$2,090", date: "Dec 2022" },
+  { quote: "Fast and skilled. Will definitely work together in future.", amount: "$605", date: "Mar 2022" },
+  { quote: "He was great. Was super fast and high quality work. Haris is fantastic and a great expert in web development.", amount: "$129", date: "Oct 2021" },
+  { quote: "Haris Aqeel has done a quick, great, well written and well communicated job. He is surely the goto developer!", amount: "", date: "Oct 2021" },
+  { quote: "Great work. It required a good understanding of Python and Typescript, and he did it great!", amount: "$60", date: "Sep 2024" },
+  { quote: "Haris was very helpful. He immediately understood my problems, found effective solutions and explained every detail.", amount: "$15", date: "Apr 2021" },
 ];
 
 export default function Testimonials() {
@@ -80,7 +88,7 @@ export default function Testimonials() {
             <h3 className="text-[16px] font-bold text-white">Client Reviews</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {upworkReviews.map((review, i) => (
+            {clientReviews.map((review, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }} className="bento-card p-5">
                 <div className="flex gap-0.5 mb-3">
                   {[...Array(5)].map((_, j) => (<Star key={j} size={13} className="text-[#FFA000] fill-[#FFA000]" />))}

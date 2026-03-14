@@ -32,6 +32,12 @@ const jobs: Job[] = [
     skills: ["Microsoft Fabric", "Azure Data Factory", "Azure Databricks", "Power BI", "PySpark", "SQL", "Google BigQuery", "Looker Studio"],
   },
   {
+    company: "FlipIQ", location: "United States · Remote", type: "Contract",
+    roles: [{ title: "Full-Stack Developer", period: "2024 – 2025" }],
+    achievements: ["Full-stack development of web application features", "End-to-end implementation from frontend UI to backend services"],
+    skills: ["React", "Next.js", "Node.js", "TypeScript"],
+  },
+  {
     company: "Connect4Healing, Inc.", location: "United States · Remote", type: "Contract",
     roles: [{ title: "Frontend Developer", period: "Sep 2023 – Jan 2024" }],
     achievements: ["Built HIPAA-compliant telehealth UI with React + Material-UI", "Integrated FullCalendar.io for appointment scheduling", "Implemented Vonage API for real-time video conferencing", "AWS backend integration (.NET Framework APIs)", "Firebase real-time database, SendGrid & Twilio notifications"],
@@ -56,10 +62,17 @@ const jobs: Job[] = [
     skills: ["React.js", "Material-UI", "JWT", "Formik"],
   },
   {
-    company: "Upwork / Fiverr", location: "Freelance", type: "Freelance",
-    roles: [{ title: "Web Developer / Frontend Developer", period: "Jan 2020 – Jan 2021" }],
-    achievements: ["Early freelance work building React applications for international clients"],
-    skills: ["React", "JavaScript", "HTML/CSS"],
+    company: "Upwork", location: "Remote · Worldwide", type: "Freelance",
+    roles: [{ title: "Full-Stack Developer", period: "Jan 2020 – Present" }],
+    achievements: [
+      "Top Rated Plus freelancer with 100% Job Success Score across 47+ projects",
+      "Built AI map-based recommendation platform with Next.js, Supabase, and OpenAI API",
+      "Redeveloped Old West Temecula travel site in Next.js with Turbopack and Vercel",
+      "Automated email follow-ups using Power Automate, Zapier, and ChatGPT API",
+      "Delivered full-stack web apps for clients in healthcare, real estate, SaaS, and e-commerce",
+      "Long-term contracts including $25K+ engagement (817 hrs) for a React-based platform",
+    ],
+    skills: ["React", "Next.js", "Node.js", "TypeScript", "Python", "AWS", "Firebase"],
   },
 ];
 

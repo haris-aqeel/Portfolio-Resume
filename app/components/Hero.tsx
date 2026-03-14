@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import CountUp from "react-countup";
+import Image from "next/image";
 
 const stats = [
   { value: 100, suffix: "K+", label: "Earned", prefix: "$" },
@@ -37,6 +37,28 @@ export default function Hero() {
             <a href="#experience" className="btn-primary px-5 py-2.5 text-[13px] font-semibold whitespace-nowrap shrink-0">
               See My Work
             </a>
+          </div>
+        </motion.div>
+
+        {/* Photo + Name */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="flex items-center gap-5 mb-10"
+        >
+          <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden ring-2 ring-[#FFA000]/30 ring-offset-2 ring-offset-[#1B1B1F] shrink-0">
+            <Image
+              src="/images/haris.jpg"
+              alt="Haris Aqeel"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          <div>
+            <h2 className="text-[20px] sm:text-[24px] font-bold text-white">Haris Aqeel</h2>
+            <p className="text-[13px] sm:text-[14px] text-[#9AA0A6]">Senior Data Engineer · Microsoft Fabric Certified</p>
           </div>
         </motion.div>
 

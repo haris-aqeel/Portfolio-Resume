@@ -79,6 +79,7 @@ const companyLogos: Record<string, { file: string; bg?: string }> = {
   "PrivacyLabs": { file: "/logos/privacylabs.svg" },
   "Aciano Technologies": { file: "/logos/aciano.jpg" },
   "Worktrim": { file: "/logos/worktrim.jpg" },
+  "FlipIQ": { file: "/logos/flipiq.jpg" },
 };
 
 /* Company fallback initials for companies without logos */
