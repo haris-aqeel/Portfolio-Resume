@@ -75,7 +75,7 @@ const techMap: Record<string, { slug: string; color: string }> = {
 const companyLogos: Record<string, { file: string; bg?: string }> = {
   "Folio3 Software": { file: "/logos/folio3.png" },
   "Connect4Healing, Inc.": { file: "/logos/connect4healing.png" },
-  "Upwork / Fiverr": { file: "/logos/upwork.svg" },
+  "Upwork": { file: "/logos/upwork.svg" },
   "PrivacyLabs": { file: "/logos/privacylabs.svg" },
   "Aciano Technologies": { file: "/logos/aciano.jpg" },
   "Worktrim": { file: "/logos/worktrim.jpg" },
