@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ArchitectureDiagram, ArchNodeData } from "./arch-data";
 import type { Node } from "@xyflow/react";
-import { C } from "./arch-data/types";
 import { ChevronRight } from "lucide-react";
 
 /* ── Logo from Simple Icons CDN ── */
@@ -22,22 +21,78 @@ function Logo({ slug, color, size = 24 }: { slug: string; color?: string; size?:
   );
 }
 
-/* ── Layer classification ── */
+/* ── Derive a meaningful layer name from node labels & context ── */
 
-const layerMeta: Record<string, { name: string; dotColor: string }> = {
-  [C.cyan]:   { name: "Sources",       dotColor: "#4285F4" },
-  [C.indigo]: { name: "Processing",    dotColor: "#4285F4" },
-  [C.gray]:   { name: "Raw / Staging", dotColor: "#9AA0A6" },
-  [C.purple]: { name: "Storage",       dotColor: "#AB47BC" },
-  [C.bronze]: { name: "Bronze",        dotColor: "#FF7043" },
-  [C.silver]: { name: "Silver",        dotColor: "#9AA0A6" },
-  [C.gold]:   { name: "Gold / AI",     dotColor: "#FFA000" },
-  [C.teal]:   { name: "Semantic",      dotColor: "#4285F4" },
-  [C.amber]:  { name: "Governance",    dotColor: "#FFA000" },
-  [C.red]:    { name: "Hot Path",      dotColor: "#EA4335" },
-  [C.blue]:   { name: "Archive",       dotColor: "#4285F4" },
-  [C.green]:  { name: "Consumption",   dotColor: "#34A853" },
-};
+function inferLayerName(nodes: Node<ArchNodeData>[]): string {
+  const labels = nodes.map((n) => n.data.label.toLowerCase());
+  const allLabels = labels.join(" ");
+
+  // Source-like
+  if (labels.some((l) => l.includes("event hub") || l.includes("iot hub") || l.includes("kafka") || l.includes("webhook") || l.includes("cdc stream"))) return "Event Sources";
+  if (labels.some((l) => l.includes("dynamics") || l.includes("sql server") || l.includes("rest api") || l.includes("csv") || l.includes("sftp") || l.includes("cosmos") || l.includes("postgresql") || l.includes("snowflake") || l.includes("azure sql"))) return "Data Sources";
+  if (labels.some((l) => l.includes("operational db"))) return "Data Sources";
+
+  // Processing
+  if (allLabels.includes("data factory") || allLabels.includes("fabric pipeline")) return "Ingestion";
+  if (allLabels.includes("real-time hub")) return "Real-Time Hub";
+  if (allLabels.includes("eventstream")) return "Stream Processing";
+  if (allLabels.includes("master pipeline")) return "Orchestration";
+  if (allLabels.includes("mirroring engine") || allLabels.includes("transaction log")) return "Change Capture";
+  if (allLabels.includes("gateway")) return "Data Gateway";
+
+  // Handler branches
+  if (labels.some((l) => l.includes("handler"))) return "Ingestion Handlers";
+
+  // Storage tiers
+  if (allLabels.includes("onelake") && allLabels.includes("landing")) return "Landing Zone";
+  if (allLabels.includes("onelake") && allLabels.includes("unified")) return "Unified Storage";
+  if (allLabels.includes("onelake") && allLabels.includes("mirrored")) return "Mirrored Storage";
+  if (allLabels.includes("delta conversion")) return "Delta Processing";
+  if (labels.some((l) => l.includes("raw") || l.includes("bronze") || l.includes("silver") || l.includes("gold"))) return "Medallion Layers";
+  if (allLabels.includes("bronze layer")) return "Bronze Layer";
+  if (allLabels.includes("silver layer")) return "Silver Layer";
+
+  // Eventhouse / hot/warm/cold
+  if (labels.some((l) => l.includes("eventhouse") || l.includes("lakehouse") || l.includes("archive"))) return "Storage Tiers";
+
+  // Semantic
+  if (allLabels.includes("semantic model") && nodes.length <= 2) return "Semantic Layer";
+  if (allLabels.includes("medallion lakehouse") && nodes.length <= 2) return "Data Platform";
+
+  // AI
+  if (labels.some((l) => l.includes("copilot") || l.includes("data agent") || l.includes("ai function") || l.includes("openai"))) return "AI Capabilities";
+  if (labels.some((l) => l.includes("inference") || l.includes("enriched"))) return "AI Outputs";
+
+  // Activator
+  if (allLabels.includes("activator")) return "Automation";
+
+  // Governance
+  if (labels.some((l) => l.includes("purview") || l.includes("governance") || l.includes("security"))) return "Governance";
+
+  // Consumption
+  if (labels.some((l) => l.includes("power bi report") || l.includes("excel") || l.includes("looker") || l.includes("sql analytics") || l.includes("sql endpoint") || l.includes("kql") || l.includes("dashboard") || l.includes("teams") || l.includes("custom app"))) return "Consumption";
+
+  // Monitoring
+  if (labels.some((l) => l.includes("pipeline run") || l.includes("schema drift"))) return "Monitoring";
+
+  // Metadata
+  if (allLabels.includes("metadata control")) return "Configuration";
+
+  return "Pipeline";
+}
+
+/* ── Derive a layer color ── */
+
+function inferLayerColor(nodes: Node<ArchNodeData>[]): string {
+  // Pick the most visually distinct color from the nodes
+  const colors = nodes.map((n) => n.data.color);
+  const unique = [...new Set(colors)];
+  // If all same, use that
+  if (unique.length === 1) return unique[0];
+  // Prefer non-blue color for variety
+  const nonBlue = unique.find((c) => c !== "#4285F4");
+  return nonBlue || unique[0];
+}
 
 /* ── Group nodes into layers by Y position ── */
 
@@ -66,45 +121,36 @@ function groupNodesByLayer(diagram: ArchitectureDiagram): LayerGroup[] {
 
   const sorted = [...yBuckets.entries()].sort((a, b) => a[0] - b[0]);
 
-  return sorted.map(([y, nodes]) => {
-    const colorCounts = new Map<string, number>();
-    for (const n of nodes) {
-      colorCounts.set(n.data.color, (colorCounts.get(n.data.color) || 0) + 1);
-    }
-    let dominantColor = nodes[0].data.color;
-    let maxCount = 0;
-    for (const [c, count] of colorCounts) {
-      if (count > maxCount) { dominantColor = c; maxCount = count; }
-    }
-    const meta = layerMeta[dominantColor] || { name: "Layer", dotColor: "#9AA0A6" };
-    return { y, color: dominantColor, layerName: meta.name, nodes };
-  });
+  return sorted.map(([y, nodes]) => ({
+    y,
+    color: inferLayerColor(nodes),
+    layerName: inferLayerName(nodes),
+    nodes,
+  }));
 }
 
-/* ── Flowing SVG connector between rows ── */
+/* ── SVG flowing connector ── */
 
-function FlowConnector({ fromColor, toColor, nodeCount }: { fromColor: string; toColor: string; nodeCount: number }) {
-  const w = nodeCount > 1 ? 200 : 60;
+function FlowConnector({ fromColor, toColor, spread }: { fromColor: string; toColor: string; spread: boolean }) {
+  const w = spread ? 160 : 60;
+  const id = `fc-${fromColor.replace("#", "")}-${toColor.replace("#", "")}`;
   return (
-    <div className="flex justify-center py-1 overflow-visible">
-      <svg width={w} height="40" viewBox={`0 0 ${w} 40`} fill="none" className="overflow-visible">
+    <div className="flex justify-center py-0.5">
+      <svg width={w} height="36" viewBox={`0 0 ${w} 36`} fill="none" className="overflow-visible">
         <defs>
-          <linearGradient id={`fg-${fromColor.slice(1)}-${toColor.slice(1)}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor={fromColor} stopOpacity="0.6" />
-            <stop offset="100%" stopColor={toColor} stopOpacity="0.6" />
+          <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={fromColor} stopOpacity="0.5" />
+            <stop offset="100%" stopColor={toColor} stopOpacity="0.5" />
           </linearGradient>
         </defs>
-        {/* Center line */}
-        <line x1={w / 2} y1="0" x2={w / 2} y2="40" stroke={`url(#fg-${fromColor.slice(1)}-${toColor.slice(1)})`} strokeWidth="2" />
-        {/* Animated pulse dot */}
-        <circle r="3" fill={toColor}>
-          <animateMotion dur="1.8s" repeatCount="indefinite" path={`M${w / 2},0 L${w / 2},40`} />
+        <line x1={w / 2} y1="0" x2={w / 2} y2="36" stroke={`url(#${id})`} strokeWidth="2" />
+        <circle r="3" fill={toColor} opacity="0.8">
+          <animateMotion dur="1.5s" repeatCount="indefinite" path={`M${w / 2},2 L${w / 2},34`} />
         </circle>
-        {/* Fan-out lines if multiple targets */}
-        {nodeCount > 2 && (
+        {spread && (
           <>
-            <line x1={w / 2} y1="20" x2="10" y2="40" stroke={toColor} strokeWidth="1" strokeOpacity="0.3" />
-            <line x1={w / 2} y1="20" x2={w - 10} y2="40" stroke={toColor} strokeWidth="1" strokeOpacity="0.3" />
+            <line x1={w / 2} y1="18" x2={8} y2="36" stroke={toColor} strokeWidth="1" strokeOpacity="0.2" />
+            <line x1={w / 2} y1="18" x2={w - 8} y2="36" stroke={toColor} strokeWidth="1" strokeOpacity="0.2" />
           </>
         )}
       </svg>
@@ -112,39 +158,37 @@ function FlowConnector({ fromColor, toColor, nodeCount }: { fromColor: string; t
   );
 }
 
-/* ── Single Node Card — Firebase-style with large logo ── */
+/* ── Node Card with prominent logo ── */
 
 function NodeCard({ node, index, isWide }: { node: Node<ArchNodeData>; index: number; isWide?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const d = node.data;
-  const isDashed = d.dashed;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      initial={{ opacity: 0, y: 20, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.45, delay: index * 0.05, ease: "easeOut" }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
       onClick={() => setExpanded(!expanded)}
       className={`relative group cursor-pointer ${isWide ? "col-span-full" : ""}`}
     >
       <div
         className={`relative rounded-2xl border p-5 transition-all duration-300 ${
-          isDashed ? "border-dashed" : ""
+          d.dashed ? "border-dashed" : ""
         } ${expanded ? "shadow-xl" : "hover:shadow-lg"}`}
         style={{
-          background: `linear-gradient(145deg, ${d.color}0D 0%, ${d.color}04 100%)`,
-          borderColor: expanded ? `${d.color}50` : `${d.color}20`,
-          boxShadow: d.glow ? `0 0 40px ${d.color}18, inset 0 1px 0 ${d.color}12` : expanded ? `0 8px 32px ${d.color}15` : undefined,
+          background: `linear-gradient(145deg, ${d.color}0C 0%, ${d.color}04 100%)`,
+          borderColor: expanded ? `${d.color}45` : `${d.color}20`,
+          boxShadow: d.glow ? `0 0 40px ${d.color}15` : expanded ? `0 8px 32px ${d.color}12` : undefined,
         }}
       >
-        {/* Badge */}
         {d.badge && (
           <div
             className="absolute -top-2.5 right-3 px-2.5 py-0.5 rounded-full text-[9px] font-bold"
             style={{
-              backgroundColor: d.badge === "production" ? "#FFA00018" : "#4285F418",
+              backgroundColor: `${d.badge === "production" ? "#FFA000" : "#4285F4"}15`,
               color: d.badge === "production" ? "#FFA000" : "#4285F4",
-              border: `1px solid ${d.badge === "production" ? "#FFA000" : "#4285F4"}30`,
+              border: `1px solid ${d.badge === "production" ? "#FFA000" : "#4285F4"}28`,
             }}
           >
             {d.badge === "production" ? "\u26A1 Prod" : "\uD83D\uDCD0 Arch"}
@@ -152,22 +196,23 @@ function NodeCard({ node, index, isWide }: { node: Node<ArchNodeData>; index: nu
         )}
 
         <div className="flex items-start gap-4">
-          {/* Logo container */}
+          {/* Logo */}
           <div
             className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
             style={{
-              background: `linear-gradient(135deg, ${d.color}20, ${d.color}08)`,
-              border: `1px solid ${d.color}20`,
+              background: `linear-gradient(135deg, ${d.color}18, ${d.color}08)`,
+              border: `1px solid ${d.color}18`,
             }}
           >
             {d.logo ? (
               <Logo slug={d.logo} color={d.logoColor} size={24} />
             ) : (
-              <div className="w-5 h-5 rounded-full" style={{ backgroundColor: d.color }} />
+              <div className="w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-bold" style={{ backgroundColor: d.color, color: "#1B1B1F" }}>
+                {d.label.charAt(0)}
+              </div>
             )}
           </div>
 
-          {/* Content */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
               <h4 className="text-[14px] font-semibold text-white leading-tight">{d.label}</h4>
@@ -178,9 +223,7 @@ function NodeCard({ node, index, isWide }: { node: Node<ArchNodeData>; index: nu
             </div>
 
             {d.sublabel && (
-              <p className="text-[11px] text-[#6B6B6F] mt-1.5 font-[family-name:var(--font-jetbrains)] leading-relaxed">
-                {d.sublabel}
-              </p>
+              <p className="text-[11px] text-[#6B6B6F] mt-1.5 font-[family-name:var(--font-jetbrains)] leading-relaxed">{d.sublabel}</p>
             )}
 
             {d.items && d.items.length > 0 && (
@@ -206,10 +249,7 @@ function NodeCard({ node, index, isWide }: { node: Node<ArchNodeData>; index: nu
                   transition={{ duration: 0.25 }}
                   className="overflow-hidden"
                 >
-                  <p
-                    className="text-[13px] text-[#9AA0A6] leading-relaxed mt-3 pt-3 border-t"
-                    style={{ borderColor: `${d.color}18` }}
-                  >
+                  <p className="text-[13px] text-[#9AA0A6] leading-relaxed mt-3 pt-3 border-t" style={{ borderColor: `${d.color}15` }}>
                     {d.tooltip}
                   </p>
                 </motion.div>
@@ -222,71 +262,76 @@ function NodeCard({ node, index, isWide }: { node: Node<ArchNodeData>; index: nu
   );
 }
 
-/* ── Hero illustration: compact visual of the full pipeline ── */
+/* ── Compact Hero Illustration ── */
 
 function PipelineHero({ layers }: { layers: LayerGroup[] }) {
   return (
-    <div className="relative rounded-2xl overflow-hidden p-6 sm:p-8 mb-6" style={{ background: "linear-gradient(160deg, #292929 0%, #1B1B1F 40%, #1B1B1F 100%)" }}>
-      {/* Ambient glow */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-[radial-gradient(ellipse,rgba(255,160,0,0.06)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-60 h-60 bg-[radial-gradient(ellipse,rgba(66,133,244,0.04)_0%,transparent_70%)] pointer-events-none" />
+    <div className="relative rounded-2xl overflow-hidden p-6 sm:p-8 mb-6" style={{ background: "linear-gradient(160deg, #292929 0%, #1B1B1F 50%)" }}>
+      {/* Ambient glows */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-[radial-gradient(ellipse,rgba(255,160,0,0.05)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-56 h-56 bg-[radial-gradient(ellipse,rgba(66,133,244,0.04)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="relative flex flex-col items-center gap-1">
-        {layers.map((layer, layerIdx) => {
-          const meta = layerMeta[layer.color] || { name: "Layer", dotColor: "#9AA0A6" };
-          return (
-            <div key={layerIdx} className="w-full">
-              {/* Row of compact service chips */}
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                {layer.nodes.map((node, ni) => {
-                  const d = node.data;
-                  const isWide = node.type === "wide";
-                  return (
-                    <motion.div
-                      key={node.id}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.35, delay: layerIdx * 0.08 + ni * 0.04 }}
-                      className={`flex items-center gap-2 px-3 py-2 rounded-xl border transition-all duration-200 hover:scale-105 ${isWide ? "px-5" : ""}`}
-                      style={{
-                        background: `linear-gradient(135deg, ${d.color}14, ${d.color}06)`,
-                        borderColor: `${d.color}25`,
-                      }}
-                      title={d.label}
-                    >
-                      <div
-                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: `${d.color}18` }}
-                      >
-                        {d.logo ? (
-                          <Logo slug={d.logo} color={d.logoColor} size={16} />
-                        ) : (
-                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: d.color }} />
-                        )}
-                      </div>
-                      <span className="text-[11px] font-medium text-white/80 whitespace-nowrap max-w-[140px] truncate">
-                        {d.label}
-                      </span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Connector to next row */}
-              {layerIdx < layers.length - 1 && (
-                <FlowConnector
-                  fromColor={meta.dotColor}
-                  toColor={(layerMeta[layers[layerIdx + 1].color] || { dotColor: "#9AA0A6" }).dotColor}
-                  nodeCount={layers[layerIdx + 1].nodes.length}
-                />
-              )}
+      <div className="relative flex flex-col items-center gap-0">
+        {layers.map((layer, li) => (
+          <div key={li} className="w-full">
+            {/* Layer label */}
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <div className="h-px flex-1 max-w-[60px]" style={{ background: `linear-gradient(to right, transparent, ${layer.color}25)` }} />
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] font-[family-name:var(--font-jetbrains)]" style={{ color: `${layer.color}70` }}>
+                {layer.layerName}
+              </span>
+              <div className="h-px flex-1 max-w-[60px]" style={{ background: `linear-gradient(to left, transparent, ${layer.color}25)` }} />
             </div>
-          );
-        })}
+
+            {/* Service chips */}
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              {layer.nodes.map((node, ni) => {
+                const d = node.data;
+                return (
+                  <motion.div
+                    key={node.id}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: li * 0.07 + ni * 0.03 }}
+                    className="flex items-center gap-2 px-3 py-2 rounded-xl border transition-all duration-200 hover:scale-105"
+                    style={{
+                      background: `linear-gradient(135deg, ${d.color}10, ${d.color}05)`,
+                      borderColor: `${d.color}20`,
+                    }}
+                    title={d.tooltip}
+                  >
+                    <div
+                      className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${d.color}15` }}
+                    >
+                      {d.logo ? (
+                        <Logo slug={d.logo} color={d.logoColor} size={16} />
+                      ) : (
+                        <span className="text-[9px] font-bold" style={{ color: d.color }}>{d.label.charAt(0)}</span>
+                      )}
+                    </div>
+                    <span className="text-[11px] font-medium text-white/80 whitespace-nowrap max-w-[130px] truncate">
+                      {d.label}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Connector */}
+            {li < layers.length - 1 && (
+              <FlowConnector
+                fromColor={layer.color}
+                toColor={layers[li + 1].color}
+                spread={layers[li + 1].nodes.length >= 3}
+              />
+            )}
+          </div>
+        ))}
       </div>
 
-      {/* Legend bar */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mt-6 pt-4 border-t border-white/[0.06]">
+      {/* Legend */}
+      <div className="flex flex-wrap items-center justify-center gap-4 mt-5 pt-4 border-t border-white/[0.06]">
         {[
           { color: "#4285F4", label: "Source / Processing" },
           { color: "#AB47BC", label: "Storage" },
@@ -306,68 +351,59 @@ function PipelineHero({ layers }: { layers: LayerGroup[] }) {
 /* ── Main Pipeline View ── */
 
 export default function ArchitecturePipeline({ diagram }: { diagram: ArchitectureDiagram }) {
-  const layers = groupNodesByLayer(diagram);
+  const layers = useMemo(() => groupNodesByLayer(diagram), [diagram]);
 
   return (
     <div className="space-y-0">
-      {/* Hero illustration */}
       <PipelineHero layers={layers} />
 
-      {/* Detailed cards by layer */}
       <div className="rounded-3xl overflow-hidden border border-white/[0.06] bg-[#1B1B1F] p-6 sm:p-8">
-        {layers.map((layer, layerIdx) => {
-          const meta = layerMeta[layer.color] || { name: "Layer", dotColor: "#9AA0A6" };
-
-          return (
-            <div key={layerIdx}>
-              {/* Layer header */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: layerIdx * 0.08 }}
-                className="flex items-center gap-3 mb-4"
+        {layers.map((layer, li) => (
+          <div key={li}>
+            {/* Layer header */}
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.35, delay: li * 0.07 }}
+              className="flex items-center gap-3 mb-4"
+            >
+              <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: layer.color }} />
+              <span
+                className="text-[11px] font-bold uppercase tracking-[0.15em] font-[family-name:var(--font-jetbrains)]"
+                style={{ color: `${layer.color}90` }}
               >
-                <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: meta.dotColor }} />
-                <span
-                  className="text-[11px] font-bold uppercase tracking-[0.15em] font-[family-name:var(--font-jetbrains)]"
-                  style={{ color: `${meta.dotColor}99` }}
-                >
-                  {meta.name}
-                </span>
-                <div className="flex-1 h-px" style={{ backgroundColor: `${meta.dotColor}12` }} />
-              </motion.div>
+                {layer.layerName}
+              </span>
+              <div className="flex-1 h-px" style={{ backgroundColor: `${layer.color}12` }} />
+            </motion.div>
 
-              {/* Node grid */}
-              <div className={`grid gap-3 mb-2 ${
-                layer.nodes.length === 1 ? "grid-cols-1"
-                  : layer.nodes.length === 2 ? "grid-cols-1 sm:grid-cols-2"
-                  : layer.nodes.length === 3 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                  : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-              }`}>
-                {layer.nodes.map((node, nodeIdx) => (
-                  <NodeCard
-                    key={node.id}
-                    node={node}
-                    index={layerIdx * 3 + nodeIdx}
-                    isWide={node.type === "wide"}
-                  />
-                ))}
-              </div>
-
-              {/* Connector */}
-              {layerIdx < layers.length - 1 && (
-                <div className="flex justify-center py-2">
-                  <svg width="60" height="32" viewBox="0 0 60 32" fill="none">
-                    <line x1="30" y1="0" x2="30" y2="32" stroke={`${(layerMeta[layers[layerIdx + 1].color] || { dotColor: "#9AA0A6" }).dotColor}40`} strokeWidth="1.5" />
-                    <circle cx="30" cy="16" r="2.5" fill={(layerMeta[layers[layerIdx + 1].color] || { dotColor: "#9AA0A6" }).dotColor} fillOpacity="0.5">
-                      <animate attributeName="cy" values="4;28;4" dur="2s" repeatCount="indefinite" />
-                    </circle>
-                  </svg>
-                </div>
-              )}
+            {/* Nodes */}
+            <div className={`grid gap-3 mb-2 ${
+              layer.nodes.length === 1 ? "grid-cols-1"
+                : layer.nodes.length === 2 ? "grid-cols-1 sm:grid-cols-2"
+                : layer.nodes.length === 3 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                : layer.nodes.length === 5 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-5"
+                : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+            }`}>
+              {layer.nodes.map((node, ni) => (
+                <NodeCard key={node.id} node={node} index={li * 3 + ni} isWide={node.type === "wide"} />
+              ))}
             </div>
-          );
-        })}
+
+            {/* Connector */}
+            {li < layers.length - 1 && (
+              <div className="flex justify-center py-1.5">
+                <svg width="60" height="28" viewBox="0 0 60 28" fill="none">
+                  <line x1="30" y1="0" x2="30" y2="28" stroke={`${layers[li + 1].color}35`} strokeWidth="1.5" />
+                  <circle r="2.5" fill={layers[li + 1].color} opacity="0.6">
+                    <animate attributeName="cy" values="3;25;3" dur="1.8s" repeatCount="indefinite" />
+                    <animate attributeName="cx" values="30;30;30" dur="1.8s" repeatCount="indefinite" />
+                  </circle>
+                </svg>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

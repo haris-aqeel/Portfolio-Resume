@@ -11,7 +11,7 @@ export const aiPlatform: ArchitectureDiagram = {
   nodes: [
     // Row 1 — Collapsed Medallion
     nd("ai-src", 50, 0, "Operational DBs + Files + APIs", C.cyan, "All operational data sources feeding the lakehouse", {
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
     nd("ai-med", 500, 0, "Medallion Lakehouse", C.purple, "Bronze/Silver/Gold layers producing clean, governed, business-ready data", {
@@ -34,13 +34,13 @@ export const aiPlatform: ArchitectureDiagram = {
     nd("ai-copilot", X4[0], 360, "Fabric Copilot", C.gold, "Natural language queries against the semantic model via NL2SQL", {
       sublabel: "NL2SQL on Semantic Model",
       badge: "architecture",
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
     nd("ai-agent", X4[1], 360, "Fabric Data Agent", C.gold, "Natural language queries directly on Warehouse and Lakehouse tables", {
       sublabel: "NL2SQL on Warehouse/Lakehouse",
       badge: "architecture",
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
     nd("ai-func", X4[2], 360, "AI Functions in Notebooks", C.gold, "LLM-powered Spark transformations: classify, extract, summarize OneLake data", {
@@ -58,11 +58,11 @@ export const aiPlatform: ArchitectureDiagram = {
 
     // Row 4 — AI Outputs Written Back
     nd("ai-out1", 120, 540, "Inference Results → Gold Layer", C.purple, "Model predictions and scores written back alongside historical actuals", {
-      logo: "delta",
+      logo: "deltalake",
       logoColor: "003366",
     }),
     nd("ai-out2", 530, 540, "Enriched Text → Silver Layer", C.silver, "LLM-classified, entity-extracted, and summarized text columns", {
-      logo: "delta",
+      logo: "deltalake",
       logoColor: "003366",
     }),
 
@@ -84,13 +84,13 @@ export const aiPlatform: ArchitectureDiagram = {
     nd("ai-gov1", 850, 180, "Microsoft Purview", C.amber, "Lineage across data → model → prediction tracked end-to-end", {
       sublabel: "Lineage · Sensitivity Labels · DLP · Data Catalog",
       dashed: true,
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
     nd("ai-gov2", 850, 360, "OneLake Security", C.amber, "Row-level, column-level, and ReadWrite access controls ensure AI only touches authorized data", {
       sublabel: "Row-Level · Column-Level · ReadWrite ACLs",
       dashed: true,
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
   ],

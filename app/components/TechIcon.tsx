@@ -9,12 +9,12 @@
 
 const techMap: Record<string, { slug: string; color: string }> = {
   // Data Engineering
-  "Azure Data Factory": { slug: "microsoftazure", color: "0078D4" },
+  "Azure Data Factory": { slug: "azure", color: "0078D4" },
   "Azure Databricks": { slug: "databricks", color: "FF3621" },
   "PySpark": { slug: "apachespark", color: "E25A1C" },
-  "Microsoft Fabric": { slug: "microsoftazure", color: "0078D4" },
+  "Microsoft Fabric": { slug: "azure", color: "0078D4" },
   "Delta Lake": { slug: "delta", color: "003366" },
-  "Azure SQL Data Warehouse": { slug: "microsoftazure", color: "0078D4" },
+  "Azure SQL Data Warehouse": { slug: "azure", color: "0078D4" },
   "Google BigQuery": { slug: "googlebigquery", color: "669DF6" },
   "Looker Studio": { slug: "looker", color: "4285F4" },
 
@@ -25,7 +25,7 @@ const techMap: Record<string, { slug: string; color: string }> = {
   "Dynamics 365 F&O": { slug: "dynamics365", color: "002050" },
 
   // Cloud
-  "Microsoft Azure": { slug: "microsoftazure", color: "0078D4" },
+  "Microsoft Azure": { slug: "azure", color: "0078D4" },
   "AWS (Amplify, Lambda, S3, CloudFront, Cognito)": { slug: "amazonaws", color: "FF9900" },
   "AWS": { slug: "amazonaws", color: "FF9900" },
   "Google Cloud Platform": { slug: "googlecloud", color: "4285F4" },
@@ -49,7 +49,7 @@ const techMap: Record<string, { slug: string; color: string }> = {
 
   // AI
   "OpenAI Integration": { slug: "openai", color: "e0e0e0" },
-  "Microsoft Power Automate": { slug: "microsoftazure", color: "0078D4" },
+  "Microsoft Power Automate": { slug: "azure", color: "0078D4" },
   "Gemini/Bard Integration": { slug: "google", color: "4285F4" },
 
   // DevOps

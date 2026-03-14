@@ -18,7 +18,7 @@ export const cdc: ArchitectureDiagram = {
       logo: "microsoftsqlserver", logoColor: "CC2927",
     }),
     nd("c-s3", X5[2], 0, "Azure Cosmos DB", C.cyan, "NoSQL document database with change feed support", {
-      logo: "microsoftazure", logoColor: "0078D4",
+      logo: "azure", logoColor: "0078D4",
     }),
     nd("c-s4", X5[3], 0, "PostgreSQL", C.cyan, "Open-source relational database with WAL-based replication", {
       logo: "postgresql", logoColor: "4169E1",
@@ -30,22 +30,22 @@ export const cdc: ArchitectureDiagram = {
     // Row 2 — CDC Layer
     nd("c-log", 80, 180, "Transaction Log / Change Feed / WAL", C.indigo, "Source system\u2019s native change tracking mechanism — reads only what changed", {
       badge: "architecture",
-      logo: "microsoftazure", logoColor: "0078D4",
+      logo: "azure", logoColor: "0078D4",
     }),
     nd("c-mirror", 500, 180, "Fabric Mirroring Engine", C.indigo, "Managed CDC — continuously replicates inserts, updates, deletes into OneLake as Delta tables", {
       badge: "architecture",
-      logo: "microsoftazure", logoColor: "0078D4",
+      logo: "azure", logoColor: "0078D4",
     }),
     nd("c-gw", 80, 100, "On-Premises Data Gateway", C.gray, "Secure bridge for on-prem SQL Server to Fabric mirroring", {
       dashed: true,
-      logo: "microsoftazure", logoColor: "0078D4",
+      logo: "azure", logoColor: "0078D4",
     }),
 
     // Row 3 — OneLake Landing Zone
     nd("c-land", XC, 340, "OneLake Landing Zone", C.purple, "Initial snapshot plus incremental changes land here before Delta conversion", {
       sublabel: "Initial Snapshot + Incremental Changes",
       glow: true,
-      logo: "delta", logoColor: "003366",
+      logo: "deltalake", logoColor: "003366",
     }),
 
     // Row 4 — Delta Conversion
@@ -59,7 +59,7 @@ export const cdc: ArchitectureDiagram = {
       type: "wide",
       glow: true,
       badge: "architecture",
-      logo: "delta", logoColor: "003366",
+      logo: "deltalake", logoColor: "003366",
     }),
 
     // Row 6 — Consumption
@@ -73,14 +73,14 @@ export const cdc: ArchitectureDiagram = {
       logo: "powerbi", logoColor: "F2C811",
     }),
     nd("c-c4", X4[3], 800, "KQL Queryset", C.green, "Kusto queries for time-series analysis", {
-      logo: "microsoftazure", logoColor: "0078D4",
+      logo: "azure", logoColor: "0078D4",
     }),
 
     // Governance (side panel)
     nd("c-gov", 850, 490, "Governance", C.amber, "Schema evolution handling, CI/CD deployment pipelines, and Purview lineage tracking", {
       sublabel: "Schema Evolution · CI/CD Pipelines · Purview Lineage",
       dashed: true,
-      logo: "microsoftazure", logoColor: "0078D4",
+      logo: "azure", logoColor: "0078D4",
     }),
   ],
   edges: [

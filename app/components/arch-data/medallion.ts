@@ -20,7 +20,7 @@ export const medallion: ArchitectureDiagram = {
     nd("m-ing", XC, 170, "Azure Data Factory / Fabric Pipelines", C.indigo, "Orchestrates all data movement into the lakehouse", {
       sublabel: "Copy Activities \u00B7 Linked Services \u00B7 Parameterized Templates",
       badge: "production",
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
 
@@ -29,7 +29,7 @@ export const medallion: ArchitectureDiagram = {
       type: "wide",
       glow: true,
       badge: "production",
-      logo: "delta",
+      logo: "deltalake",
       logoColor: "003366",
     }),
 
@@ -57,7 +57,7 @@ export const medallion: ArchitectureDiagram = {
     nd("m-gov", 880, 330, "Microsoft Purview", C.amber, "Data lineage, sensitivity labels, and DLP policies", {
       sublabel: "Lineage \u00B7 Sensitivity Labels \u00B7 DLP Policies",
       dashed: true,
-      logo: "microsoftazure",
+      logo: "azure",
       logoColor: "0078D4",
     }),
   ],
