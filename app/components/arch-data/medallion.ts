@@ -11,46 +11,54 @@ export const medallion: ArchitectureDiagram = {
     "The core pattern behind every Fabric data platform I build.",
   nodes: [
     // Row 1 — Source Systems (cyan)
-    nd("m-s1", X4[0], 0, "Dynamics 365 F&O", C.cyan, "ERP source for finance & operations data", { badge: "production" }),
-    nd("m-s2", X4[1], 0, "SQL Server / Azure SQL", C.cyan, "Relational databases — transactional source systems", { badge: "production" }),
-    nd("m-s3", X4[2], 0, "REST APIs", C.cyan, "Third-party and internal API data sources"),
-    nd("m-s4", X4[3], 0, "CSV / SFTP / Excel", C.cyan, "File-based data drops and manual uploads"),
+    nd("m-s1", X4[0], 0, "Dynamics 365 F&O", C.cyan, "ERP source for finance & operations data", { badge: "production", logo: "dynamics365", logoColor: "0B53CE" }),
+    nd("m-s2", X4[1], 0, "SQL Server / Azure SQL", C.cyan, "Relational databases — transactional source systems", { badge: "production", logo: "microsoftsqlserver", logoColor: "CC2927" }),
+    nd("m-s3", X4[2], 0, "REST APIs", C.cyan, "Third-party and internal API data sources", { logo: "fastapi", logoColor: "009688" }),
+    nd("m-s4", X4[3], 0, "CSV / SFTP / Excel", C.cyan, "File-based data drops and manual uploads", { logo: "microsoftexcel", logoColor: "217346" }),
 
     // Row 2 — Ingestion (indigo)
-    nd("m-ing", XC, 150, "Azure Data Factory / Fabric Data Pipelines", C.indigo, "Orchestrates all data movement into the lakehouse", {
-      sublabel: "Copy Activities \u00B7 Linked Services \u00B7 Parameterized Templates \u00B7 Schedule Triggers",
+    nd("m-ing", XC, 170, "Azure Data Factory / Fabric Pipelines", C.indigo, "Orchestrates all data movement into the lakehouse", {
+      sublabel: "Copy Activities \u00B7 Linked Services \u00B7 Parameterized Templates",
       badge: "production",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
 
     // Row 3 — OneLake (purple, wide, glow)
-    nd("m-lake", 130, 300, "OneLake \u2014 Unified Storage (Delta Lake / Parquet)", C.purple, "Single storage layer for all Fabric workloads \u2014 zero data duplication", {
+    nd("m-lake", 130, 330, "OneLake \u2014 Unified Storage (Delta Lake / Parquet)", C.purple, "Single storage layer for all Fabric workloads \u2014 zero data duplication", {
       type: "wide",
       glow: true,
       badge: "production",
+      logo: "delta",
+      logoColor: "003366",
     }),
 
     // Row 4 — Medallion Layers (color-coded, horizontal flow)
-    nd("m-raw", X4[0], 450, "RAW \u2014 Landing Zone", C.gray, "Immutable landing zone \u2014 data arrives exactly as-is", { badge: "production" }),
-    nd("m-brz", X4[1], 450, "BRONZE \u2014 Delta Tables", C.bronze, "Schema-enforced, queryable for the first time via Spark or SQL", { badge: "production" }),
-    nd("m-slv", X4[2], 450, "SILVER \u2014 PySpark Cleaned", C.silver, "Deduplicated, joined, conformed \u2014 single source of truth", { badge: "production" }),
-    nd("m-gld", X4[3], 450, "GOLD \u2014 Dimensional Model", C.gold, "Business-ready fact tables and pre-aggregated summaries", { badge: "production" }),
+    nd("m-raw", X4[0], 500, "RAW \u2014 Landing Zone", C.gray, "Immutable landing zone \u2014 data arrives exactly as-is", { badge: "production", logo: "files", logoColor: "9AA0A6" }),
+    nd("m-brz", X4[1], 500, "BRONZE \u2014 Delta Tables", C.bronze, "Schema-enforced, queryable for the first time via Spark or SQL", { badge: "production", logo: "databricks", logoColor: "FF3621" }),
+    nd("m-slv", X4[2], 500, "SILVER \u2014 PySpark Cleaned", C.silver, "Deduplicated, joined, conformed \u2014 single source of truth", { badge: "production", logo: "apachespark", logoColor: "E25A1C" }),
+    nd("m-gld", X4[3], 500, "GOLD \u2014 Dimensional Model", C.gold, "Business-ready fact tables and pre-aggregated summaries", { badge: "production", logo: "databricks", logoColor: "FF3621" }),
 
     // Row 5 — Semantic Layer (teal)
-    nd("m-sem", XC, 600, "Power BI Semantic Model \u2014 Direct Lake Mode", C.teal, "DAX measures on top of Gold tables \u2014 near-real-time, no import lag", {
+    nd("m-sem", XC, 670, "Power BI Semantic Model \u2014 Direct Lake", C.teal, "DAX measures on top of Gold tables \u2014 near-real-time, no import lag", {
       sublabel: "DAX Measures \u00B7 RLS/OLS Security \u00B7 Shared Semantic Model",
       badge: "production",
+      logo: "powerbi",
+      logoColor: "F2C811",
     }),
 
     // Row 6 — Consumption (green)
-    nd("m-c1", X4[0], 750, "Power BI Reports", C.green, "Interactive dashboards for business users"),
-    nd("m-c2", X4[1], 750, "Excel", C.green, "Connected Excel workbooks for ad-hoc analysis"),
-    nd("m-c3", X4[2], 750, "Looker Studio", C.green, "Cross-platform reporting for non-Microsoft stakeholders"),
-    nd("m-c4", X4[3], 750, "SQL Analytics Endpoint", C.green, "T-SQL access to lakehouse tables"),
+    nd("m-c1", X4[0], 840, "Power BI Reports", C.green, "Interactive dashboards for business users", { logo: "powerbi", logoColor: "F2C811" }),
+    nd("m-c2", X4[1], 840, "Excel", C.green, "Connected Excel workbooks for ad-hoc analysis", { logo: "microsoftexcel", logoColor: "217346" }),
+    nd("m-c3", X4[2], 840, "Looker Studio", C.green, "Cross-platform reporting for non-Microsoft stakeholders", { logo: "looker", logoColor: "4285F4" }),
+    nd("m-c4", X4[3], 840, "SQL Analytics Endpoint", C.green, "T-SQL access to lakehouse tables", { logo: "postgresql", logoColor: "4169E1" }),
 
     // Governance (side panel, amber, dashed)
-    nd("m-gov", 880, 300, "Microsoft Purview", C.amber, "Data lineage, sensitivity labels, and DLP policies", {
+    nd("m-gov", 880, 330, "Microsoft Purview", C.amber, "Data lineage, sensitivity labels, and DLP policies", {
       sublabel: "Lineage \u00B7 Sensitivity Labels \u00B7 DLP Policies",
       dashed: true,
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
   ],
   edges: [

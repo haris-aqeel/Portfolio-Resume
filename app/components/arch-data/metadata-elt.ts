@@ -7,57 +7,77 @@ export const metadataElt: ArchitectureDiagram = {
   id: "metadata",
   tabLabel: "Metadata-Driven ELT",
   oneLiner:
-    "One pipeline framework that ingests hundreds of sources \u2014 config, not code.",
+    "One pipeline framework that ingests hundreds of sources — config, not code.",
   nodes: [
     // Row 1 — Config Store
-    nd("md-cfg", 130, 0, "Metadata Control Table", C.amber, "SQL table holding all pipeline parameters \u2014 adding a new source is a database row, not a code deployment", {
+    nd("md-cfg", 130, 0, "Metadata Control Table", C.amber, "SQL table holding all pipeline parameters — adding a new source is a database row, not a code deployment", {
       type: "wide",
-      sublabel: "source \u00B7 target \u00B7 load_type \u00B7 watermark \u00B7 format \u00B7 schedule",
+      sublabel: "source · target · load_type · watermark · format · schedule",
       badge: "production",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
 
     // Row 2 — Master Pipeline
-    nd("md-master", XC, 160, "Master Pipeline (ADF / Fabric)", C.indigo, "Reads config at runtime and constructs pipeline logic dynamically via Lookup + ForEach activities", {
-      sublabel: "Lookup Activity \u2192 ForEach Activity \u2192 Iterate Sources",
+    nd("md-master", XC, 180, "Master Pipeline (ADF / Fabric)", C.indigo, "Reads config at runtime and constructs pipeline logic dynamically via Lookup + ForEach activities", {
+      sublabel: "Lookup Activity → ForEach Activity → Iterate Sources",
       badge: "production",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
 
     // Row 3 — Handler Branches
-    nd("md-rest", X4[0], 330, "REST API Handler", C.cyan, "Token auth \u2192 paginated fetch \u2192 JSON flatten into Bronze Delta", {
+    nd("md-rest", X4[0], 350, "REST API Handler", C.cyan, "Token auth → paginated fetch → JSON flatten into Bronze Delta", {
       items: ["Token Auth", "Paginated Fetch", "JSON Flatten"],
       badge: "production",
+      logo: "fastapi",
+      logoColor: "009688",
     }),
-    nd("md-sql", X4[1], 330, "SQL Handler", C.cyan, "Watermark query \u2192 incremental Copy Activity \u2192 Bronze Delta tables", {
+    nd("md-sql", X4[1], 350, "SQL Handler", C.cyan, "Watermark query → incremental Copy Activity → Bronze Delta tables", {
       items: ["Watermark Query", "Copy Activity", "Bronze Delta"],
       badge: "production",
+      logo: "microsoftsqlserver",
+      logoColor: "CC2927",
     }),
-    nd("md-file", X4[2], 330, "File Handler", C.cyan, "SFTP/Blob pickup with automatic schema drift detection at Bronze", {
+    nd("md-file", X4[2], 350, "File Handler", C.cyan, "SFTP/Blob pickup with automatic schema drift detection at Bronze", {
       items: ["SFTP / Blob", "Schema Drift", "Bronze"],
       badge: "production",
+      logo: "microsoftexcel",
+      logoColor: "217346",
     }),
-    nd("md-cdc", X4[3], 330, "CDC Handler", C.cyan, "Change feed \u2192 incremental merge for near-real-time source sync", {
+    nd("md-cdc", X4[3], 350, "CDC Handler", C.cyan, "Change feed → incremental merge for near-real-time source sync", {
       items: ["Change Feed", "Incremental Merge"],
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
 
     // Row 4 — Bronze
-    nd("md-brz", 130, 510, "Bronze Layer \u2014 Raw Delta Tables", C.bronze, "Per-source, timestamped, immutable \u2014 every record traceable to its ingestion batch", {
+    nd("md-brz", 130, 530, "Bronze Layer — Raw Delta Tables", C.bronze, "Per-source, timestamped, immutable — every record traceable to its ingestion batch", {
       type: "wide",
-      sublabel: "Per source \u00B7 Timestamped \u00B7 Immutable",
+      sublabel: "Per source · Timestamped · Immutable",
       badge: "production",
+      logo: "databricks",
+      logoColor: "FF3621",
     }),
 
     // Row 5 — Silver
-    nd("md-slv", XC, 660, "Silver Layer \u2014 PySpark Transforms", C.silver, "Deduplication, type casting, SCD Type 2, and cross-source joins produce the single source of truth", {
+    nd("md-slv", XC, 680, "Silver Layer — PySpark Transforms", C.silver, "Deduplication, type casting, SCD Type 2, and cross-source joins produce the single source of truth", {
       items: ["Deduplication", "Type Casting", "SCD Type 2", "Cross-source Joins"],
       badge: "production",
+      logo: "apachespark",
+      logoColor: "E25A1C",
     }),
 
     // Row 6 — Monitoring
-    nd("md-log", 80, 830, "Pipeline Run Log Table", C.green, "Every pipeline run tracked: start time, end time, rows loaded, errors", {
-      sublabel: "\u2192 Power BI Pipeline Health Dashboard",
+    nd("md-log", 80, 850, "Pipeline Run Log Table", C.green, "Every pipeline run tracked: start time, end time, rows loaded, errors", {
+      sublabel: "→ Power BI Pipeline Health Dashboard",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
-    nd("md-drift", 500, 830, "Schema Drift Alert", C.amber, "Detects schema changes at Bronze, logs to audit table, and notifies via Power Automate", {
-      sublabel: "\u2192 Power Automate Notification",
+    nd("md-drift", 500, 850, "Schema Drift Alert", C.amber, "Detects schema changes at Bronze, logs to audit table, and notifies via Power Automate", {
+      sublabel: "→ Power Automate Notification",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
   ],
   edges: [
@@ -106,10 +126,10 @@ export const metadataElt: ArchitectureDiagram = {
       },
     ],
     decisions: [
-      "One generic pipeline engine \u2014 new sources are config rows, not code deployments",
+      "One generic pipeline engine — new sources are config rows, not code deployments",
       "Parameterized ADF datasets + ForEach iteration for dynamic pipeline construction",
-      "High-watermark incremental loads \u2014 only pull what changed since last run",
-      "Schema drift detection + alerting \u2014 pipelines adapt instead of failing",
+      "High-watermark incremental loads — only pull what changed since last run",
+      "Schema drift detection + alerting — pipelines adapt instead of failing",
     ],
   },
 };

@@ -11,6 +11,8 @@ export interface ArchNodeData {
   badge?: "production" | "architecture";
   glow?: boolean;
   dashed?: boolean;
+  logo?: string;
+  logoColor?: string;
   [key: string]: unknown;
 }
 

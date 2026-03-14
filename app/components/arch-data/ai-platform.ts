@@ -7,57 +7,91 @@ export const aiPlatform: ArchitectureDiagram = {
   id: "ai",
   tabLabel: "AI-Ready Platform",
   oneLiner:
-    "Wiring the data platform so AI can actually use it \u2014 governance first, AI second.",
+    "Wiring the data platform so AI can actually use it — governance first, AI second.",
   nodes: [
     // Row 1 — Collapsed Medallion
-    nd("ai-src", 50, 0, "Operational DBs + Files + APIs", C.cyan, "All operational data sources feeding the lakehouse"),
+    nd("ai-src", 50, 0, "Operational DBs + Files + APIs", C.cyan, "All operational data sources feeding the lakehouse", {
+      logo: "microsoftazure",
+      logoColor: "0078D4",
+    }),
     nd("ai-med", 500, 0, "Medallion Lakehouse", C.purple, "Bronze/Silver/Gold layers producing clean, governed, business-ready data", {
       sublabel: "Bronze / Silver / Gold",
       glow: true,
+      logo: "databricks",
+      logoColor: "FF3621",
     }),
 
     // Row 2 — Semantic Layer (wide)
-    nd("ai-sem", 130, 160, "Power BI Semantic Model \u2014 Direct Lake", C.teal, "Curated semantic layer designed to be AI-readable, not just analyst-readable", {
+    nd("ai-sem", 130, 180, "Power BI Semantic Model — Direct Lake", C.teal, "Curated semantic layer designed to be AI-readable, not just analyst-readable", {
       type: "wide",
-      sublabel: "Column Descriptions \u00B7 Glossary Terms \u00B7 RLS/OLS \u00B7 Hidden Columns \u00B7 Grounding Text",
+      sublabel: "Column Descriptions · Glossary Terms · RLS/OLS · Hidden Columns · Grounding Text",
       badge: "architecture",
+      logo: "powerbi",
+      logoColor: "F2C811",
     }),
 
     // Row 3 — AI Consumption (4 paths)
-    nd("ai-copilot", X4[0], 340, "Fabric Copilot", C.gold, "Natural language queries against the semantic model via NL2SQL", {
+    nd("ai-copilot", X4[0], 360, "Fabric Copilot", C.gold, "Natural language queries against the semantic model via NL2SQL", {
       sublabel: "NL2SQL on Semantic Model",
       badge: "architecture",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
-    nd("ai-agent", X4[1], 340, "Fabric Data Agent", C.gold, "Natural language queries directly on Warehouse and Lakehouse tables", {
+    nd("ai-agent", X4[1], 360, "Fabric Data Agent", C.gold, "Natural language queries directly on Warehouse and Lakehouse tables", {
       sublabel: "NL2SQL on Warehouse/Lakehouse",
       badge: "architecture",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
-    nd("ai-func", X4[2], 340, "AI Functions in Notebooks", C.gold, "LLM-powered Spark transformations: classify, extract, summarize OneLake data", {
+    nd("ai-func", X4[2], 360, "AI Functions in Notebooks", C.gold, "LLM-powered Spark transformations: classify, extract, summarize OneLake data", {
       sublabel: "LLM transforms on OneLake",
       badge: "architecture",
+      logo: "python",
+      logoColor: "3776AB",
     }),
-    nd("ai-openai", X4[3], 340, "Azure OpenAI / Foundry", C.gold, "Custom models trained on Gold tables \u2014 inference results written back to Fabric", {
+    nd("ai-openai", X4[3], 360, "Azure OpenAI / Foundry", C.gold, "Custom models trained on Gold tables — inference results written back to Fabric", {
       sublabel: "Custom models on Gold tables",
       badge: "architecture",
+      logo: "openai",
+      logoColor: "ffffff",
     }),
 
     // Row 4 — AI Outputs Written Back
-    nd("ai-out1", 120, 520, "Inference Results \u2192 Gold Layer", C.purple, "Model predictions and scores written back alongside historical actuals"),
-    nd("ai-out2", 530, 520, "Enriched Text \u2192 Silver Layer", C.silver, "LLM-classified, entity-extracted, and summarized text columns"),
+    nd("ai-out1", 120, 540, "Inference Results → Gold Layer", C.purple, "Model predictions and scores written back alongside historical actuals", {
+      logo: "delta",
+      logoColor: "003366",
+    }),
+    nd("ai-out2", 530, 540, "Enriched Text → Silver Layer", C.silver, "LLM-classified, entity-extracted, and summarized text columns", {
+      logo: "delta",
+      logoColor: "003366",
+    }),
 
     // Row 5 — Consumption
-    nd("ai-c1", 20, 680, "Power BI Reports", C.green, "Unified dashboards showing predictions alongside historical actuals"),
-    nd("ai-c2", 300, 680, "Teams / Outlook Insights", C.green, "AI-generated insights embedded in everyday collaboration tools"),
-    nd("ai-c3", 580, 680, "Custom Apps via REST", C.green, "Application endpoints consuming model predictions and enriched data"),
+    nd("ai-c1", 20, 700, "Power BI Reports", C.green, "Unified dashboards showing predictions alongside historical actuals", {
+      logo: "powerbi",
+      logoColor: "F2C811",
+    }),
+    nd("ai-c2", 300, 700, "Teams / Outlook Insights", C.green, "AI-generated insights embedded in everyday collaboration tools", {
+      logo: "powerbi",
+      logoColor: "F2C811",
+    }),
+    nd("ai-c3", 580, 700, "Custom Apps via REST", C.green, "Application endpoints consuming model predictions and enriched data", {
+      logo: "react",
+      logoColor: "61DAFB",
+    }),
 
     // Governance (side panel)
-    nd("ai-gov1", 850, 160, "Microsoft Purview", C.amber, "Lineage across data \u2192 model \u2192 prediction tracked end-to-end", {
-      sublabel: "Lineage \u00B7 Sensitivity Labels \u00B7 DLP \u00B7 Data Catalog",
+    nd("ai-gov1", 850, 180, "Microsoft Purview", C.amber, "Lineage across data → model → prediction tracked end-to-end", {
+      sublabel: "Lineage · Sensitivity Labels · DLP · Data Catalog",
       dashed: true,
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
-    nd("ai-gov2", 850, 340, "OneLake Security", C.amber, "Row-level, column-level, and ReadWrite access controls ensure AI only touches authorized data", {
-      sublabel: "Row-Level \u00B7 Column-Level \u00B7 ReadWrite ACLs",
+    nd("ai-gov2", 850, 360, "OneLake Security", C.amber, "Row-level, column-level, and ReadWrite access controls ensure AI only touches authorized data", {
+      sublabel: "Row-Level · Column-Level · ReadWrite ACLs",
       dashed: true,
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
   ],
   edges: [
@@ -83,11 +117,11 @@ export const aiPlatform: ArchitectureDiagram = {
   ],
   walkthrough: {
     intro:
-      "The promise of AI in enterprise data is real, but it only works if the underlying data platform is trustworthy, governed, and semantically enriched. An AI-ready data architecture is not about adding AI on top of a broken pipeline \u2014 it\u2019s about building the foundation that makes AI reliable.",
+      "The promise of AI in enterprise data is real, but it only works if the underlying data platform is trustworthy, governed, and semantically enriched. An AI-ready data architecture is not about adding AI on top of a broken pipeline — it\u2019s about building the foundation that makes AI reliable.",
     sections: [
       {
         title: "Semantic Enrichment at the Gold Layer",
-        text: "AI models \u2014 whether Copilot querying a semantic model or a custom model training on Gold tables \u2014 need data with clear meaning. This means: business-friendly column names (not \u201Ccust_ref_cd\u201D but \u201Ccustomer_id\u201D), column descriptions in the metadata catalog, glossary terms mapped to columns in Microsoft Purview, and sensitivity labels applied to PII fields. The Gold layer is designed to be AI-readable, not just analyst-readable.",
+        text: "AI models — whether Copilot querying a semantic model or a custom model training on Gold tables — need data with clear meaning. This means: business-friendly column names (not \u201Ccust_ref_cd\u201D but \u201Ccustomer_id\u201D), column descriptions in the metadata catalog, glossary terms mapped to columns in Microsoft Purview, and sensitivity labels applied to PII fields. The Gold layer is designed to be AI-readable, not just analyst-readable.",
       },
       {
         title: "Fabric Data Agent (NL2SQL)",
@@ -103,17 +137,17 @@ export const aiPlatform: ArchitectureDiagram = {
       },
       {
         title: "Governance as the AI Safety Layer",
-        text: "Every AI use case that touches data needs governance guardrails. OneLake security (row-level, column-level, and ReadWrite access controls) ensures AI models only access data they\u2019re authorized for. Microsoft Purview DLP policies automatically flag PII moving through pipelines. Sensitivity labels follow data from ingestion to consumption \u2014 if a column is labeled \u201CConfidential - PII,\u201D that label is inherited by every report, notebook, and AI model that reads it.",
+        text: "Every AI use case that touches data needs governance guardrails. OneLake security (row-level, column-level, and ReadWrite access controls) ensures AI models only access data they\u2019re authorized for. Microsoft Purview DLP policies automatically flag PII moving through pipelines. Sensitivity labels follow data from ingestion to consumption — if a column is labeled \u201CConfidential - PII,\u201D that label is inherited by every report, notebook, and AI model that reads it.",
       },
       {
         title: "The Shift This Enables",
-        text: "Teams stop asking \u201Ccan you build me a dashboard for this?\u201D and start asking \u201Cwhy did this metric drop last Tuesday?\u201D The platform answers both \u2014 dashboards for the former, AI-powered root cause analysis (via Copilot on the semantic model) for the latter.",
+        text: "Teams stop asking \u201Ccan you build me a dashboard for this?\u201D and start asking \u201Cwhy did this metric drop last Tuesday?\u201D The platform answers both — dashboards for the former, AI-powered root cause analysis (via Copilot on the semantic model) for the latter.",
       },
     ],
     decisions: [
       "Semantic curation is a first-class engineering concern, not an afterthought",
       "AI Functions for inline LLM transforms; Azure OpenAI for custom model training",
-      "Purview lineage tracks data \u2192 model \u2192 prediction end-to-end",
+      "Purview lineage tracks data → model → prediction end-to-end",
       "Sensitivity labels follow data across every engine and consumption layer",
     ],
   },

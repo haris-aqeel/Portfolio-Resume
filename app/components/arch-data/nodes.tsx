@@ -3,6 +3,20 @@
 import { Position, Handle, type NodeProps, type Node } from "@xyflow/react";
 import type { ArchNodeData } from "./types";
 
+function LogoIcon({ slug, color, size = 28 }: { slug: string; color?: string; size?: number }) {
+  const c = color || "ffffff";
+  return (
+    <img
+      src={`https://cdn.simpleicons.org/${slug}/${c}`}
+      alt=""
+      width={size}
+      height={size}
+      className="inline-block"
+      loading="lazy"
+    />
+  );
+}
+
 /* ── Standard Pipeline Node ── */
 
 function ArchNode({ data }: NodeProps<Node<ArchNodeData>>) {
@@ -41,7 +55,7 @@ function ArchNode({ data }: NodeProps<Node<ArchNodeData>>) {
 
       {/* Node body */}
       <div
-        className={`relative px-4 py-3 rounded-2xl border text-center min-w-[180px] max-w-[260px] transition-all duration-300 hover:shadow-lg ${
+        className={`relative px-4 py-3.5 rounded-2xl border text-center min-w-[180px] max-w-[260px] transition-all duration-300 hover:shadow-lg ${
           data.dashed ? "border-dashed" : ""
         } ${data.glow ? "shadow-lg shadow-[#AB47BC]/20" : ""}`}
         style={{
@@ -51,6 +65,17 @@ function ArchNode({ data }: NodeProps<Node<ArchNodeData>>) {
       >
         <Handle type="target" position={Position.Top} id="top" className="!bg-[#6B6B6F] !w-2 !h-2 !border-0" />
         <Handle type="target" position={Position.Left} id="left" className="!bg-transparent !w-1 !h-1 !border-0" />
+
+        {data.logo && (
+          <div className="mb-2 flex justify-center">
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: `${data.color}15` }}
+            >
+              <LogoIcon slug={data.logo} color={data.logoColor} size={22} />
+            </div>
+          </div>
+        )}
 
         <div className="text-xs font-semibold text-white mb-0.5">
           {data.label}
@@ -106,6 +131,17 @@ function WideNode({ data }: NodeProps<Node<ArchNodeData>>) {
       >
         <Handle type="target" position={Position.Top} id="top" className="!bg-[#6B6B6F] !w-2 !h-2 !border-0" />
         <Handle type="target" position={Position.Left} id="left" className="!bg-transparent !w-1 !h-1 !border-0" />
+
+        {data.logo && (
+          <div className="mb-2 flex justify-center">
+            <div
+              className="w-11 h-11 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: `${data.color}15` }}
+            >
+              <LogoIcon slug={data.logo} color={data.logoColor} size={26} />
+            </div>
+          </div>
+        )}
 
         <div className="text-sm font-bold text-white">{data.label}</div>
         {data.sublabel && (

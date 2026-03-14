@@ -11,48 +11,60 @@ export const realtime: ArchitectureDiagram = {
     "Sub-second insights from live event streams \u2014 no ETL lag.",
   nodes: [
     // Row 1 — Sources
-    nd("rt-s1", X5[0], 0, "Azure Event Hubs", C.cyan, "High-throughput managed event ingestion service"),
-    nd("rt-s2", X5[1], 0, "Azure IoT Hub", C.cyan, "Device telemetry ingestion for IoT workloads"),
-    nd("rt-s3", X5[2], 0, "Kafka Topics", C.cyan, "Open-source event streaming from Kafka clusters"),
-    nd("rt-s4", X5[3], 0, "App Webhooks", C.cyan, "Application event callbacks and notifications"),
-    nd("rt-s5", X5[4], 0, "CDC Streams", C.cyan, "Change data capture from operational databases"),
+    nd("rt-s1", X5[0], 0, "Azure Event Hubs", C.cyan, "High-throughput managed event ingestion service", { logo: "microsoftazure", logoColor: "0078D4" }),
+    nd("rt-s2", X5[1], 0, "Azure IoT Hub", C.cyan, "Device telemetry ingestion for IoT workloads", { logo: "microsoftazure", logoColor: "0078D4" }),
+    nd("rt-s3", X5[2], 0, "Kafka Topics", C.cyan, "Open-source event streaming from Kafka clusters", { logo: "apachekafka", logoColor: "231F20" }),
+    nd("rt-s4", X5[3], 0, "App Webhooks", C.cyan, "Application event callbacks and notifications", { logo: "webhook", logoColor: "ffffff" }),
+    nd("rt-s5", X5[4], 0, "CDC Streams", C.cyan, "Change data capture from operational databases", { logo: "microsoftazure", logoColor: "0078D4" }),
 
     // Row 2 — Real-Time Hub
-    nd("rt-hub", XC, 150, "Fabric Real-Time Hub", C.indigo, "Tenant-wide catalog for all data in motion \u2014 discover, monitor, and route every active stream", {
+    nd("rt-hub", XC, 170, "Fabric Real-Time Hub", C.indigo, "Tenant-wide catalog for all data in motion \u2014 discover, monitor, and route every active stream", {
       sublabel: "Discover \u00B7 Manage \u00B7 Route",
       badge: "production",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
 
     // Row 3 — Eventstream
-    nd("rt-es", XC, 300, "Fabric Eventstream", C.indigo, "Ingestion and routing layer \u2014 filter, project, type-cast, then fan out to multiple destinations", {
+    nd("rt-es", XC, 320, "Fabric Eventstream", C.indigo, "Ingestion and routing layer \u2014 filter, project, type-cast, then fan out to multiple destinations", {
       sublabel: "Route \u00B7 Filter \u00B7 Transform",
       badge: "production",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
 
     // Row 4 — Three branches
-    nd("rt-hot", X3[0], 470, "Eventhouse (KQL DB)", C.red, "High-performance time-series engine \u2014 millions of events/hour, sub-second KQL queries", {
+    nd("rt-hot", X3[0], 490, "Eventhouse (KQL DB)", C.red, "High-performance time-series engine \u2014 millions of events/hour, sub-second KQL queries", {
       items: ["KQL Querysets", "Materialized Views", "Real-Time Dashboard"],
       badge: "production",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
-    nd("rt-warm", X3[1], 470, "Fabric Lakehouse", C.teal, "Batch persistence layer for warm-path analytics and historical queries", {
+    nd("rt-warm", X3[1], 490, "Fabric Lakehouse", C.teal, "Batch persistence layer for warm-path analytics and historical queries", {
       items: ["Delta Tables", "Spark Notebooks"],
       badge: "production",
+      logo: "delta",
+      logoColor: "003366",
     }),
-    nd("rt-cold", X3[2], 470, "OneLake Archive", C.blue, "Long-term cold storage for compliance and deep historical analysis", {
+    nd("rt-cold", X3[2], 490, "OneLake Archive", C.blue, "Long-term cold storage for compliance and deep historical analysis", {
       items: ["Long-term Parquet"],
+      logo: "delta",
+      logoColor: "003366",
     }),
 
     // Row 5 — Activator
-    nd("rt-act", XC, 650, "Fabric Activator", C.amber, "Monitors conditions in real-time streams and triggers automated actions when thresholds are crossed", {
+    nd("rt-act", XC, 670, "Fabric Activator", C.amber, "Monitors conditions in real-time streams and triggers automated actions when thresholds are crossed", {
       sublabel: "Anomaly Alerts \u00B7 Pipeline Triggers \u00B7 Power Automate \u00B7 Teams Notifications",
       badge: "production",
+      logo: "microsoftazure",
+      logoColor: "0078D4",
     }),
 
     // Row 6 — Consumption
-    nd("rt-c1", 20, 810, "Real-Time Dashboard", C.green, "Live-updating visuals connected directly to Eventhouse via KQL"),
-    nd("rt-c2", 250, 810, "Power BI Semantic Model", C.green, "Historical trend analysis and executive reporting via Direct Lake"),
-    nd("rt-c3", 480, 810, "KQL Queryset", C.green, "Ad-hoc analytical queries against Eventhouse data"),
-    nd("rt-c4", 710, 810, "SQL Endpoint", C.green, "T-SQL access to lakehouse tables for BI tools"),
+    nd("rt-c1", 20, 830, "Real-Time Dashboard", C.green, "Live-updating visuals connected directly to Eventhouse via KQL", { logo: "powerbi", logoColor: "F2C811" }),
+    nd("rt-c2", 250, 830, "Power BI Semantic Model", C.green, "Historical trend analysis and executive reporting via Direct Lake", { logo: "powerbi", logoColor: "F2C811" }),
+    nd("rt-c3", 480, 830, "KQL Queryset", C.green, "Ad-hoc analytical queries against Eventhouse data", { logo: "microsoftazure", logoColor: "0078D4" }),
+    nd("rt-c4", 710, 830, "SQL Endpoint", C.green, "T-SQL access to lakehouse tables for BI tools", { logo: "postgresql", logoColor: "4169E1" }),
   ],
   edges: [
     // Sources → Hub
