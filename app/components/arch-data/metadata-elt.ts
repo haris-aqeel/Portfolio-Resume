@@ -6,6 +6,7 @@ const XC = 270;
 export const metadataElt: ArchitectureDiagram = {
   id: "metadata",
   tabLabel: "Metadata-Driven ELT",
+  conceptual: true,
   oneLiner:
     "One pipeline framework that ingests hundreds of sources — config, not code.",
   nodes: [

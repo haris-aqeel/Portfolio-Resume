@@ -7,6 +7,7 @@ const XC = 310;
 export const realtime: ArchitectureDiagram = {
   id: "realtime",
   tabLabel: "Real-Time Intelligence",
+  conceptual: true,
   oneLiner:
     "Sub-second insights from live event streams \u2014 no ETL lag.",
   nodes: [

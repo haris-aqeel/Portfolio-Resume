@@ -24,6 +24,7 @@ export interface WalkthroughSection {
 export interface ArchitectureDiagram {
   id: string;
   tabLabel: string;
+  conceptual?: boolean;
   oneLiner: string;
   nodes: Node<ArchNodeData>[];
   edges: Edge[];

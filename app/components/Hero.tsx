@@ -31,7 +31,7 @@ export default function Hero() {
                 Microsoft Certified Data Engineer
               </p>
               <p className="text-[13px] text-[#9AA0A6] leading-relaxed">
-                Fabric Data Engineer Associate + Analytics Engineer Associate. Building production data platforms daily.
+                Microsoft Fabric migrations · ADF pipelines · Power BI · Real estate data platforms
               </p>
             </div>
             <a href="#experience" className="btn-primary px-5 py-2.5 text-[13px] font-semibold whitespace-nowrap shrink-0">
@@ -81,9 +81,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-[18px] sm:text-[20px] text-[#9AA0A6] max-w-[640px] leading-[1.6] font-light"
         >
-          I design, build and optimize end-to-end data platforms on Microsoft Fabric
-          and Azure — from lakehouse architecture and real-time pipelines to
-          governed semantic layers that Power BI and AI can trust.
+          I design, build and optimise end-to-end data platforms on Microsoft Fabric
+          and Azure — from lakehouse architecture and integration pipelines to
+          governed semantic layers that Power BI can trust.
         </motion.p>
 
         {/* CTAs */}

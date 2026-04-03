@@ -99,11 +99,11 @@ export const medallion: ArchitectureDiagram = {
       },
       {
         title: "Silver Layer (Cleaned, Joined, Conformed)",
-        text: "This is where PySpark does the heavy lifting. Deduplication, null handling, type casting, business key resolution, SCD Type 2 for slowly changing dimensions, and cross-source joins all happen here. Silver is the single source of truth for the data team. It\u2019s not opinionated about how the business will use it \u2014 it\u2019s just accurate, consistent, and complete. Z-ordering and file compaction (OPTIMIZE + VACUUM) are run on a schedule to maintain query performance as data volumes grow.",
+        text: "This is where PySpark does the heavy lifting. Deduplication, null handling, type casting, business key resolution, and cross-source joins all happen here. Silver is the single source of truth for the data team. It\u2019s not opinionated about how the business will use it \u2014 it\u2019s just accurate, consistent, and complete. Selective filtering ensures only business-relevant tables and columns are promoted to Silver, keeping the layer clean and focused for downstream consumption.",
       },
       {
         title: "Gold Layer (Business-Ready, Aggregated)",
-        text: "Dimensional models, fact tables, and pre-aggregated summary tables live here. Gold tables are the direct input to Power BI semantic models using Direct Lake mode \u2014 meaning Power BI reads Parquet files directly from OneLake rather than importing a cached copy, giving near-real-time performance without refresh lag. DAX measures are defined at the semantic model layer on top of Gold, keeping business logic consolidated and reusable across reports.",
+        text: "Fact tables and business-ready dimensional models live here. Gold tables are the direct input to Power BI semantic models using Direct Lake mode \u2014 meaning Power BI reads Parquet files directly from OneLake rather than importing a cached copy, giving near-real-time performance without refresh lag. DAX measures are defined at the semantic model layer on top of Gold, keeping business logic consolidated and reusable across reports.",
       },
       {
         title: "Consumption Layer",

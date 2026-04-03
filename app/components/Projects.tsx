@@ -18,6 +18,44 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Enterprise Fabric Data Platform",
+    category: "Data Engineering",
+    description:
+      "Designed and implemented end-to-end Microsoft Fabric data platform for enterprise client. Built Medallion Architecture (Bronze/Silver/Gold) over OneLake, ADF pipelines integrating Dynamics 365 F&O and Google Analytics via BigQuery, Power BI semantic models with Direct Lake mode, and Azure DevOps deployment pipelines across Dev/Test/Prod workspaces.",
+    image: "/images/adf_pipeline_final.png",
+    color: "#FFA000",
+    skills: ["Microsoft Fabric", "ADF", "Power BI", "D365 F&O", "BigQuery", "Medallion Architecture", "Azure DevOps"],
+  },
+  {
+    title: "Email Automation",
+    category: "AI · Data",
+    description:
+      "Automated email follow-up system using Power Automate and ChatGPT API. Triggers on new emails, analyzes response delays, and drafts personalized follow-ups via AWS Lambda and Zapier.",
+    image: "/images/image9_zapier_flow.png",
+    color: "#EA4335",
+    skills: ["Power Automate", "ChatGPT API", "AWS Lambda", "Zapier"],
+  },
+  {
+    title: "10recs",
+    category: "Full-Stack · AI",
+    description:
+      "AI map-based recommendation platform integrating Google Maps, Google Places API, and OpenAI API. Built with Next.js, Supabase for real-time backend, and Clerk for authentication.",
+    image: "/images/image7_dubai_map.png",
+    color: "#4285F4",
+    skills: ["Next.js", "Supabase", "Google Maps API", "OpenAI API"],
+    link: "https://10recs.com",
+  },
+  {
+    title: "Summit Navigator",
+    category: "Full-Stack · Real-Time",
+    description:
+      "Live traffic information platform for Cajon Pass featuring real-time camera feeds, interactive Google Maps with traffic overlays, road alerts & hazard reporting, nearby gas stations and restaurants with ratings — all with auto-refreshing live data.",
+    image: "/images/image10_cajonpass2.png",
+    color: "#34A853",
+    skills: ["Next.js", "Google Maps API", "Google Places API", "Vercel"],
+    link: "https://summitnavigator.vercel.app/",
+  },
+  {
     title: "PrivacyLabs",
     category: "Web Design",
     description:
@@ -68,16 +106,6 @@ const projects: Project[] = [
     link: "https://notchhub.vercel.app/",
   },
   {
-    title: "10recs",
-    category: "Full-Stack · AI",
-    description:
-      "AI map-based recommendation platform integrating Google Maps, Google Places API, and OpenAI API. Built with Next.js, Supabase for real-time backend, and Clerk for authentication.",
-    image: "/images/image7_dubai_map.png",
-    color: "#4285F4",
-    skills: ["Next.js", "Supabase", "Google Maps API", "OpenAI API"],
-    link: "https://10recs.com",
-  },
-  {
     title: "Old West Temecula",
     category: "Frontend",
     description:
@@ -86,25 +114,6 @@ const projects: Project[] = [
     color: "#FFA000",
     skills: ["Next.js", "Vercel", "Responsive Design", "SEO"],
     link: "https://www.oldwesttemecula.com/",
-  },
-  {
-    title: "Email Automation",
-    category: "Automation · AI",
-    description:
-      "Automated email follow-up system using Power Automate and ChatGPT API. Triggers on new emails, analyzes response delays, and drafts personalized follow-ups via AWS Lambda and Zapier.",
-    image: "/images/image9_zapier_flow.png",
-    color: "#EA4335",
-    skills: ["Power Automate", "ChatGPT API", "AWS Lambda", "Zapier"],
-  },
-  {
-    title: "Summit Navigator",
-    category: "Full-Stack · Real-Time",
-    description:
-      "Live traffic information platform for Cajon Pass featuring real-time camera feeds, interactive Google Maps with traffic overlays, road alerts & hazard reporting, nearby gas stations and restaurants with ratings — all with auto-refreshing live data.",
-    image: "/images/image10_cajonpass2.png",
-    color: "#34A853",
-    skills: ["Next.js", "Google Maps API", "Google Places API", "Vercel"],
-    link: "https://summitnavigator.vercel.app/",
   },
 ];
 

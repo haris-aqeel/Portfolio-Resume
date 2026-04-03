@@ -6,6 +6,7 @@ const XC = 270;
 export const aiPlatform: ArchitectureDiagram = {
   id: "ai",
   tabLabel: "AI-Ready Platform",
+  conceptual: true,
   oneLiner:
     "Wiring the data platform so AI can actually use it — governance first, AI second.",
   nodes: [

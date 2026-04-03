@@ -51,7 +51,7 @@ function Walkthrough({ data }: { data: ArchitectureDiagram["walkthrough"] }) {
 
 export default function Architecture() {
   const [activeTab, setActiveTab] = useState(0);
-  const [viewMode, setViewMode] = useState<"pipeline" | "diagram">("pipeline");
+  const [viewMode, setViewMode] = useState<"pipeline" | "diagram">("diagram");
   const [walkthroughOpen, setWalkthroughOpen] = useState(false);
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const current = architectures[activeTab];
@@ -69,30 +69,67 @@ export default function Architecture() {
 
         {/* Tabs + View Toggle */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-          <div className="flex flex-wrap justify-center gap-2">
-            {architectures.map((arch, i) => {
-              const Icon = tabIcons[i];
-              const isActive = activeTab === i;
-              return (
-                <button
-                  key={arch.id}
-                  onClick={() => { setActiveTab(i); setWalkthroughOpen(false); }}
-                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
-                    isActive
-                      ? "bg-[#FFA000] text-[#1B1B1F] shadow-[0_4px_16px_rgba(255,160,0,0.25)]"
-                      : "bg-white text-[#5F6368] border border-[#E8EAED] hover:border-[#FFA000] hover:text-[#FFA000]"
-                  }`}
-                >
-                  <Icon size={14} />
-                  <span className="hidden sm:inline">{arch.tabLabel}</span>
-                  <span className="sm:hidden">{arch.tabLabel.split(" ")[0]}</span>
-                </button>
-              );
-            })}
+          <div className="flex flex-wrap justify-center items-start gap-6">
+            {/* Group 1 — Production */}
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#34A853]">Production Built</span>
+              <div className="flex flex-wrap justify-center gap-2">
+                {architectures.map((arch, i) => {
+                  if (arch.conceptual) return null;
+                  const Icon = tabIcons[i];
+                  const isActive = activeTab === i;
+                  return (
+                    <button
+                      key={arch.id}
+                      onClick={() => { setActiveTab(i); setWalkthroughOpen(false); }}
+                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
+                        isActive
+                          ? "bg-[#FFA000] text-[#1B1B1F] shadow-[0_4px_16px_rgba(255,160,0,0.25)]"
+                          : "bg-white text-[#5F6368] border border-[#E8EAED] hover:border-[#FFA000] hover:text-[#FFA000]"
+                      }`}
+                    >
+                      <Icon size={14} />
+                      <span className="hidden sm:inline">{arch.tabLabel}</span>
+                      <span className="sm:hidden">{arch.tabLabel.split(" ")[0]}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="hidden sm:block w-px h-12 bg-[#E8EAED]" />
+
+            {/* Group 2 — Studied */}
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#9AA0A6]">Studied / Can Speak To</span>
+              <div className="flex flex-wrap justify-center gap-2">
+                {architectures.map((arch, i) => {
+                  if (!arch.conceptual) return null;
+                  const Icon = tabIcons[i];
+                  const isActive = activeTab === i;
+                  return (
+                    <button
+                      key={arch.id}
+                      onClick={() => { setActiveTab(i); setWalkthroughOpen(false); }}
+                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-300 ${
+                        isActive
+                          ? "bg-[#FFA000] text-[#1B1B1F] shadow-[0_4px_16px_rgba(255,160,0,0.25)]"
+                          : "bg-white text-[#5F6368] border border-[#E8EAED] hover:border-[#FFA000] hover:text-[#FFA000]"
+                      }`}
+                    >
+                      <Icon size={14} />
+                      <span className="hidden sm:inline">{arch.tabLabel}</span>
+                      <span className="sm:hidden">{arch.tabLabel.split(" ")[0]}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          {/* View mode toggle */}
-          <div className="flex items-center gap-1 bg-white border border-[#E8EAED] rounded-full p-1">
+          {/* View mode toggle — commented out, diagram only for now */}
+          {/* <div className="flex items-center gap-1 bg-white border border-[#E8EAED] rounded-full p-1">
             <button
               onClick={() => setViewMode("pipeline")}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-medium transition-all duration-200 ${
@@ -115,21 +152,27 @@ export default function Architecture() {
               <GitBranch size={12} />
               Diagram
             </button>
-          </div>
+          </div> */}
         </div>
 
         <AnimatePresence mode="wait">
           <motion.div key={`${current.id}-${viewMode}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.35 }}>
             <div className="mb-4">
-              <h3 className="text-[18px] font-bold" style={{ color: "#1B1B1F" }}>{current.tabLabel}</h3>
+              <div className="flex items-center gap-3">
+                <h3 className="text-[18px] font-bold" style={{ color: "#1B1B1F" }}>{current.tabLabel}</h3>
+                {current.conceptual && (
+                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FFA000]/10 text-[#FFA000] border border-[#FFA000]/20">
+                    Conceptual / Studied
+                  </span>
+                )}
+              </div>
               <p className="text-[14px] text-[#5F6368] mt-1">{current.oneLiner}</p>
             </div>
 
-            {viewMode === "pipeline" ? (
-              /* ── Pipeline View (default) ── */
+            {/* Pipeline view — commented out, diagram only for now */}
+            {/* viewMode === "pipeline" ? (
               <ArchitecturePipeline diagram={current} />
-            ) : (
-              /* ── ReactFlow Diagram View ── */
+            ) : ( */}
               <>
                 <div className="rounded-3xl overflow-hidden border border-[#E8EAED]" style={{ height: 700, background: "#1B1B1F" }}>
                   <ReactFlow
@@ -153,7 +196,7 @@ export default function Architecture() {
                   ))}
                 </div>
               </>
-            )}
+            {/* ) */}
 
             {/* Walkthrough - dark card */}
             <div className="mt-6">

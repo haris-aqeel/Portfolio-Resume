@@ -21,21 +21,21 @@ const linkedinRecs = [
 ];
 
 const clientReviews = [
-  { quote: "Incredible speed and communication! Built the MVP I was looking for in record time. Will work with him again!", amount: "$200", date: "Dec 2024" },
+  { quote: "Incredible speed and communication! Built the MVP I was looking for in record time. Will work with him again!", amount: "", date: "Dec 2024" },
   { quote: "Harris is a great React developer. Outstanding skills and always available. Communication is super perfect.", amount: "$25,110 · 817hrs", date: "Dec 2024" },
-  { quote: "Haris is an amazing developer with excellent communication skills. Extremely passionate and knowledgeable full stack developer.", amount: "$500", date: "Sep 2024" },
+  { quote: "Haris is an amazing developer with excellent communication skills. Extremely passionate and knowledgeable full stack developer.", amount: "$1,500", date: "Sep 2024" },
   { quote: "Haris is an exceptional Freelancer. He is hard working and terrific knowledge that enables him to problem solve quickly and autonomously. A great asset.", amount: "$1,150", date: "Jul 2024" },
   { quote: "Terrific freelancer, diligent and hard-working. An excellent problem solver. I will hire again.", amount: "$1,639", date: "Dec 2024" },
   { quote: "Understood detailed scope and did job accordingly. Good follow up and details. Will work with Haris again.", amount: "$2,350", date: "May 2023" },
   { quote: "Great working with Haris again. Always honest and caring about his work.", amount: "$1,248", date: "Dec 2024" },
-  { quote: "Haris was excellent from the start taking on a short notice project. Very efficient and professional, even provided a long term solution while resolving the current issue.", amount: "$142", date: "Jan 2025" },
-  { quote: "Very good, quick work. Solution works just as expected. Haris is very helpful and readily available.", amount: "$65", date: "Jul 2024" },
+  { quote: "Haris was excellent from the start taking on a short notice project. Very efficient and professional, even provided a long term solution while resolving the current issue.", amount: "", date: "Jan 2025" },
+  { quote: "Very good, quick work. Solution works just as expected. Haris is very helpful and readily available.", amount: "", date: "Jul 2024" },
   { quote: "Haris is an excellent and hard working developer who has provided non-stop excellent work since we started our relationship.", amount: "$2,090", date: "Dec 2022" },
-  { quote: "Fast and skilled. Will definitely work together in future.", amount: "$605", date: "Mar 2022" },
-  { quote: "He was great. Was super fast and high quality work. Haris is fantastic and a great expert in web development.", amount: "$129", date: "Oct 2021" },
+  { quote: "Fast and skilled. Will definitely work together in future.", amount: "$1,605", date: "Mar 2022" },
+  { quote: "He was great. Was super fast and high quality work. Haris is fantastic and a great expert in web development.", amount: "", date: "Oct 2021" },
   { quote: "Haris Aqeel has done a quick, great, well written and well communicated job. He is surely the goto developer!", amount: "", date: "Oct 2021" },
-  { quote: "Great work. It required a good understanding of Python and Typescript, and he did it great!", amount: "$60", date: "Sep 2024" },
-  { quote: "Haris was very helpful. He immediately understood my problems, found effective solutions and explained every detail.", amount: "$15", date: "Apr 2021" },
+  { quote: "Great work. It required a good understanding of Python and Typescript, and he did it great!", amount: "", date: "Sep 2024" },
+  { quote: "Haris was very helpful. He immediately understood my problems, found effective solutions and explained every detail.", amount: "", date: "Apr 2021" },
 ];
 
 export default function Testimonials() {

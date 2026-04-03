@@ -5,11 +5,17 @@ import { useInView } from "react-intersection-observer";
 import { MapPin, Calendar, Briefcase, ArrowRight } from "lucide-react";
 import { CompanyLogo, TechIcon } from "./TechIcon";
 
+interface Role {
+  title: string;
+  period: string;
+  achievements?: string[];
+}
+
 interface Job {
   company: string;
   location: string;
   type: string;
-  roles: { title: string; period: string }[];
+  roles: Role[];
   achievements: string[];
   skills: string[];
 }
@@ -18,28 +24,41 @@ const jobs: Job[] = [
   {
     company: "Folio3 Software", location: "Karachi, Pakistan", type: "On-site",
     roles: [
-      { title: "Senior Data Engineer", period: "Jan 2026 – Present" },
-      { title: "Data Engineer", period: "Aug 2023 – Dec 2025" },
+      {
+        title: "Senior Data Engineer", period: "Jan 2026 – Present",
+        achievements: [
+          "Leading Microsoft Fabric migration from Azure Synapse to Fabric Lakehouse and Warehouse environments using Medallion Architecture (Bronze, Silver, Gold layers)",
+          "Designing and optimising data pipelines using Fabric Pipelines and Azure Data Factory for enterprise-scale data movement including Dynamics 365 F&O integration",
+          "Building and maintaining Power BI semantic models and paginated reports for business stakeholders",
+          "Writing optimised SQL and PySpark queries against Fabric Lakehouse for data transformation and reporting",
+          "Pulling Google Analytics data into BigQuery and surfacing insights through Power BI dashboards",
+          "Managing Azure DevOps deployment pipelines to move resources across Dev/Test/Prod workspaces using ARM templates",
+        ],
+      },
+      {
+        title: "Data Engineer", period: "Aug 2023 – Dec 2025",
+        achievements: [
+          "Built ETL pipelines with Azure Data Factory + PySpark in Databricks handling large data volumes daily",
+          "Implemented Medallion Architecture (Raw → Bronze → Silver → Gold) using Delta Tables in Databricks",
+          "Created views in Azure SQL Data Warehouse powering Power BI reports",
+          "Developed DAX-driven reports in Power BI and Excel for data analysis",
+          "Pulled data from Dynamics 365 Finance & Operations via pipelines into Fabric environment",
+          "Utilized deployment pipelines to promote resources across workspaces/environments",
+        ],
+      },
     ],
-    achievements: [
-      "Built ETL pipelines with Azure Data Factory + PySpark in Databricks handling large data volumes daily",
-      "Implemented Medallion Architecture (Raw → Bronze → Silver → Gold) using Delta Tables in Databricks",
-      "Created views in Azure SQL Data Warehouse powering Power BI reports",
-      "Developed DAX-driven reports in Power BI and Excel for data analysis",
-      "Pulled data from Dynamics 365 Finance & Operations via pipelines into Fabric environment",
-      "Utilized deployment pipelines to promote resources across workspaces/environments",
-    ],
-    skills: ["Microsoft Fabric", "Azure Data Factory", "Azure Databricks", "Power BI", "PySpark", "SQL", "Google BigQuery", "Looker Studio"],
+    achievements: [],
+    skills: ["Microsoft Fabric", "Azure Data Factory", "Azure Databricks", "Power BI", "PySpark", "SQL", "Google BigQuery"],
   },
   {
-    company: "FlipIQ", location: "United States · Remote", type: "Contract",
-    roles: [{ title: "Full-Stack Developer", period: "2024 – 2025" }],
-    achievements: ["Full-stack development of web application features", "End-to-end implementation from frontend UI to backend services"],
-    skills: ["React", "Next.js", "Node.js", "TypeScript"],
+    company: "FlipIQ", location: "United States · Remote", type: "Part-time · Contract",
+    roles: [{ title: "Full-Stack Developer (Data-Focused)", period: "2024 – 2025" }],
+    achievements: ["Built Microsoft Fabric pipelines to ingest and transform California MLS property listing data, making it available for structured consumption on the platform", "Delivered frontend and backend web application features for a US real estate investment platform, working with property transaction data and investor-facing tools", "Gained hands-on domain knowledge of real estate data — property listings, transaction records, market data — directly relevant to commercial real estate environments like Savills"],
+    skills: ["Next.js", "Node.js", "Microsoft Fabric", "MLS Data"],
   },
   {
-    company: "Connect4Healing, Inc.", location: "United States · Remote", type: "Contract",
-    roles: [{ title: "Frontend Developer", period: "Sep 2023 – Jan 2024" }],
+    company: "Connect4Healing, Inc.", location: "United States · Remote", type: "Part-time · Contract",
+    roles: [{ title: "Software Engineer", period: "Sep 2023 – Jan 2024" }],
     achievements: ["Built HIPAA-compliant telehealth UI with React + Material-UI", "Integrated FullCalendar.io for appointment scheduling", "Implemented Vonage API for real-time video conferencing", "AWS backend integration (.NET Framework APIs)", "Firebase real-time database, SendGrid & Twilio notifications"],
     skills: ["React", "MUI", "Firebase", "AWS", "Vonage"],
   },
@@ -103,24 +122,38 @@ function JobCard({ job, index }: { job: Job; index: number }) {
           </div>
 
           {job.roles.map((role) => (
-            <div key={role.period} className="flex items-center gap-2 mt-3 text-[14px]">
-              <Briefcase size={13} className="text-[#FFA000]" />
-              <span className="text-white font-semibold">{role.title}</span>
-              <span className="text-[#9AA0A6] text-[12px] flex items-center gap-1">
-                <Calendar size={10} />
-                {role.period}
-              </span>
+            <div key={role.period}>
+              <div className="flex items-center gap-2 mt-3 text-[14px]">
+                <Briefcase size={13} className="text-[#FFA000]" />
+                <span className="text-white font-semibold">{role.title}</span>
+                <span className="text-[#9AA0A6] text-[12px] flex items-center gap-1">
+                  <Calendar size={10} />
+                  {role.period}
+                </span>
+              </div>
+              {role.achievements && role.achievements.length > 0 && (
+                <ul className="mt-3 space-y-2">
+                  {role.achievements.map((a, i) => (
+                    <li key={i} className="text-[14px] text-[#9AA0A6] flex items-start gap-2.5 leading-relaxed">
+                      <span className="mt-2 flex-shrink-0 w-[5px] h-[5px] rounded-full bg-[#FFA000]/50" />
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
 
-          <ul className="mt-4 space-y-2">
-            {job.achievements.map((a, i) => (
-              <li key={i} className="text-[14px] text-[#9AA0A6] flex items-start gap-2.5 leading-relaxed">
-                <span className="mt-2 flex-shrink-0 w-[5px] h-[5px] rounded-full bg-[#FFA000]/50" />
-                {a}
-              </li>
-            ))}
-          </ul>
+          {job.achievements.length > 0 && (
+            <ul className="mt-4 space-y-2">
+              {job.achievements.map((a, i) => (
+                <li key={i} className="text-[14px] text-[#9AA0A6] flex items-start gap-2.5 leading-relaxed">
+                  <span className="mt-2 flex-shrink-0 w-[5px] h-[5px] rounded-full bg-[#FFA000]/50" />
+                  {a}
+                </li>
+              ))}
+            </ul>
+          )}
 
           <div className="flex flex-wrap gap-1.5 mt-4">
             {job.skills.map((s) => (
@@ -146,8 +179,7 @@ export default function Experience() {
         <motion.div ref={ref} initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-16">
           <span className="section-label font-[family-name:var(--font-jetbrains)]">Career</span>
           <h2 className="heading-lg mt-4 max-w-[600px]">
-            From freelance frontend to{" "}
-            <span className="gradient-text">senior data engineering.</span>
+            <span className="gradient-text">Experience</span>
           </h2>
         </motion.div>
 

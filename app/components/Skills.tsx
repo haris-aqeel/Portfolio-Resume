@@ -14,7 +14,7 @@ interface SkillGroup {
 }
 
 const skillGroups: SkillGroup[] = [
-  { title: "Data Engineering", icon: Database, color: "#FFA000", description: "Design and build scalable data pipelines and lakehouse architectures", skills: ["Azure Data Factory", "Azure Databricks", "PySpark", "Microsoft Fabric", "Delta Lake", "Medallion Architecture", "ETL/ELT Pipelines", "Azure SQL Data Warehouse", "Google BigQuery", "Looker Studio", "Data Modeling"] },
+  { title: "Data Engineering", icon: Database, color: "#FFA000", description: "Design and build scalable data pipelines and lakehouse architectures", skills: ["Azure Data Factory", "Azure Databricks", "PySpark", "Microsoft Fabric", "Delta Lake", "Medallion Architecture", "ETL/ELT Pipelines", "Azure SQL Data Warehouse", "Google BigQuery", "Data Modeling"] },
   { title: "Analytics & BI", icon: BarChart3, color: "#4285F4", description: "Transform raw data into actionable business intelligence", skills: ["Power BI", "DAX", "Excel", "Data Visualization", "Dynamics 365 F&O"] },
   { title: "Cloud Platforms", icon: Cloud, color: "#34A853", description: "Build and deploy on enterprise cloud infrastructure", skills: ["Microsoft Azure", "AWS (Amplify, Lambda, S3, CloudFront, Cognito)", "Google Cloud Platform", "Serverless Architecture", "Vercel"] },
   { title: "Full-Stack (Prior)", icon: Code2, color: "#EA4335", description: "End-to-end web application development experience", skills: ["React.js", "Next.js", "TypeScript", "JavaScript", "Node.js", "Python", "Express.js", "MongoDB", "MySQL", "Firebase", "Redux", "REST APIs", "GraphQL"] },

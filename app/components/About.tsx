@@ -20,12 +20,6 @@ export default function About() {
               </h2>
               <div className="space-y-5 text-[16px] text-[#9AA0A6] leading-[1.75]">
                 <p>
-                  I started out as a frontend developer — React, TypeScript,
-                  GraphQL — building products for early-stage startups. At some
-                  point I got more interested in the data behind the apps than the
-                  apps themselves.
-                </p>
-                <p>
                   These days I work mostly in the Microsoft Azure ecosystem — Fabric, ADF, Databricks, Power BI. The software background still shapes how I think — I approach data systems with{" "}
                   <span className="text-white font-medium">clean architecture, maintainability, not just making it work.</span>
                 </p>

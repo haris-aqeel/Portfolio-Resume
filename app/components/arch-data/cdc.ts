@@ -7,6 +7,7 @@ const XC = 310;
 export const cdc: ArchitectureDiagram = {
   id: "cdc",
   tabLabel: "CDC & Mirroring",
+  conceptual: true,
   oneLiner:
     "Keep source databases and Fabric always in sync — no ETL jobs, no bulk loads.",
   nodes: [
